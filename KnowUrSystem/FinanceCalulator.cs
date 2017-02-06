@@ -24,7 +24,7 @@ namespace KnowUrSystem
         {
             var totalSum = distributions.Sum(c => c.RMultiple * c.Count);
             this.Expectancy = Math.Round(totalSum / this.Trades, 2);
-        }
+        } 
 
         public void CalculateStandardDeviation()
         {

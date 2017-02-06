@@ -9,13 +9,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace KnowUrSystem.Test.Features
 {
     [Binding]
+    [Scope(Feature = "TradeDistribution")]
     public class TradeDistributionSteps
     {
         private FinanceCalulator target;
-        [BeforeScenario]
-        public void BeforeScenario()
-        {
-        }
 
         [Given(@"我輸入Count vs R mutiple table :")]
         public void Given我輸入CountVsRMutipleTable(Table table)

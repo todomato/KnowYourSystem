@@ -2,7 +2,7 @@
 	In order to setting Count and R mutiple
 	
 
-@tradedistribution
+@需求
 Scenario: Set Distribution And Calculate Result
 	Given 我輸入Count vs R mutiple table :
 	| Count | RMultiple |

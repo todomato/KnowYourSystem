@@ -71,11 +71,11 @@ namespace KnowUrSystem.Test.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Set Distribution And Calculate Result")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TradeDistribution")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("tradedistribution")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
         public virtual void SetDistributionAndCalculateResult()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set Distribution And Calculate Result", new string[] {
-                        "tradedistribution"});
+                        "需求"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line hidden

@@ -69,6 +69,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Features\ControlSimulation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlSimulation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ControlSimulationSteps.cs" />
+    <Compile Include="Features\LosingStreaks.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LosingStreaks.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\LosingStreaksSteps.cs" />
     <Compile Include="Features\TradeDistribution.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,6 +97,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\ControlSimulation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ControlSimulation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\LosingStreaks.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LosingStreaks.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\TradeDistribution.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TradeDistribution.feature.cs</LastGenOutput>
