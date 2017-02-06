@@ -7,7 +7,8 @@ namespace KnowUrSystem.Model
 {
     public class SettingDistribution
     {
-        public int Counts { get; set; }
-        public double RMultiple { get; set; }
+        public decimal RMultiple { get; set; }
+
+        public int Count { get; set; }
     }
 }

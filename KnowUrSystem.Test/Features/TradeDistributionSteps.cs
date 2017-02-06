@@ -35,7 +35,6 @@ namespace KnowUrSystem.Test.Features
         public void When我計算StandardDeviation()
         {
             this.target.CalculateStandardDeviation();
-
         }
 
         [When(@"我計算 Win Rate")]
@@ -45,7 +44,7 @@ namespace KnowUrSystem.Test.Features
 
         }
 
-        [When(@"我計算 Win/Loss Ratio")]
+        [When(@"我計算 Avg Win/Loss Ratio")]
         public void When我計算WinLossRatio()
         {
             this.target.CalculateWinLossRatio();
@@ -82,7 +81,7 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(winRate, actual);
         }
         
-        [Then(@"Win/Loss Ratio is (.*)")]
+        [Then(@"Avg Win/Loss Ratio is (.*)")]
         public void ThenWinLossRatioIs(Decimal winlossRatio)
         {
             var actual = this.target.WinLossRatio;
