@@ -13,9 +13,9 @@ namespace KnowUrSystem
         public Decimal WinLossRatio { get; set; }
         public int Trades { get; set; }
 
-        private IEnumerable<SettingDistribution> distributions;
+        private IEnumerable<DistributionRawData> distributions;
 
-        public FinanceCalulator(IEnumerable<SettingDistribution> distributions)
+        public FinanceCalulator(IEnumerable<DistributionRawData> distributions)
         {
             this.distributions = distributions;
         }

@@ -1,14 +1,17 @@
 ﻿using System;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using KnowUrSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KnowUrSystem.Test.Features
 {
     [Binding]
+    [Scope(Feature = "ControlSimulation")]
+
     public class ControlSimulationSteps
     {
-        private Simulator target;
+        private ISimulator target;
 
         [BeforeScenario]
         public void BeforeScenario()

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KnowUrSystem.Model
 {
-    public class SettingDistribution
+    public class DistributionRawData
     {
         public decimal RMultiple { get; set; }
 
