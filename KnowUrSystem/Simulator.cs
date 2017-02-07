@@ -22,19 +22,25 @@ namespace KnowUrSystem
             _financeCalculator = fc;
         }
 
-        public int AvgNumOfConsecutiveLosses
+        public int AvgNumWeMeetConsecutiveLosses
         {
             get
             {
-                var clsByRun = new List<int>();
-                var cls = new List<int>();
-                foreach (var record in Runs)
-                {
-                    cls = CalculateConsecutiveLosses(record);
-                }
+                var probability = this.CumulativeProbabilityConsecutiveLossesList;
 
-                var result = cls.Average(c => c);
-                return (int)Math.Round(result);
+                //取得接近50%的筆數
+                var N = 0;
+                var diffProbility = 50.0;
+                for (int i = 0; i <= 99; i++)
+                {
+                    var temp = probability[i] - 50;
+                    if (diffProbility >= Math.Abs(temp) && temp != -50)
+                    {
+                        N = i+1;
+                        diffProbility = temp;
+                    };
+                }
+                return N;
             }
         }
 
@@ -162,7 +168,7 @@ namespace KnowUrSystem
         /// </summary>
         private void SimulatOnce()
         {
-            Random rnd = new Random();
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
 
             for (int i = 0; i < TradesPerMonth; i++)
             {
@@ -172,6 +178,62 @@ namespace KnowUrSystem
                 record.IsWinMoney = (rnd.Next(0, 100) >= _financeCalculator.WinRate) ? false : true;
                 Records.Add(record);
             }
+        }
+
+        public List<double> CumulativeProbabilityConsecutiveLossesList
+        {
+            get
+            {
+                var ClsByRun = GetConsecutiveLossesList();
+
+                var result = new List<double>();
+                for (int i = 1; i <= 100; i++)
+                {
+                    var sum = ClsByRun.Where(x => x >= i).Sum(c => 1);
+                    var porbility = sum * 100.0 / ClsByRun.Count;
+                    result.Add(porbility);
+                }
+
+                return result;
+            }
+        }
+
+
+        public List<double> ProbabilityConsecutiveLossesList
+        {
+            get
+            {
+                //TODO
+
+                var ClsByRun = GetConsecutiveLossesList();
+
+                var result = new List<double>();
+                for (int i = 1; i <= 100; i++)
+                {
+                    var count = ClsByRun.Where(x => x == i).Sum(c => 1);
+                    var porbility = count / 100;
+                    result.Add(porbility);
+                }
+
+                return result;
+            }
+        }
+
+        private List<int> GetConsecutiveLossesList()
+        {
+            var ClsByRun = new List<int>();
+            foreach (var record in Runs)
+            {
+                var cls = CalculateConsecutiveLosses(record);
+                var maxCls = cls.Max(c => c);
+                ClsByRun.Add(maxCls);
+                //foreach (var item in cls)
+                //{
+                //    ClsByRun.Add(item);
+                //}
+            }
+
+            return ClsByRun;
         }
     }
 }

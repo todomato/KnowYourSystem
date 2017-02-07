@@ -14,7 +14,10 @@ namespace KnowUrSystem
         int TimesOfSimulation { get; set; }
 
         int MaxNumOfConsecutiveLosses { get; }
-        int AvgNumOfConsecutiveLosses { get;  }
+        int AvgNumWeMeetConsecutiveLosses { get;  }
+        List<double> CumulativeProbabilityConsecutiveLossesList { get; }
+
+        List<double> ProbabilityConsecutiveLossesList { get; }
 
         void Simulate();
 

@@ -51,6 +51,22 @@ namespace KnowUrSystem.Test.Features
             _target.Simulate();
         }
 
+        [Then(@"the (.*) Probability Of Number Of Consecutive Losses result should greater than (.*)")]
+        public void ThenTheProbabilityOfNumberOfConsecutiveLossesResultShouldGreaterThan(int probability, int number)
+        {
+            var actual = _target.ProbabilityConsecutiveLossesList;
+            Assert.AreEqual(number, actual);
+        }
+
+        [Then(@"the (.*) Probability Of Number Of Consecutive Losses result should less than (.*)")]
+        public void ThenTheProbabilityOfNumberOfConsecutiveLossesResultShouldLessThan(int probability, int number)
+        {
+            var actual = _target.ProbabilityConsecutiveLossesList;
+            Assert.AreEqual(number, actual);
+        }
+
+
+
         [Then(@"the Max Consecutive Losses result should be (.*)")]
         public void ThenTheMaxCLResultShouldBe(int number)
         {
@@ -58,17 +74,59 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(number, actual);
         }
 
+        [Then(@"the Max Consecutive Losses result should greater than (.*)")]
+        public void ThenTheMaxConsecutiveLossesResultShouldGreaterThan(int number)
+        {
+            var max = _target.MaxNumOfConsecutiveLosses;
+            var actual = number < max;
+            Assert.AreEqual(true, actual);
+        }
+
+        [Then(@"the Max Consecutive Losses result should less than (.*)")]
+        public void ThenTheMaxConsecutiveLossesResultShouldLessThan(int number)
+        {
+            var max = _target.MaxNumOfConsecutiveLosses;
+            var actual = number > max;
+            Assert.AreEqual(true, actual);
+        }
+
+        [Then(@"the Avg Consecutive Losses result should greater than (.*)")]
+        public void ThenTheAvgConsecutiveLossesResultShouldGreaterThan(int number)
+        {
+            var avg = _target.AvgNumWeMeetConsecutiveLosses;
+            var actual = number < avg;
+            Assert.AreEqual(true, actual);
+        }
+
+        [Then(@"the Avg Consecutive Losses result should less than (.*)")]
+        public void ThenTheAvgConsecutiveLossesResultShouldLessThan(int number)
+        {
+            var avg = _target.AvgNumWeMeetConsecutiveLosses;
+            var actual = number > avg;
+            Assert.AreEqual(true, actual);
+        }
+
+
         [Then(@"the Avg Consecutive Losses result should be (.*)")]
         public void ThenTheAvgCLResultShouldBe(int number)
         {
-            var actual = _target.AvgNumOfConsecutiveLosses;
+            var actual = _target.AvgNumWeMeetConsecutiveLosses;
             Assert.AreEqual(number, actual);
         }
+
+        [Then(@"the Probability\(%\) Consecutive Losses List")]
+        public void ThenTheProbabilityConsecutiveLossesList()
+        {
+            var expect = 100.0;
+            var actual = _target.CumulativeProbabilityConsecutiveLossesList;
+            Assert.AreEqual(expect, actual[0]);
+        }
+
 
         [Given(@"simulator's Avg Consecutive Losses return (.*)")]
         public void GivenSimulatorSAvgConsecutiveLossesReturn(int number)
         {
-            _target.AvgNumOfConsecutiveLosses.Returns(number);
+            _target.AvgNumWeMeetConsecutiveLosses.Returns(number);
         }
 
         [Given(@"simulator's Max Consecutive Losses return (.*)")]
@@ -101,6 +159,15 @@ namespace KnowUrSystem.Test.Features
 
             ScenarioContext.Current.Set<List<int>>(cls, "cls");
         }
+
+        [When(@"I Calculate Avg Consecutive Losses")]
+        public void WhenICalculateAvgConsecutiveLosses()
+        {
+            var records = ScenarioContext.Current.Get<List<Record>>();
+            _target.Runs = new List<List<Record>>() { records };
+
+        }
+
 
         [Then(@"the Consecutive Losses should be '(.*)'")]
         public void ThenTheConsecutiveLossesShouldBe(string str)

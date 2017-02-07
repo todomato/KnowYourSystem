@@ -69,27 +69,42 @@ namespace KnowUrSystem.Test.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Avg Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Avg Number We Meet Cumulative Consecutive Losses")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
-        public virtual void SimulateAvgNumberOfConsecutiveLosses()
+        public virtual void SimulateAvgNumberWeMeetCumulativeConsecutiveLosses()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Avg Number Of Consecutive Losses", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Avg Number We Meet Cumulative Consecutive Losses", new string[] {
                         "需求"});
-#line 6
+#line 5
 this.ScenarioSetup(scenarioInfo);
-#line 7
- testRunner.Given("simulator is Stub", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.And("set simulation times are 2500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.And("simulator\'s Avg Consecutive Losses return 16", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table1.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table1.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table1.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 6
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table1, "Given ");
 #line 11
- testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
  testRunner.Then("the Avg Consecutive Losses result should be 16", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.Then("the Avg Consecutive Losses result should greater than 14", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Then("the Avg Consecutive Losses result should less than 17", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -102,25 +117,140 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Max Number Of Consecutive Losses", new string[] {
                         "需求"});
-#line 15
-this.ScenarioSetup(scenarioInfo);
-#line 16
- testRunner.Given("simulator is Stub", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
- testRunner.And("set simulation times are 2500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
- testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
- testRunner.And("simulator\'s Max Consecutive Losses return 52", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table2.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table2.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table2.AddRow(new string[] {
+                        "7",
+                        "-1"});
 #line 20
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table2, "Given ");
+#line 25
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
+#line 29
+ testRunner.Then("the Max Consecutive Losses result should greater than 40", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 30
+ testRunner.Then("the Max Consecutive Losses result should less than 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Some Probability Of Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
+        public virtual void SimulateSomeProbabilityOfNumberOfConsecutiveLosses()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Some Probability Of Number Of Consecutive Losses", new string[] {
+                        "需求"});
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table3.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table3.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table3.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 34
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table3, "Given ");
+#line 39
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
+ testRunner.Then("the 50 Probability Of Number Of Consecutive Losses result should greater than 40", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 44
+ testRunner.Then("the 50 Probability Of Number Of Consecutive Losses result should less than 40", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Probability(%) Consecutive Losses List")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
+        public virtual void SimulateProbabilityConsecutiveLossesList()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Probability(%) Consecutive Losses List", new string[] {
+                        "需求"});
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table4.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table4.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table4.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 48
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table4, "Given ");
+#line 53
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 56
+ testRunner.Then("the Probability(%) Consecutive Losses List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Max Number Of Consecutive Losses Stub")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
+        public virtual void SimulateMaxNumberOfConsecutiveLossesStub()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Max Number Of Consecutive Losses Stub", new string[] {
+                        "需求"});
+#line 59
+this.ScenarioSetup(scenarioInfo);
+#line 60
+ testRunner.Given("simulator is Stub", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 61
+ testRunner.And("set simulation times are 2500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 62
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.And("simulator\'s Max Consecutive Losses return 52", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 65
  testRunner.Then("the Max Consecutive Losses result should be 52", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        public virtual void SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses(string count, string r, string times, string trades, string max, string avg, string records, string[] exampleTags)
+        public virtual void SimulateThenGetMaxNumberOfConsecutiveLosses(string count, string r, string times, string trades, string max, string records, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "整合"};
@@ -128,36 +258,34 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Then Get Max And Avg  Number Of Consecutive Losses", @__tags);
-#line 25
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Then Get Max Number Of Consecutive Losses", @__tags);
+#line 69
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Count",
                         "RMultiple"});
-            table1.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         string.Format("{0}", count),
                         string.Format("{0}", r)});
-#line 26
- testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table1, "Given ");
-#line 29
+#line 70
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table5, "Given ");
+#line 73
  testRunner.And(string.Format("set simulation times are {0}", times), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 74
  testRunner.And(string.Format("set trades are {0}", trades), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 75
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
+#line 76
  testRunner.Then(string.Format("the Max Consecutive Losses result should be {0}", max), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
- testRunner.Then(string.Format("the Avg Consecutive Losses result should be {0}", avg), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 34
+#line 77
  testRunner.Then(string.Format("total records should be {0}", records), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max And Avg  Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max Number Of Consecutive Losses")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
@@ -166,15 +294,14 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:times", "1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:trades", "120")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:max", "0")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:avg", "0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:records", "120")]
-        public virtual void SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses_Variant0()
+        public virtual void SimulateThenGetMaxNumberOfConsecutiveLosses_Variant0()
         {
-            this.SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses("10", "1", "1", "120", "0", "0", "120", ((string[])(null)));
+            this.SimulateThenGetMaxNumberOfConsecutiveLosses("10", "1", "1", "120", "0", "120", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max And Avg  Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max Number Of Consecutive Losses")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
@@ -183,15 +310,14 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:times", "1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:trades", "120")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:max", "120")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:avg", "120")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:records", "120")]
-        public virtual void SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses_Variant1()
+        public virtual void SimulateThenGetMaxNumberOfConsecutiveLosses_Variant1()
         {
-            this.SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses("10", "-1", "1", "120", "120", "120", "120", ((string[])(null)));
+            this.SimulateThenGetMaxNumberOfConsecutiveLosses("10", "-1", "1", "120", "120", "120", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max And Avg  Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max Number Of Consecutive Losses")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
@@ -200,15 +326,14 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:times", "2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:trades", "120")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:max", "0")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:avg", "0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:records", "240")]
-        public virtual void SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses_Variant2()
+        public virtual void SimulateThenGetMaxNumberOfConsecutiveLosses_Variant2()
         {
-            this.SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses("10", "1", "2", "120", "0", "0", "240", ((string[])(null)));
+            this.SimulateThenGetMaxNumberOfConsecutiveLosses("10", "1", "2", "120", "0", "240", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max And Avg  Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get Max Number Of Consecutive Losses")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
@@ -217,41 +342,40 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:times", "2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:trades", "120")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:max", "120")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:avg", "120")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:records", "240")]
-        public virtual void SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses_Variant3()
+        public virtual void SimulateThenGetMaxNumberOfConsecutiveLosses_Variant3()
         {
-            this.SimulateThenGetMaxAndAvgNumberOfConsecutiveLosses("10", "-1", "2", "120", "120", "120", "240", ((string[])(null)));
+            this.SimulateThenGetMaxNumberOfConsecutiveLosses("10", "-1", "2", "120", "120", "240", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate 1 Run And Get Avg Number Of Consecutive Losses With Win Ratio 100% Shoul" +
-            "d Be 0")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate 1 Run And Get Avg Number We Meet Consecutive Losses With Win Ratio 100% " +
+            "Should Be 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
-        public virtual void Simulate1RunAndGetAvgNumberOfConsecutiveLossesWithWinRatio100ShouldBe0()
+        public virtual void Simulate1RunAndGetAvgNumberWeMeetConsecutiveLossesWithWinRatio100ShouldBe0()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate 1 Run And Get Avg Number Of Consecutive Losses With Win Ratio 100% Shoul" +
-                    "d Be 0", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate 1 Run And Get Avg Number We Meet Consecutive Losses With Win Ratio 100% " +
+                    "Should Be 0", new string[] {
                         "整合"});
-#line 43
+#line 86
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Count",
                         "RMultiple"});
-            table2.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "10",
                         "1"});
-#line 44
- testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table2, "Given ");
-#line 47
+#line 87
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table6, "Given ");
+#line 90
  testRunner.And("set simulation times are 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
+#line 91
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 92
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 50
+#line 93
  testRunner.Then("the Avg Consecutive Losses result should be 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -265,24 +389,24 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate 2 Run 120 Times Then Total Records Are 240", new string[] {
                         "整合"});
-#line 53
+#line 96
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Count",
                         "RMultiple"});
-            table3.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "10",
                         "-1"});
-#line 54
- testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table3, "Given ");
-#line 57
+#line 97
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table7, "Given ");
+#line 100
  testRunner.And("set simulation times are 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 58
+#line 101
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 59
+#line 102
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 60
+#line 103
  testRunner.Then("total records should be 240", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -296,24 +420,24 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("驗證模擬的記錄筆數", new string[] {
                         "unit"});
-#line 63
+#line 106
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Count",
                         "RMultiple"});
-            table4.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "10",
                         "-1"});
-#line 64
- testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table4, "Given ");
-#line 67
+#line 107
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table8, "Given ");
+#line 110
  testRunner.And("set simulation times are 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
+#line 111
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 69
+#line 112
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 70
+#line 113
  testRunner.Then("the records result should be 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -327,32 +451,32 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算連續虧損次數", new string[] {
                         "unit"});
-#line 73
+#line 116
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "IsWinMoney"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "true"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "false"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "false"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "true"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "true"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "false"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "false"});
-            table5.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "false"});
-#line 74
- testRunner.Given("我輸入records table :", ((string)(null)), table5, "Given ");
-#line 84
+#line 117
+ testRunner.Given("我輸入records table :", ((string)(null)), table9, "Given ");
+#line 127
  testRunner.When("I Calculate Consecutive Losses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 85
+#line 128
  testRunner.Then("the Consecutive Losses should be \'2,3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -366,33 +490,72 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算連續虧損次數2", new string[] {
                         "unit"});
-#line 88
+#line 131
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "IsWinMoney"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-            table6.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "false"});
-#line 89
- testRunner.Given("我輸入records table :", ((string)(null)), table6, "Given ");
-#line 99
+#line 132
+ testRunner.Given("我輸入records table :", ((string)(null)), table10, "Given ");
+#line 142
  testRunner.When("I Calculate Consecutive Losses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 100
+#line 143
  testRunner.Then("the Consecutive Losses should be \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("驗證百分之百會遇到的連續虧損N")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unit")]
+        public virtual void 驗證百分之百會遇到的連續虧損N()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("驗證百分之百會遇到的連續虧損N", new string[] {
+                        "unit"});
+#line 147
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "IsWinMoney"});
+            table11.AddRow(new string[] {
+                        "true"});
+            table11.AddRow(new string[] {
+                        "false"});
+            table11.AddRow(new string[] {
+                        "false"});
+            table11.AddRow(new string[] {
+                        "true"});
+            table11.AddRow(new string[] {
+                        "true"});
+            table11.AddRow(new string[] {
+                        "false"});
+            table11.AddRow(new string[] {
+                        "false"});
+            table11.AddRow(new string[] {
+                        "false"});
+#line 148
+ testRunner.Given("我輸入records table :", ((string)(null)), table11, "Given ");
+#line 158
+ testRunner.When("I Calculate Avg Consecutive Losses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 159
+ testRunner.Then("the Avg Consecutive Losses result should be 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
