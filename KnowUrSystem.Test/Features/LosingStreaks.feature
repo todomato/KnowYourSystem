@@ -20,6 +20,26 @@ Scenario: Simulate Max Number Of Consecutive Losses
 	When I simulate result
 	Then the Max Consecutive Losses result should be 52
 
+
+@整合
+Scenario Outline: Simulate Then Get Max And Avg  Number Of Consecutive Losses
+	Given 我輸入Count vs R mutiple table :
+	| Count   | RMultiple |
+	| <count> | <r>       |
+	And set simulation times are <times>
+	And set trades are <trades>
+	When I simulate result
+	Then the Max Consecutive Losses result should be <max>
+	Then the Avg Consecutive Losses result should be <avg>
+	Then total records should be <records>
+	Examples: 
+	| count | r  | times | trades | max | avg | records |
+	| 10    | 1  | 1     | 120    | 0   | 0   | 120     |
+	| 10    | -1 | 1     | 120    | 120 | 120 | 120     |
+	| 10    | 1  | 2     | 120    | 0   | 0   | 240     |
+	| 10    | -1 | 2     | 120    | 120 | 120 | 240     |
+
+@整合
 Scenario: Simulate 1 Run And Get Avg Number Of Consecutive Losses With Win Ratio 100% Should Be 0
 	Given 我輸入Count vs R mutiple table :
 	| Count | RMultiple |
@@ -29,15 +49,7 @@ Scenario: Simulate 1 Run And Get Avg Number Of Consecutive Losses With Win Ratio
 	When I simulate result
 	Then the Avg Consecutive Losses result should be 0
 
-Scenario: Simulate 1 Run And Get Max Number Of Consecutive Losses With Win Ratio 0% Should Be 120
-	Given 我輸入Count vs R mutiple table :
-	| Count | RMultiple |
-	| 10    | -1        |
-	And set simulation times are 1
-	And set trades are 120
-	When I simulate result
-	Then the Max Consecutive Losses result should be 120
-
+@整合
 Scenario: Simulate 2 Run 120 Times Then Total Records Are 240
 	Given 我輸入Count vs R mutiple table :
 	| Count | RMultiple |

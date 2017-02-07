@@ -6,8 +6,6 @@ namespace KnowUrSystem
 {
     public interface ISimulator
     {
-        //TODO 移掉
-        List<Record> Records { get; set; }
 
         List<List<Record>> Runs { get; set; }
 

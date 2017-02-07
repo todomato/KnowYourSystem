@@ -7,6 +7,12 @@ namespace KnowUrSystem
 {
     public class Simulator : ISimulator
     {
+        private List<Record> _records;
+
+        private List<List<Record>> _runs;
+
+        private int _timesOfSimulation;
+
         public Simulator()
         {
         }
@@ -16,28 +22,63 @@ namespace KnowUrSystem
             _financeCalculator = fc;
         }
 
-        public void Simulate()
+        public int AvgNumOfConsecutiveLosses
         {
-            SimulatOnce();
-        }
-
-        private void SimulatOnce()
-        {
-            Random rnd = new Random();
-
-            for (int i = 0; i < TradesPerMonth; i++)
+            get
             {
-                var record = new Record();
-                _financeCalculator.CalculateTrades();
-                _financeCalculator.CalculateWinRate();
-                record.IsWinMoney = (rnd.Next(0, 100) >= _financeCalculator.WinRate) ? false : true;
-                Records.Add(record);
+                var clsByRun = new List<int>();
+                var cls = new List<int>();
+                foreach (var record in Runs)
+                {
+                    cls = CalculateConsecutiveLosses(record);
+                }
+
+                var result = cls.Average(c => c);
+                return (int)Math.Round(result);
             }
         }
 
-        public int TradesPerMonth { get; set; }
+        public int MaxNumOfConsecutiveLosses
+        {
+            get
+            {
+                var clsByRun = new List<int>();
+                foreach (var record in Runs)
+                {
+                    var cls = CalculateConsecutiveLosses(record);
+                    var maxCls = cls.Max(c => c);
+                    clsByRun.Add(maxCls);
+                }
 
-        private int _timesOfSimulation;
+                return clsByRun.Max(c => c);
+            }
+        }
+
+        public List<Record> Records
+        {
+            get
+            {
+                if (_records == null) _records = new List<Record>();
+                return _records;
+            }
+            set
+            {
+                _records = value;
+            }
+        }
+
+        public List<List<Record>> Runs
+        {
+            get
+            {
+                if (_runs == null) _runs = new List<List<Record>>();
+                return _runs;
+            }
+            set
+            {
+                _runs = value;
+            }
+        }
 
         public int TimesOfSimulation
         {
@@ -60,15 +101,9 @@ namespace KnowUrSystem
             }
         }
 
-        public int MaxNumOfConsecutiveLosses
-        {
-            get
-            {
-                List<int> cls = CalculateConsecutiveLosses(Records);
-                var result = cls.Max(c => c);
-                return result;
-            }
-        }
+        public int TradesPerMonth { get; set; }
+
+        private FinanceCalulator _financeCalculator { get; set; }
 
         /// <summary>
         /// 計算連續虧損次數陣列
@@ -98,55 +133,45 @@ namespace KnowUrSystem
                 result.Add(currentCounts);
             }
 
+            //防呆
+            if (result.Count == 0)
+            {
+                result.Add(0);
+            }
+
             return result;
         }
 
-        public int AvgNumOfConsecutiveLosses
+        /// <summary>
+        /// 模擬系統
+        /// </summary>
+        public void Simulate()
         {
-            get
+            for (int i = 0; i < TimesOfSimulation; i++)
             {
-                List<int> cls = CalculateConsecutiveLosses(Records);
-                if (cls.Count > 0)
-                {
-                    var result = cls.Average(c => c);
-                    return (int)Math.Round(result);
-                }
-                else
-                {
-                    return 0;
-                }
+                SimulatOnce();
+                //將紀錄存為一輪
+                Runs.Add(Records);
+                //清除紀錄
+                Records = new List<Record>();
             }
         }
 
-        private List<Record> _records;
-
-        public List<Record> Records
+        /// <summary>
+        /// 執行模擬
+        /// </summary>
+        private void SimulatOnce()
         {
-            get
+            Random rnd = new Random();
+
+            for (int i = 0; i < TradesPerMonth; i++)
             {
-                if (_records == null) _records = new List<Record>();
-                return _records;
-            }
-            set
-            {
-                _records = value;
+                var record = new Record();
+                _financeCalculator.CalculateTrades();
+                _financeCalculator.CalculateWinRate();
+                record.IsWinMoney = (rnd.Next(0, 100) >= _financeCalculator.WinRate) ? false : true;
+                Records.Add(record);
             }
         }
-
-        private List<List<Record>> _runs;
-        public List<List<Record>> Runs
-        {
-            get
-            {
-                if (_runs == null) _runs = new List<List<Record>>();
-                return _runs;
-            }
-            set
-            {
-                _runs = value;
-            }
-        }
-
-        private FinanceCalulator _financeCalculator { get; set; }
     }
 }

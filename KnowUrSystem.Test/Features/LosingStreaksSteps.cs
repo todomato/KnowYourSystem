@@ -80,7 +80,7 @@ namespace KnowUrSystem.Test.Features
         [Then(@"the records result should be (.*)")]
         public void ThenTheRecordsResultShouldBe(int number)
         {
-            var actual = _target.Records.Count;
+            var actual = _target.Runs.Sum(x => x.Count);
             Assert.AreEqual(number, actual);
         }
 
