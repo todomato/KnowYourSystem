@@ -22,5 +22,6 @@ namespace KnowUrSystem
         void Simulate();
 
         List<int> CalculateConsecutiveLosses(List<Record> Records);
+
     }
 }

@@ -10,7 +10,7 @@ namespace KnowUrSystem.Test.Features
     [Scope(Feature = "TradeDistribution")]
     public class TradeDistributionSteps
     {
-        private FinanceCalulator target;
+        private IFinanceCalulator target;
 
         [Given(@"我輸入Count vs R mutiple table :")]
         public void Given我輸入CountVsRMutipleTable(Table table)
@@ -23,65 +23,72 @@ namespace KnowUrSystem.Test.Features
         [When(@"我計算 Expectancy")]
         public void When我計算Expectancy()
         {
-            this.target.CalculateExpectancy();
+            var expectancy = this.target.GetExpectancy();
+            ScenarioContext.Current.Set<decimal>(expectancy, "expectancy");
+
         }
 
         [When(@"我計算 Standard Deviation")]
         public void When我計算StandardDeviation()
         {
-            this.target.CalculateStandardDeviation();
+            var std = this.target.GetStandardDeviation();
+            ScenarioContext.Current.Set<decimal>(std, "std");
+
         }
 
         [When(@"我計算 Win Rate")]
         public void When我計算WinRate()
         {
-            this.target.CalculateWinRate();
+            var winRate = this.target.GetWinRate();
+            ScenarioContext.Current.Set<decimal>(winRate, "winRate");
         }
 
         [When(@"我計算 Avg Win/Loss Ratio")]
         public void When我計算WinLossRatio()
         {
-            this.target.CalculateWinLossRatio();
+            var winLossRatio = this.target.GetWinLossRatio();
+            ScenarioContext.Current.Set<decimal>(winLossRatio, "winLossRatio");
         }
 
         [When(@"我計算 \#Trades")]
         public void When我計算Trades()
         {
-            this.target.CalculateTrades();
+            var trades = this.target.GetTrades();
+            ScenarioContext.Current.Set<int>(trades, "trades");
         }
 
         [Then(@"Expectancy is (.*)")]
         public void ThenExpectancyIs(Decimal expectancy)
         {
-            var actual = this.target.Expectancy;
+            var actual = ScenarioContext.Current.Get<decimal>("expectancy");
             Assert.AreEqual(expectancy, actual);
         }
 
         [Then(@"Standard Deviation is (.*)")]
         public void ThenStandardDeviationIs(Decimal std)
         {
-            var actual = this.target.StandardDeviation;
+            var actual = ScenarioContext.Current.Get<decimal>("std");
             Assert.AreEqual(std, actual);
         }
 
         [Then(@"Win% is (.*)")]
         public void ThenWinIs(Decimal winRate)
         {
-            var actual = this.target.WinRate;
+            var actual = ScenarioContext.Current.Get<decimal>("winRate");
             Assert.AreEqual(winRate, actual);
         }
 
         [Then(@"Avg Win/Loss Ratio is (.*)")]
         public void ThenWinLossRatioIs(Decimal winlossRatio)
         {
-            var actual = this.target.WinLossRatio;
+            var actual = ScenarioContext.Current.Get<decimal>("winLossRatio");
             Assert.AreEqual(winlossRatio, actual);
         }
 
         [Then(@"\#Trades is (.*)")]
         public void ThenTradesIs(int trades)
         {
-            var actual = this.target.Trades;
+            var actual = ScenarioContext.Current.Get<int>("trades");
             Assert.AreEqual(trades, actual);
         }
     }

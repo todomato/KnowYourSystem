@@ -149,12 +149,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Some Probability Of Number Of Consecutive Losses")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("(Pending)Simulate Some Probability Of Number Of Consecutive Losses")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "LosingStreaks")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
-        public virtual void SimulateSomeProbabilityOfNumberOfConsecutiveLosses()
+        public virtual void PendingSimulateSomeProbabilityOfNumberOfConsecutiveLosses()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Some Probability Of Number Of Consecutive Losses", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("(Pending)Simulate Some Probability Of Number Of Consecutive Losses", new string[] {
                         "需求"});
 #line 33
 this.ScenarioSetup(scenarioInfo);

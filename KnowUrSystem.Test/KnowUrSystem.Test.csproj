@@ -75,6 +75,12 @@
       <DependentUpon>ControlSimulation.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\ControlSimulationSteps.cs" />
+    <Compile Include="Features\Drawdowns.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Drawdowns.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\DrawdownsSteps.cs" />
     <Compile Include="Features\LosingStreaks.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +106,10 @@
     <None Include="Features\ControlSimulation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ControlSimulation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Drawdowns.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Drawdowns.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\LosingStreaks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

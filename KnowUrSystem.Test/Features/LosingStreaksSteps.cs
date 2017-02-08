@@ -16,7 +16,7 @@ namespace KnowUrSystem.Test.Features
     public class LosingStreaksSteps
     {
         private ISimulator _target;
-        private FinanceCalulator _financeCalulator;
+        private IFinanceCalulator _financeCalulator;
 
         [Given(@"simulator is Stub")]
         public void GivenSimulatorIsStub()
@@ -54,6 +54,8 @@ namespace KnowUrSystem.Test.Features
         [Then(@"the (.*) Probability Of Number Of Consecutive Losses result should greater than (.*)")]
         public void ThenTheProbabilityOfNumberOfConsecutiveLossesResultShouldGreaterThan(int probability, int number)
         {
+            ScenarioContext.Current.Pending();
+
             var actual = _target.ProbabilityConsecutiveLossesList;
             Assert.AreEqual(number, actual);
         }
@@ -61,6 +63,8 @@ namespace KnowUrSystem.Test.Features
         [Then(@"the (.*) Probability Of Number Of Consecutive Losses result should less than (.*)")]
         public void ThenTheProbabilityOfNumberOfConsecutiveLossesResultShouldLessThan(int probability, int number)
         {
+            ScenarioContext.Current.Pending();
+
             var actual = _target.ProbabilityConsecutiveLossesList;
             Assert.AreEqual(number, actual);
         }

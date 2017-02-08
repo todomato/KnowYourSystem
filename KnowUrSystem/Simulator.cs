@@ -12,14 +12,23 @@ namespace KnowUrSystem
         private List<List<Record>> _runs;
 
         private int _timesOfSimulation;
+        private IDrawdownCalculator _drawdownCalculator;
+        private IFinanceCalulator _financeCalculator;
+
 
         public Simulator()
         {
         }
 
-        public Simulator(FinanceCalulator fc)
+        public Simulator(IFinanceCalulator fc)
         {
             _financeCalculator = fc;
+        }
+
+        public Simulator(IFinanceCalulator fc, IDrawdownCalculator dd)
+        {
+            _financeCalculator = fc;
+            _drawdownCalculator = dd;
         }
 
         public int AvgNumWeMeetConsecutiveLosses
@@ -109,7 +118,6 @@ namespace KnowUrSystem
 
         public int TradesPerMonth { get; set; }
 
-        private FinanceCalulator _financeCalculator { get; set; }
 
         /// <summary>
         /// 計算連續虧損次數陣列
@@ -173,9 +181,9 @@ namespace KnowUrSystem
             for (int i = 0; i < TradesPerMonth; i++)
             {
                 var record = new Record();
-                _financeCalculator.CalculateTrades();
-                _financeCalculator.CalculateWinRate();
-                record.IsWinMoney = (rnd.Next(0, 100) >= _financeCalculator.WinRate) ? false : true;
+                _financeCalculator.GetTrades();
+                _financeCalculator.GetWinRate();
+                record.IsWinMoney = (rnd.Next(0, 100) >= _financeCalculator.GetWinRate()) ? false : true;
                 Records.Add(record);
             }
         }
@@ -184,7 +192,7 @@ namespace KnowUrSystem
         {
             get
             {
-                var ClsByRun = GetConsecutiveLossesList();
+                var ClsByRun = GetMaxConsecutiveLossesList();
 
                 var result = new List<double>();
                 for (int i = 1; i <= 100; i++)
@@ -205,13 +213,13 @@ namespace KnowUrSystem
             {
                 //TODO
 
-                var ClsByRun = GetConsecutiveLossesList();
+                var ClsByRun = GetAllConsecutiveLossesList();
 
                 var result = new List<double>();
                 for (int i = 1; i <= 100; i++)
                 {
-                    var count = ClsByRun.Where(x => x == i).Sum(c => 1);
-                    var porbility = count / 100;
+                    var count = ClsByRun.Where(x => x >= i).Sum(c => 1);
+                    var porbility = count * 1.0 / ClsByRun.Count;
                     result.Add(porbility);
                 }
 
@@ -219,7 +227,7 @@ namespace KnowUrSystem
             }
         }
 
-        private List<int> GetConsecutiveLossesList()
+        private List<int> GetMaxConsecutiveLossesList()
         {
             var ClsByRun = new List<int>();
             foreach (var record in Runs)
@@ -234,6 +242,27 @@ namespace KnowUrSystem
             }
 
             return ClsByRun;
+        }
+
+        private List<int> GetAllConsecutiveLossesList()
+        {
+            var ClsByRun = new List<int>();
+            foreach (var record in Runs)
+            {
+                var cls = CalculateConsecutiveLosses(record);
+                foreach (var item in cls)
+                {
+                    ClsByRun.Add(item);
+                }
+            }
+
+            return ClsByRun;
+        }
+
+
+        public double GetMaxDD()
+        {
+            return _drawdownCalculator.GetMaxDD();
         }
     }
 }

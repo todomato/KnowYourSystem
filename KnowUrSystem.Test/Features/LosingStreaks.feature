@@ -30,7 +30,7 @@ Scenario: Simulate Max Number Of Consecutive Losses
 	Then the Max Consecutive Losses result should less than 100
 
 @需求
-Scenario: Simulate Some Probability Of Number Of Consecutive Losses
+Scenario: (Pending)Simulate Some Probability Of Number Of Consecutive Losses
 	Given 我輸入Count vs R mutiple table :
 	| Count   | RMultiple |
 	| 2 | 10       |

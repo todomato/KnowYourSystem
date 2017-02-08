@@ -5,55 +5,63 @@ using System.Linq;
 
 namespace KnowUrSystem
 {
-    public class FinanceCalulator
+    public class FinanceCalulator : IFinanceCalulator
     {
-        public Decimal Expectancy { get; set; }
-        public Decimal StandardDeviation { get; set; }
-        public Decimal WinRate { get; set; }
-        public Decimal WinLossRatio { get; set; }
-        public int Trades { get; set; }
+        private IEnumerable<DistributionRawData> _distributions;
+        private int _trades;
+        private int Trades
+        {
+            get
+            {
+                if (_trades == 0)
+                {
+                    _trades = GetTrades();
+                }
 
-        private IEnumerable<DistributionRawData> distributions;
+                return _trades;
+            }
+        }
 
         public FinanceCalulator(IEnumerable<DistributionRawData> distributions)
         {
-            this.distributions = distributions;
+            this._distributions = distributions;
         }
 
-        public void CalculateExpectancy()
+        public Decimal GetExpectancy()
         {
-            var totalSum = distributions.Sum(c => c.RMultiple * c.Count);
-            this.Expectancy = Math.Round(totalSum / this.Trades, 2);
-        } 
+            var totalSum = _distributions.Sum(c => c.RMultiple * c.Count);
+            return Math.Round(totalSum / Trades, 2);
+        }
 
-        public void CalculateStandardDeviation()
+        public Decimal GetStandardDeviation()
         {
             //標準差定義 : https://goo.gl/QntJ5
-            var totalSum = distributions.Sum(c => c.RMultiple * c.Count);
-            var mean = totalSum / this.Trades;
-            var deviationFromMean = distributions.Sum(c => (c.RMultiple - mean) * (c.RMultiple - mean) * c.Count);
-            var SD = Math.Sqrt((double)deviationFromMean / this.Trades);
-            this.StandardDeviation = Math.Round((Decimal)SD, 2);
+            var totalSum = _distributions.Sum(c => c.RMultiple * c.Count);
+            var mean = totalSum / Trades;
+            var deviationFromMean = _distributions.Sum(c => (c.RMultiple - mean) * (c.RMultiple - mean) * c.Count);
+            var SD = Math.Sqrt((double)deviationFromMean / Trades);
+            return Math.Round((Decimal)SD, 2);
         }
 
-        public void CalculateWinRate()
+        public Decimal GetWinRate()
         {
-            Decimal winTimes = distributions.Sum(c => c.RMultiple > 0 ? c.Count : 0);
-            this.WinRate = Math.Round((winTimes / this.Trades) * 100, 2);
+            Decimal winTimes = _distributions.Sum(c => c.RMultiple > 0 ? c.Count : 0);
+            return Math.Round((winTimes / Trades) * 100, 2);
         }
 
-        public void CalculateWinLossRatio()
+        public Decimal GetWinLossRatio()
         {
-            var winTimes = distributions.Sum(c => c.RMultiple > 0 ? c.Count : 0);
-            var wins = distributions.Sum(c => c.RMultiple > 0 ? c.RMultiple * c.Count : 0);
-            var loseTimes = distributions.Sum(c => c.RMultiple < 0 ? c.Count : 0);
-            var losses = distributions.Sum(c => c.RMultiple < 0 ? c.RMultiple * c.Count : 0);
-            this.WinLossRatio = Math.Round((wins / winTimes) / (losses / loseTimes) * (-1), 2);
+            var winTimes = _distributions.Sum(c => c.RMultiple > 0 ? c.Count : 0);
+            var wins = _distributions.Sum(c => c.RMultiple > 0 ? c.RMultiple * c.Count : 0);
+            var loseTimes = _distributions.Sum(c => c.RMultiple < 0 ? c.Count : 0);
+            var losses = _distributions.Sum(c => c.RMultiple < 0 ? c.RMultiple * c.Count : 0);
+            return Math.Round((wins / winTimes) / (losses / loseTimes) * (-1), 2);
         }
 
-        public void CalculateTrades()
+        public int GetTrades()
         {
-            this.Trades = distributions.Sum(c => c.Count);
+            return _distributions.Sum(c => c.Count);
         }
+
     }
 }

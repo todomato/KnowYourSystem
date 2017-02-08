@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FinanceCalulator.cs" />
+    <Compile Include="IDrawdownCalculator.cs" />
+    <Compile Include="IFinanceCalulator.cs" />
     <Compile Include="ISimulator.cs" />
     <Compile Include="Model\DistributionRawData.cs" />
     <Compile Include="Model\Record.cs" />
