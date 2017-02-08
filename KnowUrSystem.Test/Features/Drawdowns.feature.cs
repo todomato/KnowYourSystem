@@ -76,7 +76,7 @@ namespace KnowUrSystem.Test.Features
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Then Get MaxDD", new string[] {
                         "需求"});
-#line 6
+#line 5
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -91,22 +91,264 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "7",
                         "-1"});
-#line 7
-  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table1, "Given ");
+#line 6
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table1, "Given ");
+#line 11
+ testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And("DrawdownCalculator is Stub", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
- testRunner.And("DrawdownCalculator\'s MaxDD return -119.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.And("set stub simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
  testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 13
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 14
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("the MaxDD result should be -119.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simulate Then Get AvgDD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Drawdowns")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
+        public virtual void SimulateThenGetAvgDD()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simulate Then Get AvgDD", new string[] {
+                        "需求"});
 #line 18
- testRunner.Then("the MaxDDresult should be -119.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table2.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table2.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table2.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 19
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table2, "Given ");
+#line 24
+ testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 28
+ testRunner.Then("the AvgDD result should be -29", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Stub Simulate Then Get MaxDD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Drawdowns")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Stub")]
+        public virtual void StubSimulateThenGetMaxDD()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Stub Simulate Then Get MaxDD", new string[] {
+                        "Stub"});
+#line 31
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table3.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table3.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table3.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 32
+  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table3, "Given ");
+#line 37
+ testRunner.And("DrawdownCalculator is Stub", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.And("DrawdownCalculator\'s MaxDD return -119.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("set stub simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
+ testRunner.Then("the MaxDD result should be -119.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("計算MaxDD Part1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Drawdowns")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unit")]
+        public virtual void 計算MaxDDPart1()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算MaxDD Part1", new string[] {
+                        "unit"});
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "IsWinMoney",
+                        "RMultiple"});
+            table4.AddRow(new string[] {
+                        "true",
+                        "10"});
+            table4.AddRow(new string[] {
+                        "false",
+                        "-5"});
+            table4.AddRow(new string[] {
+                        "false",
+                        "-1"});
+            table4.AddRow(new string[] {
+                        "true",
+                        "1"});
+#line 48
+ testRunner.Given("我輸入R-mutiple Record table :", ((string)(null)), table4, "Given ");
+#line 54
+ testRunner.And("set DrawdownCalculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.When("I calculate MaxDD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 56
+ testRunner.Then("the DrawdownCalculator\'s MaxDD should be -6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("計算MaxDD Part2")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Drawdowns")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unit")]
+        public virtual void 計算MaxDDPart2()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算MaxDD Part2", new string[] {
+                        "unit"});
+#line 59
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "IsWinMoney",
+                        "RMultiple"});
+            table5.AddRow(new string[] {
+                        "true",
+                        "10"});
+            table5.AddRow(new string[] {
+                        "false",
+                        "-5"});
+            table5.AddRow(new string[] {
+                        "true",
+                        "1"});
+            table5.AddRow(new string[] {
+                        "false",
+                        "-5"});
+            table5.AddRow(new string[] {
+                        "false",
+                        "-1"});
+#line 60
+ testRunner.Given("我輸入R-mutiple Record table :", ((string)(null)), table5, "Given ");
+#line 67
+ testRunner.And("set DrawdownCalculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 68
+ testRunner.When("I calculate MaxDD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 69
+ testRunner.Then("the DrawdownCalculator\'s MaxDD should be -10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("計算MaxDD Part3")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Drawdowns")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unit")]
+        public virtual void 計算MaxDDPart3()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算MaxDD Part3", new string[] {
+                        "unit"});
+#line 72
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "IsWinMoney",
+                        "RMultiple"});
+            table6.AddRow(new string[] {
+                        "false",
+                        "-5"});
+            table6.AddRow(new string[] {
+                        "true",
+                        "10"});
+            table6.AddRow(new string[] {
+                        "true",
+                        "1"});
+            table6.AddRow(new string[] {
+                        "false",
+                        "-5"});
+            table6.AddRow(new string[] {
+                        "false",
+                        "-1"});
+            table6.AddRow(new string[] {
+                        "true",
+                        "20"});
+#line 73
+ testRunner.Given("我輸入R-mutiple Record table :", ((string)(null)), table6, "Given ");
+#line 81
+ testRunner.And("set DrawdownCalculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
+ testRunner.When("I calculate MaxDD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 83
+ testRunner.Then("the DrawdownCalculator\'s MaxDD should be -6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("計算隨機取得R倍數")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Drawdowns")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unit")]
+        public virtual void 計算隨機取得R倍數()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算隨機取得R倍數", new string[] {
+                        "unit"});
+#line 86
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table7.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table7.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table7.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 87
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table7, "Given ");
+#line 92
+ testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("set simulation times are 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.And("set trades are 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 96
+ testRunner.Then("the random R mutiple should less than 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 97
+ testRunner.Then("the random R mutiple should greather than -2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

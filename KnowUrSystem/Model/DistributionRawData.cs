@@ -7,7 +7,7 @@ namespace KnowUrSystem.Model
 {
     public class DistributionRawData
     {
-        public decimal RMultiple { get; set; }
+        public double RMultiple { get; set; }
 
         public int Count { get; set; }
     }

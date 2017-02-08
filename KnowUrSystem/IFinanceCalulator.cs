@@ -3,11 +3,12 @@ namespace KnowUrSystem
 {
     public interface IFinanceCalulator
     {
-        Decimal GetExpectancy();
-        Decimal GetStandardDeviation();
+        double GetExpectancy();
+        double GetStandardDeviation();
         int GetTrades();
-        Decimal GetWinLossRatio();
-        Decimal GetWinRate();
+        double GetWinLossRatio();
+        double GetWinRate();
 
+        double GetRandomRMultiple(Random rnd);
     }
 }

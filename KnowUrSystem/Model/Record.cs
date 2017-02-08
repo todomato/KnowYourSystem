@@ -8,6 +8,7 @@ namespace KnowUrSystem.Model
     public class Record
     {
         public bool IsWinMoney { get; set; }
-       
+
+        public double RMultiple { get; set; }
     }
 }

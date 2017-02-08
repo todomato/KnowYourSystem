@@ -177,13 +177,13 @@ namespace KnowUrSystem
         private void SimulatOnce()
         {
             Random rnd = new Random(Guid.NewGuid().GetHashCode());
-
             for (int i = 0; i < TradesPerMonth; i++)
             {
                 var record = new Record();
-                _financeCalculator.GetTrades();
-                _financeCalculator.GetWinRate();
-                record.IsWinMoney = (rnd.Next(0, 100) >= _financeCalculator.GetWinRate()) ? false : true;
+
+                // 贏輸多少R
+                record.RMultiple = _financeCalculator.GetRandomRMultiple(rnd);
+                record.IsWinMoney = (record.RMultiple >= 0) ? true : false;
                 Records.Add(record);
             }
         }
@@ -211,8 +211,6 @@ namespace KnowUrSystem
         {
             get
             {
-                //TODO
-
                 var ClsByRun = GetAllConsecutiveLossesList();
 
                 var result = new List<double>();
@@ -262,7 +260,12 @@ namespace KnowUrSystem
 
         public double GetMaxDD()
         {
-            return _drawdownCalculator.GetMaxDD();
+            return _drawdownCalculator.GetMaxDD(Runs);
+        }
+
+        public double GetAvgDD()
+        {
+            return _drawdownCalculator.GetAvgDD(Runs);
         }
     }
 }
