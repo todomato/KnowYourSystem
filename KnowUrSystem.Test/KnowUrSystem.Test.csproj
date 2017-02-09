@@ -75,6 +75,12 @@
       <DependentUpon>ControlSimulation.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\ControlSimulationSteps.cs" />
+    <Compile Include="Features\DistributionCalculator.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistributionCalculator.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\DistributionCalculatorSteps.cs" />
     <Compile Include="Features\DrawdownDuration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,6 +124,10 @@
     <None Include="Features\ControlSimulation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ControlSimulation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\DistributionCalculator.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DistributionCalculator.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\DrawdownDuration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

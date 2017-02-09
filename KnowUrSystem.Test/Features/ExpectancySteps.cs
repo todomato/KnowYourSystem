@@ -67,7 +67,7 @@ namespace KnowUrSystem.Test.Features
         public void ThenTheMaxExpectancyResultShouldBeAbout_(double num, double about)
         {
             var actual = _target.GetMaxExpectancy();
-            if (actual - num < about)
+            if (actual - num <= about)
             {
                 actual = num;
             }
@@ -79,7 +79,7 @@ namespace KnowUrSystem.Test.Features
         public void ThenTheAvgExpectancyResultShouldBeAbout_(double num, double about)
         {
             var actual = _target.GetAvgExpectancy();
-            if (actual - num < about)
+            if (actual - num <= about)
             {
                 actual = num;
             }

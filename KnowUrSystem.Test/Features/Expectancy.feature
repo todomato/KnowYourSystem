@@ -12,7 +12,7 @@ Scenario: Max Expectancy
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the Max Expectancy result should be 2.62 about +- 0.1
+	Then the Max Expectancy result should be 2.62 about +- 0.5
 
 @需求
 Scenario: Avg Expectancy
@@ -25,7 +25,7 @@ Scenario: Avg Expectancy
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the Avg Expectancy result should be 0.8 about +- 0
+	Then the Avg Expectancy result should be 0.8 about +- 0.1
 
 @需求
 Scenario: Get 50% Expectancy

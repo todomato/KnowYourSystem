@@ -105,17 +105,17 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Limit Simulation Times Max Are 10000")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Limit Simulation Times Max Are 100000")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ControlSimulation")]
-        public virtual void LimitSimulationTimesMaxAre10000()
+        public virtual void LimitSimulationTimesMaxAre100000()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Limit Simulation Times Max Are 10000", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Limit Simulation Times Max Are 100000", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 19
- testRunner.Given("我設定模擬 11000 次", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("我設定模擬 110000 次", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
- testRunner.Then("模擬器顯示模擬 10000 次", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("模擬器顯示模擬 100000 次", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

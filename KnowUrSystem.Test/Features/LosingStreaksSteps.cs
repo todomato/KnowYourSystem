@@ -32,6 +32,7 @@ namespace KnowUrSystem.Test.Features
         {
             _target.TimesOfSimulation = times;
         }
+
         [Given(@"我輸入Count vs R mutiple table :")]
         public void Given我輸入CountVsRMutipleTable(Table table)
         {

@@ -25,7 +25,7 @@ Scenario: Simulate Then Get AvgDD
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the AvgDD result should be -29
+	Then the AvgDD result should be -29 about +- 1
 
 @Stub
 Scenario: Stub Simulate Then Get MaxDD

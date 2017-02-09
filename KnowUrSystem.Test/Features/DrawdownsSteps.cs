@@ -94,12 +94,19 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(maxDD, actual);
         }
 
-        [Then(@"the AvgDD result should be (.*)")]
-        public void ThenTheAvgDDResultShouldBe(double avgDD)
+
+        [Then(@"the AvgDD result should be (.*) about \+- (.*)")]
+        public void ThenTheAvgDDResultShouldBeAbout_(double avgDD, double about)
         {
             var actual = this._target.GetAvgDD();
+            if (Math.Abs(avgDD - actual) <= about)
+            {
+                actual = avgDD;
+            }
+
             Assert.AreEqual(avgDD, actual);
         }
+
 
         [Given(@"我輸入R-mutiple Record table :")]
         public void Given我輸入R_MutipleRecordTable(Table table)

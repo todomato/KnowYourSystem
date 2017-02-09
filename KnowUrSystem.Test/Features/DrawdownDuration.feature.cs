@@ -69,12 +69,12 @@ namespace KnowUrSystem.Test.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("99% 可能創新高所需的交易次數")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("95% 可能創新高所需的交易次數")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DrawdownDuration")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
-        public virtual void _99可能創新高所需的交易次數()
+        public virtual void _95可能創新高所需的交易次數()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99% 可能創新高所需的交易次數", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("95% 可能創新高所需的交易次數", new string[] {
                         "需求"});
 #line 4
 this.ScenarioSetup(scenarioInfo);
@@ -96,56 +96,52 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("set simulation times are 100000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.Then("the 99% >= Equity Peak\'s result should be 197", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the 95% >= Equity Peak\'s result should be 88 about +- 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("計算累計R倍數")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("99% 可能創新高所需的交易次數")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DrawdownDuration")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("unit")]
-        public virtual void 計算累計R倍數()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
+        public virtual void _99可能創新高所需的交易次數()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("計算累計R倍數", new string[] {
-                        "unit"});
-#line 19
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("99% 可能創新高所需的交易次數", new string[] {
+                        "需求"});
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "IsWinMoney",
+                        "Count",
                         "RMultiple"});
             table2.AddRow(new string[] {
-                        "true",
-                        "1"});
+                        "2",
+                        "10"});
             table2.AddRow(new string[] {
-                        "false",
-                        "-6"});
+                        "1",
+                        "-5"});
             table2.AddRow(new string[] {
-                        "true",
-                        "1"});
-            table2.AddRow(new string[] {
-                        "true",
-                        "1"});
-            table2.AddRow(new string[] {
-                        "true",
-                        "3"});
-#line 20
- testRunner.Given("我輸入R-mutiple Record table :", ((string)(null)), table2, "Given ");
+                        "7",
+                        "-1"});
+#line 19
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table2, "Given ");
+#line 24
+ testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.And("set trades are 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
- testRunner.And("set DrawdownCalculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
- testRunner.When("I calculate CalculteCumulativeRmutiple", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
- testRunner.Then("the CalculteCumulativeRmutiple\'s No.1 result should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 30
- testRunner.Then("the CalculteCumulativeRmutiple\'s No.2 result should be -5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the 99% >= Equity Peak\'s result should be 170 about +- 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

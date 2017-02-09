@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DistributionCalulator.cs" />
     <Compile Include="DrawdownCalculator.cs" />
     <Compile Include="FinanceCalulator.cs" />
+    <Compile Include="IDistributionCalulator.cs" />
     <Compile Include="IDrawdownCalculator.cs" />
     <Compile Include="IFinanceCalulator.cs" />
     <Compile Include="ISimulator.cs" />

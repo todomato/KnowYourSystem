@@ -14,6 +14,7 @@ namespace KnowUrSystem
         private int _timesOfSimulation;
         private IDrawdownCalculator _drawdownCalculator;
         private IFinanceCalulator _financeCalculator;
+        private IDistributionCalulator _distributionCalulator;
 
 
         public Simulator()
@@ -29,6 +30,14 @@ namespace KnowUrSystem
         {
             _financeCalculator = fc;
             _drawdownCalculator = dd;
+        }
+
+        public Simulator(IFinanceCalulator fc, IDrawdownCalculator dd, IDistributionCalulator d)
+        {
+            _financeCalculator = fc;
+            _drawdownCalculator = dd;
+            _distributionCalulator = d;
+            
         }
 
         public int AvgNumWeMeetConsecutiveLosses
@@ -104,9 +113,9 @@ namespace KnowUrSystem
                 //    return 2500;
                 //}
                 //else
-                if (_timesOfSimulation > 10000)
+                if (_timesOfSimulation > 100000)
                 {
-                    return 10000;
+                    return 100000;
                 }
                 return _timesOfSimulation;
             }
@@ -187,26 +196,6 @@ namespace KnowUrSystem
                 record.Number = i+1;
                 // 計算累計R
                 record.CumulativeRMutiple = i == 0 ? record.RMultiple : record.RMultiple + Records[i - 1].CumulativeRMutiple;
-
-                // 判斷是否曾經創新高
-                if (i == 0)
-                {
-                    if (record.CumulativeRMutiple > 0)
-                    {
-                        record.IsThroughNewPeak = true;
-                    };
-                }
-                else
-                {
-                    if (Records[i-1].IsThroughNewPeak == true)
-                    {
-                        record.IsThroughNewPeak = true;
-                    }
-                    else if (record.CumulativeRMutiple > 0)
-                    {
-                        record.IsThroughNewPeak = true;
-                    };
-                }
 
                 Records.Add(record);
             }
@@ -293,11 +282,6 @@ namespace KnowUrSystem
         }
 
 
-        public int GetNumberThroughNewPeak(int confidence)
-        {
-            return _drawdownCalculator.GetNumberThroughNewPeak(Runs, confidence);
-        }
-
         public double GetMaxExpectancy()
         {
             var expectancys = CalculateExpectancy();
@@ -363,6 +347,26 @@ namespace KnowUrSystem
                 expectancys.Add(expect);
             }
             return expectancys;
+        }
+
+        public int GetNumberOfTradesForConfidence(double prob)
+        {
+            var distributions = _distributionCalulator.CalculateLossDistributionProbability(Runs);
+
+            //取得接近信心X%的筆數
+            var N = 0;
+            var probability = 1 - prob / 100.0; //轉成失敗率
+            var diffProbility = probability;
+            for (int i = 0; i < distributions.Count; i++)
+            {
+                var temp = distributions[i] - probability;
+                if (diffProbility >= Math.Abs(temp) && temp != probability*-1)
+                {
+                    N = i;
+                    diffProbility = temp;
+                };
+            }
+            return N + 1;
         }
     }
 }

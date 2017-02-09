@@ -7,6 +7,7 @@ namespace KnowUrSystem.Model
 {
     public class Record
     {
+        public int Run { get; set; }
         public int Number { get; set; }
 
         public double CumulativeRMutiple { get; set; }
@@ -15,6 +16,5 @@ namespace KnowUrSystem.Model
 
         public double RMultiple { get; set; }
 
-        public bool IsThroughNewPeak { get; set; }
     }
 }

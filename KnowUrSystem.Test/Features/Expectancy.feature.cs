@@ -102,7 +102,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("the Max Expectancy result should be 2.62 about +- 0.1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Max Expectancy result should be 2.62 about +- 0.5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -141,7 +141,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
- testRunner.Then("the Avg Expectancy result should be 0.8 about +- 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Avg Expectancy result should be 0.8 about +- 0.1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
