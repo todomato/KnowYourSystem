@@ -184,6 +184,30 @@ namespace KnowUrSystem
                 // 贏輸多少R
                 record.RMultiple = _financeCalculator.GetRandomRMultiple(rnd);
                 record.IsWinMoney = (record.RMultiple >= 0) ? true : false;
+                record.Number = i+1;
+                // 計算累計R
+                record.CumulativeRMutiple = i == 0 ? record.RMultiple : record.RMultiple + Records[i - 1].CumulativeRMutiple;
+
+                // 判斷是否曾經創新高
+                if (i == 0)
+                {
+                    if (record.CumulativeRMutiple > 0)
+                    {
+                        record.IsThroughNewPeak = true;
+                    };
+                }
+                else
+                {
+                    if (Records[i-1].IsThroughNewPeak == true)
+                    {
+                        record.IsThroughNewPeak = true;
+                    }
+                    else if (record.CumulativeRMutiple > 0)
+                    {
+                        record.IsThroughNewPeak = true;
+                    };
+                }
+
                 Records.Add(record);
             }
         }
@@ -266,6 +290,79 @@ namespace KnowUrSystem
         public double GetAvgDD()
         {
             return _drawdownCalculator.GetAvgDD(Runs);
+        }
+
+
+        public int GetNumberThroughNewPeak(int confidence)
+        {
+            return _drawdownCalculator.GetNumberThroughNewPeak(Runs, confidence);
+        }
+
+        public double GetMaxExpectancy()
+        {
+            var expectancys = CalculateExpectancy();
+            return Math.Round(expectancys.Max(m => m),2);
+        }
+
+     
+
+        public double GetAvgExpectancy()
+        {
+            var expectancys = CalculateExpectancy();
+            return Math.Round(expectancys.Average(m => m), 2);
+
+        }
+
+        public double GetExpectancy(double probability)
+        {
+            var expectancys = CalculateExpectancy();
+            var grouped = expectancys.GroupBy(x => x, (x, g) =>
+                new ExpectModel { Expectancy = x, Count = g.Count() })
+                .OrderBy(c => c.Expectancy)
+                .ToList();
+
+            //probability
+            var probabilitys = new List<ExpectModel>();
+            foreach (var item in grouped)
+            {
+                var count = grouped.Where(x => x.Expectancy >= item.Expectancy)
+                    .Sum(c => c.Count);
+                var porb = count * 1.0 / expectancys.Count;
+                var expectModel = new ExpectModel()
+                {
+                    CumulativeProbability = porb,
+                    Expectancy = item.Expectancy
+                };
+                probabilitys.Add(expectModel);
+            }
+
+            //取得接近50%的筆數
+            var X = 0;
+            var percentage = probability/100.0;
+            var diffProbility = percentage;
+            for (int i = 0; i < probabilitys.Count; i++)
+            {
+                var temp = probabilitys[i].CumulativeProbability - percentage;
+                if (diffProbility >= Math.Abs(temp) && temp > 0)
+                {
+                    X = i + 1;
+                    diffProbility = temp;
+                };
+            }
+
+            return probabilitys[X].Expectancy;
+
+        }
+
+        private List<double> CalculateExpectancy()
+        {
+            var expectancys = new List<double>();
+            foreach (var records in Runs)
+            {
+                var expect = records.Sum(x => x.RMultiple) / records.Count;
+                expectancys.Add(expect);
+            }
+            return expectancys;
         }
     }
 }

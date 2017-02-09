@@ -13,6 +13,8 @@ using KnowUrSystem;
 namespace KnowUrSystem.Test.Features
 {
     [Binding]
+    [Scope(Feature = "Drawdowns")]
+
     public class DrawdownsSteps
     {
         private Simulator _target;

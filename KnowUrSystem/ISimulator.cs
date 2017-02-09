@@ -23,5 +23,9 @@ namespace KnowUrSystem
 
         List<int> CalculateConsecutiveLosses(List<Record> Records);
 
+        double GetMaxExpectancy();
+
+        double GetAvgExpectancy();
+
     }
 }

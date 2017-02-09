@@ -33,11 +33,6 @@ namespace KnowUrSystem
             {
                 var result = GetMaxDD(record);
                 DDByRun.Add(result);
-                //var drawdowns = CalculateDrawdown(record);
-                //foreach (var item in drawdowns)
-                //{
-                //    DDByRun.Add(item);
-                //}
             }
 
             //累計機率
@@ -61,7 +56,69 @@ namespace KnowUrSystem
         }
 
 
-        //計算DD累計機率
+        public List<double> CalculteCumulativeRmutiple(List<Record> records)
+        {
+            var result = new List<double>();
+            var length = records.Count;
+
+
+            // 出現交易沒有創新高的機率
+            var currentR = 0.0; //目前位置
+            for (int i = 0; i < length; i++)
+            {
+                //現況
+                currentR += records[i].RMultiple;
+                result.Add(currentR);
+            }
+
+            return result;
+        }
+
+        public int GetNumberThroughNewPeak(List<List<Record>> runs, double confidence)
+        {
+            //計算N筆交易累積R倍數賠的佔模擬次數的比例
+            var probabilitys = new List<double>();
+            var trades = runs.Select(x => x.Count).First();
+            int simulateCount = runs.Count;
+
+            for (int i = 0; i < trades; i++)
+            {
+                var lossbox = 0;
+                foreach (var records in runs)
+                {
+                    if (records[i].CumulativeRMutiple < 0 && 
+                        records[i].IsThroughNewPeak == false)
+	                {
+                        lossbox++;
+	                }
+                    
+                }
+
+                var lossProb = (double)lossbox / simulateCount;
+                probabilitys.Add(1-lossProb);
+            }
+
+            //取得特定信心程度%創新高的次數
+            var N = 0;
+            var diffProbility = confidence;
+            for (int i = 0; i <= trades; i++)
+            {
+                var temp = probabilitys[i] * 100 ;
+                if (diffProbility >= Math.Abs(temp))
+                {
+                    N = i + 1;
+                };
+            }
+            return N;
+        }
+
+
+
+        /// <summary>
+        /// 計算DD累計機率
+        /// </summary>
+        /// <param name="DDByRun"></param>
+        /// <returns></returns>
         private static List<double> CalculateCumulativeProbabilityOfDD(List<double> DDByRun)
         {
             var result = new List<double>();
@@ -74,7 +131,11 @@ namespace KnowUrSystem
             return result;
         }
 
-        //todo
+        /// <summary>
+        /// 計算DD單次機率
+        /// </summary>
+        /// <param name="DDByRun"></param>
+        /// <returns></returns>
         private static List<double> CalculateProbabilityOfDD(List<double> DDByRun)
         {
             var result = new List<double>();
@@ -139,6 +200,20 @@ namespace KnowUrSystem
             return result;
         }
 
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
     }
 }

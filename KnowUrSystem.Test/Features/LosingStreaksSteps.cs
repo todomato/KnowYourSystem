@@ -13,6 +13,8 @@ namespace KnowUrSystem.Test.Features
 {
     [Binding]
     [Scope(Feature = "LosingStreaks")]
+
+    
     public class LosingStreaksSteps
     {
         private ISimulator _target;
