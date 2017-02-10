@@ -105,6 +105,12 @@
       <DependentUpon>LosingStreaks.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\LosingStreaksSteps.cs" />
+    <Compile Include="Features\SystemSummary.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemSummary.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\SystemSummarySteps.cs" />
     <Compile Include="Features\TradeDistribution.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,6 +150,10 @@
     <None Include="Features\LosingStreaks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LosingStreaks.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\SystemSummary.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SystemSummary.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\TradeDistribution.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

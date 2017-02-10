@@ -13,6 +13,8 @@ using KnowUrSystem;
 namespace KnowUrSystem.Test.Features
 {
     [Binding]
+    [Scope(Feature = "DistributionCalculator")]
+
     public class DistributionCalculatorSteps
     {
         private IDistributionCalulator _target;
