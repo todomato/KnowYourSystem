@@ -31,28 +31,32 @@ namespace KnowUrSystem
             var DDByRun = new List<double>();
             foreach (var record in runs)
             {
+                //TODO check 平均下跌 是否是用最大下跌的平均
                 var result = GetMaxDD(record);
                 DDByRun.Add(result);
             }
 
-            //累計機率
-            var probability = CalculateCumulativeProbabilityOfDD(DDByRun);
-            //單獨運算DD機率
-            //var probability = CalculateProbabilityOfDD(DDByRun);
+            var avg = DDByRun.Average(x => x);
+            return avg;
 
-            //取得接近50%的筆數
-            var R = 0;
-            var diffProbility = 50.0;
-            for (int i = 0; i <= 99; i++)
-            {
-                var temp = probability[i] - 50;
-                if (diffProbility >= Math.Abs(temp) && temp != -50)
-                {
-                    R = i + 1;
-                    diffProbility = temp;
-                };
-            }
-            return R * -1;
+            ////累計機率
+            //var probability = CalculateCumulativeProbabilityOfDD(DDByRun);
+            ////單獨運算DD機率 
+            ////var probability = CalculateProbabilityOfDD(DDByRun);
+
+            ////取得接近50%的筆數
+            //var R = 0;
+            //var diffProbility = 50.0;
+            //for (int i = 0; i <= 99; i++)
+            //{
+            //    var temp = probability[i] - 50;
+            //    if (diffProbility >= Math.Abs(temp) && temp != -50)
+            //    {
+            //        R = i + 1;
+            //        diffProbility = temp;
+            //    };
+            //}
+            //return R * -1;
         }
 
 

@@ -102,7 +102,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("the MaxDD result should be -119.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the MaxDD result should be -119.0 about +- 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -141,7 +141,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
- testRunner.Then("the AvgDD result should be -29 about +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the AvgDD result should be -29.3 about +- 0.5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -348,7 +348,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 96
  testRunner.Then("the random R mutiple should less than 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 97
- testRunner.Then("the random R mutiple should greather than -2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the random R mutiple should greather than -4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

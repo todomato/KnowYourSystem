@@ -40,7 +40,7 @@ namespace KnowUrSystem.Test.Features
             var trades = ScenarioContext.Current.Get<int>("trades");
             simulator = new Simulator(_financeCalulator, _drawdownCalculator);
             simulator.TimesOfSimulation = times;
-            simulator.TradesPerMonth = trades;
+            simulator.TradesPerYearly = trades;
 
             _target = new DistributionCalulator(times, trades);
 

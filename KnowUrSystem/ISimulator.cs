@@ -9,7 +9,7 @@ namespace KnowUrSystem
 
         List<List<Record>> Runs { get; set; }
 
-        int TradesPerMonth { get; set; }
+        int TradesPerYearly { get; set; }
 
         int TimesOfSimulation { get; set; }
 
@@ -26,6 +26,8 @@ namespace KnowUrSystem
         double GetMaxExpectancy();
 
         double GetAvgExpectancy();
+
+        Summary GetSimulateResult(int confidence);
 
     }
 }

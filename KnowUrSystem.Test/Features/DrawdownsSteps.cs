@@ -78,7 +78,7 @@ namespace KnowUrSystem.Test.Features
         [Given(@"set trades are (.*)")]
         public void GivenSetTradesAre(int trades)
         {
-            _target.TradesPerMonth = trades;
+            _target.TradesPerYearly = trades;
         }
 
         [When(@"I simulate result")]
@@ -87,10 +87,15 @@ namespace KnowUrSystem.Test.Features
             _target.Simulate();
         }
 
-        [Then(@"the MaxDD result should be (.*)")]
-        public void ThenTheMaxDDresultShouldBe(double maxDD)
+        [Then(@"the MaxDD result should be (.*) about \+- (.*)")]
+        public void ThenTheMaxDDresultShouldBe(double maxDD, double about)
         {
             var actual = this._target.GetMaxDD();
+            if (Math.Abs(maxDD - actual) <= about)
+            {
+                actual = maxDD;
+            }
+
             Assert.AreEqual(maxDD, actual);
         }
 

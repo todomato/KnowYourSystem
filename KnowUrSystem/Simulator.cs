@@ -12,10 +12,11 @@ namespace KnowUrSystem
         private List<List<Record>> _runs;
 
         private int _timesOfSimulation;
+        private double _avgDD;
         private IDrawdownCalculator _drawdownCalculator;
         private IFinanceCalulator _financeCalculator;
         private IDistributionCalulator _distributionCalulator;
-
+        private double _avgExpectancy;
 
         public Simulator()
         {
@@ -37,7 +38,6 @@ namespace KnowUrSystem
             _financeCalculator = fc;
             _drawdownCalculator = dd;
             _distributionCalulator = d;
-            
         }
 
         public int AvgNumWeMeetConsecutiveLosses
@@ -54,7 +54,7 @@ namespace KnowUrSystem
                     var temp = probability[i] - 50;
                     if (diffProbility >= Math.Abs(temp) && temp != -50)
                     {
-                        N = i+1;
+                        N = i + 1;
                         diffProbility = temp;
                     };
                 }
@@ -125,8 +125,7 @@ namespace KnowUrSystem
             }
         }
 
-        public int TradesPerMonth { get; set; }
-
+        public int TradesPerYearly { get; set; }
 
         /// <summary>
         /// 計算連續虧損次數陣列
@@ -186,14 +185,14 @@ namespace KnowUrSystem
         private void SimulatOnce()
         {
             Random rnd = new Random(Guid.NewGuid().GetHashCode());
-            for (int i = 0; i < TradesPerMonth; i++)
+            for (int i = 0; i < TradesPerYearly; i++)
             {
                 var record = new Record();
 
                 // 贏輸多少R
                 record.RMultiple = _financeCalculator.GetRandomRMultiple(rnd);
                 record.IsWinMoney = (record.RMultiple >= 0) ? true : false;
-                record.Number = i+1;
+                record.Number = i + 1;
                 // 計算累計R
                 record.CumulativeRMutiple = i == 0 ? record.RMultiple : record.RMultiple + Records[i - 1].CumulativeRMutiple;
 
@@ -218,7 +217,6 @@ namespace KnowUrSystem
                 return result;
             }
         }
-
 
         public List<double> ProbabilityConsecutiveLossesList
         {
@@ -270,7 +268,6 @@ namespace KnowUrSystem
             return ClsByRun;
         }
 
-
         public double GetMaxDD()
         {
             return _drawdownCalculator.GetMaxDD(Runs);
@@ -278,23 +275,29 @@ namespace KnowUrSystem
 
         public double GetAvgDD()
         {
-            return _drawdownCalculator.GetAvgDD(Runs);
-        }
+            if (_avgDD == 0)
+            {
+                this._avgDD = _drawdownCalculator.GetAvgDD(Runs);
+            }
 
+            return _avgDD;
+        }
 
         public double GetMaxExpectancy()
         {
             var expectancys = CalculateExpectancy();
-            return Math.Round(expectancys.Max(m => m),2);
+            return Math.Round(expectancys.Max(m => m), 2);
         }
-
-     
 
         public double GetAvgExpectancy()
         {
-            var expectancys = CalculateExpectancy();
-            return Math.Round(expectancys.Average(m => m), 2);
-
+            if (_avgExpectancy == 0)
+	        {
+                 var expectancys = CalculateExpectancy();
+                 this._avgExpectancy = Math.Round(expectancys.Average(m => m), 2);
+	        }
+            
+            return this._avgExpectancy;
         }
 
         public double GetExpectancy(double probability)
@@ -322,7 +325,7 @@ namespace KnowUrSystem
 
             //取得接近50%的筆數
             var X = 0;
-            var percentage = probability/100.0;
+            var percentage = probability / 100.0;
             var diffProbility = percentage;
             for (int i = 0; i < probabilitys.Count; i++)
             {
@@ -335,7 +338,6 @@ namespace KnowUrSystem
             }
 
             return probabilitys[X].Expectancy;
-
         }
 
         private List<double> CalculateExpectancy()
@@ -349,6 +351,7 @@ namespace KnowUrSystem
             return expectancys;
         }
 
+
         public int GetNumberOfTradesForConfidence(double prob)
         {
             var distributions = _distributionCalulator.CalculateLossDistributionProbability(Runs);
@@ -360,13 +363,34 @@ namespace KnowUrSystem
             for (int i = 0; i < distributions.Count; i++)
             {
                 var temp = distributions[i] - probability;
-                if (diffProbility >= Math.Abs(temp) && temp != probability*-1)
+                if (diffProbility >= Math.Abs(temp) && temp != probability * -1)
                 {
                     N = i;
                     diffProbility = temp;
                 };
             }
             return N + 1;
+        }
+
+        public Summary GetSimulateResult(int confidence = 95)
+        {
+            var result = new Summary();
+            result.Trades = this.TradesPerYearly;
+            result.WinLossRatio = _financeCalculator.GetWinLossRatio();
+            result.Expectancy = this.GetAvgExpectancy();
+            //result.WinRatio = GetSystemWinRatio();    //不清楚邏輯
+
+            //TODO
+            result.LossingStreaks = 0;
+            result.AvgDrawdown = this.GetAvgDD();
+            result.PeakGain = 0.0;
+            result.EndingGain = 0.0;
+
+            //TODO
+            result.BreakEvenTrades = GetNumberOfTradesForConfidence(confidence);
+            result.YearlyGain = this.TradesPerYearly * _financeCalculator.GetExpectancy();
+
+            return result;
         }
     }
 }

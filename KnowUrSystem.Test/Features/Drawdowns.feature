@@ -12,7 +12,7 @@ Scenario: Simulate Then Get MaxDD
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the MaxDD result should be -119.0
+	Then the MaxDD result should be -119.0 about +- 10
 
 @需求
 Scenario: Simulate Then Get AvgDD
@@ -25,7 +25,7 @@ Scenario: Simulate Then Get AvgDD
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the AvgDD result should be -29 about +- 1
+	Then the AvgDD result should be -29.3 about +- 0.5
 
 @Stub
 Scenario: Stub Simulate Then Get MaxDD
@@ -94,4 +94,4 @@ Scenario: 計算隨機取得R倍數
 	And set trades are 10
 	When I simulate result
 	Then the random R mutiple should less than 11
-	Then the random R mutiple should greather than -2
+	Then the random R mutiple should greather than -4

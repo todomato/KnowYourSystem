@@ -22,7 +22,7 @@ namespace KnowUrSystem.Test.Features
         [Given(@"我設定每月交易 (.*) 次")]
         public void When我設定每月交易次(int trades)
         {
-            this.target.TradesPerMonth = trades;
+            this.target.TradesPerYearly = trades;
         }
 
         [Given(@"我設定模擬 (.*) 次")]
@@ -34,7 +34,7 @@ namespace KnowUrSystem.Test.Features
         [Then(@"模擬器顯示每月交易 (.*) 次")]
         public void Then模擬器顯示每月交易次(int trades)
         {
-            var actual = this.target.TradesPerMonth;
+            var actual = this.target.TradesPerYearly;
             Assert.AreEqual(trades, actual);
         }
         

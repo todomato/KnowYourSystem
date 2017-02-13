@@ -44,7 +44,7 @@ namespace KnowUrSystem.Test.Features
         [Given(@"set trades are (.*)")]
         public void GivenSetTradesAre(int trades)
         {
-            _target.TradesPerMonth = trades;
+            _target.TradesPerYearly = trades;
         }
 
         [When(@"I simulate result")]
@@ -53,8 +53,9 @@ namespace KnowUrSystem.Test.Features
             _target.Simulate();
         }
 
-        [Then(@"win% should be (.*) \+- (.*)")]
-        public void ThenWinShouldBe_(double win, double about)
+
+        [Then(@"win% should be (.*) \+- (.*) and STD should be (.*)")]
+        public void ThenWinShouldBe_(double win, double about, double std)
         {
             var summary =_target.GetSimulateResult();
             if (Math.Abs(summary.WinRatio - win) <= about)
@@ -65,20 +66,17 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(win, summary.WinRatio);
         }
 
-        [Then(@"win/loss ratio should be (.*) \+= (.*)")]
-        public void ThenWinLossRatioShouldBe(double ratio, double about)
+        [Then(@"win/loss ratio should be (.*)")]
+        public void ThenWinLossRatioShouldBe(double ratio)
         {
             var summary = _target.GetSimulateResult();
-            if (Math.Abs(summary.WinLossRatio - ratio) <= about)
-            {
-                summary.WinLossRatio = ratio;
-            }
-
+         
             Assert.AreEqual(ratio, summary.WinLossRatio);
         }
 
-        [Then(@"expectancy should be (.*) \+- (.*)")]
-        public void ThenExpectancyShouldBe_(double expectancy, double about)
+
+        [Then(@"expectancy should be (.*) \+- (.*) and STD should be (.*)")]
+        public void ThenExpectancyShouldBe_(double expectancy, double about, double std)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.Expectancy - expectancy) <= about)
@@ -97,8 +95,8 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(lossingStreaks, summary.LossingStreaks);
         }
 
-        [Then(@"drawdown R should be (.*) \+- (.*)")]
-        public void ThenDrawdownRShouldBe_(double dd, int about)
+        [Then(@"drawdown R should be (.*) \+- (.*) and STD should be (.*)")]
+        public void ThenDrawdownRShouldBe_(double dd, int about, double std)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.AvgDrawdown - dd) <= about)
@@ -109,8 +107,8 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(dd, summary.AvgDrawdown);
         }
 
-        [Then(@"ending gain R should be (.*) \+- (.*)")]
-        public void ThenEndingGainRShouldBe_(double endingGain, int about)
+        [Then(@"ending gain R should be (.*) \+- (.*) and STD should be (.*)")]
+        public void ThenEndingGainRShouldBe_(double endingGain, int about, double std)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.EndingGain - endingGain) <= about)
@@ -121,33 +119,33 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(endingGain, summary.EndingGain);
         }
 
-        [Then(@"\#Trades for break even \((.*)%\) should be (.*)")]
-        public void ThenTradesForBreakEvenShouldBe(int trades, int about)
+        [Then(@"\#Trades for break even \((.*)%\) should be (.*) \+- (.*)")]
+        public void ThenTradesForBreakEvenShouldBe(int confidence, int expect, int about)
         {
-            var summary = _target.GetSimulateResult();
-            if (Math.Abs(summary.BreakEvenTrades - trades) <= about)
+            var summary = _target.GetSimulateResult(confidence);
+            if (Math.Abs(summary.BreakEvenTrades - expect) <= about)
             {
-                summary.BreakEvenTrades = trades;
+                summary.BreakEvenTrades = expect;
             }
 
-            Assert.AreEqual(trades, summary.BreakEvenTrades);
+            Assert.AreEqual(expect, summary.BreakEvenTrades);
         }
 
-        [Then(@"(.*)% drawdown duraiton Months should be (.*)")]
-        public void ThenDrawdownDuraitonMonthsShouldBe(int ddM, double about)
+        [Then(@"(.*)% drawdown duraiton Months should be (.*) \+- (.*)")]
+        public void ThenDrawdownDuraitonMonthsShouldBe(int ddM, double expect, double about)
         {
-            var summary = _target.GetSimulateResult();
-            var ddmonth = summary.BreakEvenTrades / (_target.TradesPerMonth / 12);
-            if (Math.Abs(ddmonth - ddM) <= about)
+            var summary = _target.GetSimulateResult(ddM);
+            var ddmonth = summary.BreakEvenTrades / (_target.TradesPerYearly / 12.0);
+            if (Math.Abs(ddmonth - expect) <= about)
             {
-                ddmonth = ddM;
+                ddmonth = expect;
             }
 
-            Assert.AreEqual(ddM, ddmonth);
+            Assert.AreEqual(expect, ddmonth);
         }
 
         [Then(@"yearly gain R should be (.*)")]
-        public void ThenYearlyGainRShouldBe(int yearlyGain)
+        public void ThenYearlyGainRShouldBe(double yearlyGain)
         {
             var summary = _target.GetSimulateResult();
 

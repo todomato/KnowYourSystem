@@ -41,7 +41,7 @@ namespace KnowUrSystem.Test.Features
         [Given(@"set trades are (.*)")]
         public void GivenSetTradesAre(int trades)
         {
-            _target.TradesPerMonth = trades;
+            _target.TradesPerYearly = trades;
         }
 
         [When(@"I simulate result")]
