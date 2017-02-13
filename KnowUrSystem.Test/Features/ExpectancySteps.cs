@@ -99,5 +99,29 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(num, actual);
         }
 
+        [Then(@"the Avg EndGain should be (.*) about \+- (.*)")]
+        public void ThenTheAvgEndGainShouldBeAbout_(double gain, double about)
+        {
+            var actual = _target.GetAvgEndGain();
+            if (actual - gain < about)
+            {
+                actual = gain;
+            }
+
+            Assert.AreEqual(gain, actual);
+        }
+
+        [Then(@"the Max EndGain should be (.*) about \+- (.*)")]
+        public void ThenTheMaxEndGainShouldBeAbout_(double gain, double about)
+        {
+            var actual = _target.GetMaxEndGain();
+            if (actual - gain < about)
+            {
+                actual = gain;
+            }
+
+            Assert.AreEqual(gain, actual);
+        }
+
     }
 }

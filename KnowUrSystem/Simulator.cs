@@ -18,6 +18,7 @@ namespace KnowUrSystem
         private IDistributionCalulator _distributionCalulator;
         private double _avgExpectancy;
         private double _avgEndGain;
+        private double _maxEndGain;
 
         public Simulator()
         {
@@ -395,7 +396,7 @@ namespace KnowUrSystem
             return result;
         }
 
-        private double GetAvgEndGain()
+        public double GetAvgEndGain()
         {
             if (_avgEndGain == 0)
             {
@@ -409,6 +410,22 @@ namespace KnowUrSystem
             }
 
             return _avgEndGain;
+        }
+
+        public double GetMaxEndGain()
+        {
+            if (_maxEndGain == 0)
+            {
+                var endGains = new List<double>();
+                foreach (var records in Runs)
+                {
+                    endGains.Add(records.Last().CumulativeRMutiple);
+                }
+
+                this._maxEndGain = endGains.Max();
+            }
+
+            return _maxEndGain;
         }
     }
 }
