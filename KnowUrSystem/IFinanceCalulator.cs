@@ -8,6 +8,7 @@ namespace KnowUrSystem
         int GetTrades();
         double GetWinLossRatio();
         double GetWinRate();
+        double GetSQN();
 
         double GetRandomRMultiple(Random rnd);
     }

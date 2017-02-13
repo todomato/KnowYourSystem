@@ -104,15 +104,19 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.When("我計算 Standard Deviation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
- testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("我計算 SQN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.Then("Win% is 20.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
- testRunner.Then("Avg Win/Loss Ratio is 6.67", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Win% is 20.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
- testRunner.Then("Expectancy is 0.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Avg Win/Loss Ratio is 6.67", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 21
+ testRunner.Then("Expectancy is 0.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 22
  testRunner.Then("Standard Deviation is 4.75", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+ testRunner.Then("SQN is 4.75", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -123,7 +127,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CalculateTrades()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate #Trades", ((string[])(null)));
-#line 23
+#line 26
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -138,11 +142,11 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "7",
                         "-1.00"});
-#line 24
+#line 27
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table2, "Given ");
-#line 29
+#line 32
  testRunner.When("我計算 #Trades", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
+#line 33
  testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -154,7 +158,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CalculateWinRate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate Win Rate", ((string[])(null)));
-#line 32
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -169,13 +173,13 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "7",
                         "-1.00"});
-#line 33
+#line 36
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table3, "Given ");
-#line 38
+#line 41
  testRunner.When("我計算 #Trades", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
+#line 42
  testRunner.When("我計算 Win Rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 40
+#line 43
  testRunner.Then("Win% is 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -187,7 +191,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CalculateWinLossRatio()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate Win/Loss Ratio", ((string[])(null)));
-#line 42
+#line 45
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -202,11 +206,11 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "7",
                         "-1.00"});
-#line 43
+#line 46
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table4, "Given ");
-#line 48
+#line 51
  testRunner.When("我計算 Avg Win/Loss Ratio", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 49
+#line 52
  testRunner.Then("Avg Win/Loss Ratio is 6.67", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -218,7 +222,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CalculateMeanExpectancy()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate mean Expectancy", ((string[])(null)));
-#line 51
+#line 54
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -233,15 +237,15 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "7",
                         "-1.00"});
-#line 52
+#line 55
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table5, "Given ");
-#line 57
- testRunner.When("我計算 #Trades", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 58
- testRunner.When("我計算 Expectancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 59
- testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 60
+ testRunner.When("我計算 #Trades", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 61
+ testRunner.When("我計算 Expectancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 62
+ testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 63
  testRunner.Then("Expectancy is 0.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -253,7 +257,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CalculateStandardDeviation()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate Standard Deviation", ((string[])(null)));
-#line 62
+#line 65
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -268,16 +272,47 @@ this.ScenarioSetup(scenarioInfo);
             table6.AddRow(new string[] {
                         "7",
                         "-1.00"});
-#line 63
+#line 66
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table6, "Given ");
-#line 68
- testRunner.When("我計算 #Trades", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 69
- testRunner.When("我計算 Standard Deviation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 70
- testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 71
+ testRunner.When("我計算 #Trades", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 72
+ testRunner.When("我計算 Standard Deviation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 73
+ testRunner.Then("#Trades is 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 74
  testRunner.Then("Standard Deviation is 4.75", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculate SQN")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TradeDistribution")]
+        public virtual void CalculateSQN()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate SQN", ((string[])(null)));
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table7.AddRow(new string[] {
+                        "20",
+                        "10.00"});
+            table7.AddRow(new string[] {
+                        "10",
+                        "-5.00"});
+            table7.AddRow(new string[] {
+                        "70",
+                        "-1.00"});
+#line 77
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table7, "Given ");
+#line 82
+ testRunner.When("我計算 SQN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 83
+ testRunner.Then("SQN is 1.68", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

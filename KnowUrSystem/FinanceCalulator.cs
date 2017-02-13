@@ -104,5 +104,26 @@ namespace KnowUrSystem
             }
             return box;
         }
+
+
+        public double GetSQN()
+        {
+            var tradeSqur = Math.Sqrt(Trades);
+            var distributions = _distributions.ToList();
+            var count = distributions.Sum(x => x.Count);
+            var mean = distributions.Sum(x => x.Count * x.RMultiple) / count;
+            var sumDiffPow = 0.0;
+            foreach (var item in _distributions)
+            {
+                var diff = mean - item.RMultiple;
+                sumDiffPow += Math.Pow(diff, 2) * item.Count;
+            }
+
+            var std = Math.Sqrt(sumDiffPow / count);
+            var expectancy = GetExpectancy();
+
+            var sqn = expectancy / std * tradeSqur;
+            return sqn;
+        }
     }
 }

@@ -91,5 +91,22 @@ namespace KnowUrSystem.Test.Features
             var actual = ScenarioContext.Current.Get<int>("trades");
             Assert.AreEqual(trades, actual);
         }
+
+        [Then(@"SQN is (.*)")]
+        public void ThenSQNIs(double sqn)
+        {
+            var actual = ScenarioContext.Current.Get<double>("sqn");
+            actual = Math.Round(actual, 2);
+            Assert.AreEqual(sqn, actual);
+        }
+
+        [When(@"我計算 SQN")]
+        public void When我計算SQN()
+        {
+            var trades = this.target.GetSQN();
+            ScenarioContext.Current.Set<double>(trades, "sqn");
+        }
+
+
     }
 }
