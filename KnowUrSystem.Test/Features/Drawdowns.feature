@@ -94,4 +94,4 @@ Scenario: 計算隨機取得R倍數
 	And set trades are 10
 	When I simulate result
 	Then the random R mutiple should less than 11
-	Then the random R mutiple should greather than -4
+	Then the random R mutiple should greather than -6

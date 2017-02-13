@@ -27,7 +27,7 @@ Scenario: Simulate Max Number Of Consecutive Losses
 	When I simulate result
 	#Then the Max Consecutive Losses result should be 52
 	Then the Max Consecutive Losses result should greater than 40
-	Then the Max Consecutive Losses result should less than 100
+	Then the Max Consecutive Losses result should less than 80
 
 @需求
 Scenario: (Pending)Simulate Some Probability Of Number Of Consecutive Losses

@@ -348,7 +348,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 96
  testRunner.Then("the random R mutiple should less than 11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 97
- testRunner.Then("the random R mutiple should greather than -4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the random R mutiple should greather than -6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

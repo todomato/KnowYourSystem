@@ -143,7 +143,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.Then("the Max Consecutive Losses result should greater than 40", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
- testRunner.Then("the Max Consecutive Losses result should less than 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Max Consecutive Losses result should less than 80", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

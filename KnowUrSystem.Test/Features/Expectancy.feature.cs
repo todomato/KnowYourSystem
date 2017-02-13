@@ -258,7 +258,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 67
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 68
- testRunner.Then("the Max EndGain should be 314 about +- 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Max EndGain should be 314 about +- 30", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

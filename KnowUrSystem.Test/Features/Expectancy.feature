@@ -65,4 +65,4 @@ Scenario: Get Max EndGain
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the Max EndGain should be 314 about +- 20
+	Then the Max EndGain should be 314 about +- 30
