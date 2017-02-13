@@ -12,7 +12,7 @@ Scenario: Simulate Then Get MaxDD
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the MaxDD result should be -119.0 about +- 10
+	Then the MaxDD result should be -119.0 about +- 20
 
 @需求
 Scenario: Simulate Then Get AvgDD
@@ -40,7 +40,7 @@ Scenario: Stub Simulate Then Get MaxDD
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the MaxDD result should be -119.0
+	Then the MaxDD result should be -119.0 about +- 20
 
 
 @unit

@@ -17,6 +17,7 @@ namespace KnowUrSystem
         private IFinanceCalulator _financeCalculator;
         private IDistributionCalulator _distributionCalulator;
         private double _avgExpectancy;
+        private double _avgEndGain;
 
         public Simulator()
         {
@@ -378,19 +379,36 @@ namespace KnowUrSystem
             result.Trades = this.TradesPerYearly;
             result.WinLossRatio = _financeCalculator.GetWinLossRatio();
             result.Expectancy = this.GetAvgExpectancy();
-            //result.WinRatio = GetSystemWinRatio();    //不清楚邏輯
+            //result.WinRatio = GetSystemWinRatio();    //不清楚邏輯 有可能是達成目標的機率
 
             //TODO
-            result.LossingStreaks = 0;
+            result.LossingStreaks = this.AvgNumWeMeetConsecutiveLosses;
             result.AvgDrawdown = this.GetAvgDD();
             result.PeakGain = 0.0;
-            result.EndingGain = 0.0;
+            result.EndingGain = this.GetAvgEndGain();
 
             //TODO
             result.BreakEvenTrades = GetNumberOfTradesForConfidence(confidence);
+            result.GainDrawdownRatio = Math.Abs(result.EndingGain / result.AvgDrawdown);
             result.YearlyGain = this.TradesPerYearly * _financeCalculator.GetExpectancy();
 
             return result;
+        }
+
+        private double GetAvgEndGain()
+        {
+            if (_avgEndGain == 0)
+            {
+                var endGains = new List<double>();
+                foreach (var records in Runs)
+                {
+                    endGains.Add(records.Last().CumulativeRMutiple);
+                }
+
+                this._avgEndGain = endGains.Average();
+            }
+
+            return _avgEndGain;
         }
     }
 }

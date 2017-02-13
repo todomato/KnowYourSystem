@@ -11,7 +11,7 @@ Scenario: 95% 可能創新高所需的交易次數
 	And set simulation times are 10000
 	And set trades are 120
 	When I simulate result
-	Then the 95% >= Equity Peak's result should be 88 about +- 3
+	Then the 95% >= Equity Peak's result should be 88 about +- 5
 
 
 @需求
@@ -25,7 +25,7 @@ Scenario: 99% 可能創新高所需的交易次數
 	And set simulation times are 10000
 	And set trades are 200
 	When I simulate result
-	Then the 99% >= Equity Peak's result should be 170 about +- 10
+	Then the 99% >= Equity Peak's result should be 180 about +- 20
 
 
 		

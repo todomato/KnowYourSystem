@@ -112,7 +112,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
  testRunner.Then("ending gain R should be 95.6 +- 1 and STD should be 51.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
- testRunner.Then("#Trades for break even (95%) should be 88 +- 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("#Trades for break even (95%) should be 88 +- 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 21
  testRunner.Then("95% drawdown duraiton Months should be 8.8 +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
