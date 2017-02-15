@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-using KnowUrSystem;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using KnowUrSystem.Model;
 
 namespace KnowUrSystem.Test.Features
 {
     [Binding]
-    [Scope(Feature = "ControlSimulation")]
-
-    public class ControlSimulationSteps
+    public class OptimizerSteps
     {
         private ISimulator target;
 
@@ -30,14 +27,14 @@ namespace KnowUrSystem.Test.Features
         {
             this.target.TimesOfSimulation = times;
         }
-        
+
         [Then(@"模擬器顯示每年交易 (.*) 次")]
         public void Then模擬器顯示每年交易次(int trades)
         {
             var actual = this.target.TradesPerYearly;
             Assert.AreEqual(trades, actual);
         }
-        
+
         [Then(@"模擬器顯示模擬 (.*) 次")]
         public void Then模擬器顯示模擬次(int times)
         {
@@ -110,6 +107,53 @@ namespace KnowUrSystem.Test.Features
         {
             var actual = this.target.SettingIncrementSize;
             Assert.AreEqual(size, actual);
+        }
+
+        [When(@"我執行模擬最佳化")]
+        public void When我執行模擬最佳化()
+        {
+            OptReport report = this.target.SimulateOpt();
+            ScenarioContext.Current.Set<OptReport>(report);
+        }
+
+        [Then(@"Max Return Bet Size : (.*)%")]
+        public void ThenMaxReturnBetSize(double bet)
+        {
+            var report = ScenarioContext.Current.Get<OptReport>();
+            var actual = report.MaxReturn.BetSize;
+            Assert.AreEqual(bet, actual);
+        }
+
+        [Then(@"Med Return Bet Size : (.*)%")]
+        public void ThenMedReturnBetSize(double bet)
+        {
+            var report = ScenarioContext.Current.Get<OptReport>();
+            var actual = report.MedReturn.BetSize;
+            Assert.AreEqual(bet, actual);
+        }
+
+        [Then(@"Opt\.Return Bet Size : (.*)%")]
+        public void ThenOpt_ReturnBetSize(double bet)
+        {
+            var report = ScenarioContext.Current.Get<OptReport>();
+            var actual = report.OptReturn.BetSize;
+            Assert.AreEqual(bet, actual);
+        }
+
+        [Then(@"<1% Ruin Bet Size : (.*)%")]
+        public void ThenRuinBetSize(double bet)
+        {
+            var report = ScenarioContext.Current.Get<OptReport>();
+            var actual = report.LessOneRuin.BetSize;
+            Assert.AreEqual(bet, actual);
+        }
+
+        [Then(@"Retire-Ruin Ruin Bet Size : (.*)%")]
+        public void ThenRetire_RuinRuinBetSize(double bet)
+        {
+            var report = ScenarioContext.Current.Get<OptReport>();
+            var actual = report.BestRetireRuinRatio.BetSize;
+            Assert.AreEqual(bet, actual);
         }
 
     }

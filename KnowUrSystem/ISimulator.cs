@@ -29,5 +29,18 @@ namespace KnowUrSystem
 
         Summary GetSimulateResult(int confidence);
 
+
+        double SettingMaxRisk { get; set; }
+
+        double SettingRuin { get; set; }
+
+        double SettingRetirement { get; set; }
+
+        int SettingInitEquity { get; set; }
+
+        double SettingIncrementSize { get; set; }
+
+
+        OptReport SimulateOpt();
     }
 }

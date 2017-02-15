@@ -105,6 +105,12 @@
       <DependentUpon>LosingStreaks.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\LosingStreaksSteps.cs" />
+    <Compile Include="Features\Optimizer.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Optimizer.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\OptimizerSteps.cs" />
     <Compile Include="Features\SystemSummary.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,6 +156,10 @@
     <None Include="Features\LosingStreaks.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LosingStreaks.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Optimizer.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Optimizer.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\SystemSummary.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

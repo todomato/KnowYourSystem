@@ -14,7 +14,7 @@ namespace KnowUrSystem.Model
 
         public double Expectancy { get; set; }
 
-        public object LossingStreaks { get; set; }
+        public int LossingStreaks { get; set; }
 
         public double AvgDrawdown { get; set; }
 
@@ -22,7 +22,7 @@ namespace KnowUrSystem.Model
 
         public double EndingGain { get; set; }
 
-        public object YearlyGain { get; set; }
+        public double YearlyGain { get; set; }
 
         public double GainDrawdownRatio { get; set; }
 

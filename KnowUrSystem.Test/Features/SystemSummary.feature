@@ -16,7 +16,7 @@ Scenario: 取得系統模擬結果
 	#Then win% should be 0.7 +- 0.1 and STD should be 0.37
 	Then lossing streaks should be 16 
 	Then drawdown R should be -29.3 +- 1  and STD should be 11.2
-	Then ending gain R should be 95.6 +- 1 and STD should be 51.8
+	Then ending gain R should be 95.6 +- 2 and STD should be 51.8
 	Then #Trades for break even (95%) should be 88 +- 3
 	Then 95% drawdown duraiton Months should be 8.8 +- 1
 	Then yearly gain R should be 96

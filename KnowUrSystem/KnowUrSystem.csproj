@@ -48,6 +48,7 @@
     <Compile Include="ISimulator.cs" />
     <Compile Include="Model\DistributionRawData.cs" />
     <Compile Include="Model\ExpectModel.cs" />
+    <Compile Include="Model\OptReport.cs" />
     <Compile Include="Model\Record.cs" />
     <Compile Include="Model\Summary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

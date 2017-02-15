@@ -8,9 +8,7 @@ namespace KnowUrSystem
     public class Simulator : ISimulator
     {
         private List<Record> _records;
-
         private List<List<Record>> _runs;
-
         private int _timesOfSimulation;
         private double _avgDD;
         private IDrawdownCalculator _drawdownCalculator;
@@ -19,6 +17,8 @@ namespace KnowUrSystem
         private double _avgExpectancy;
         private double _avgEndGain;
         private double _maxEndGain;
+
+        #region 建構子
 
         public Simulator()
         {
@@ -41,6 +41,20 @@ namespace KnowUrSystem
             _drawdownCalculator = dd;
             _distributionCalulator = d;
         }
+
+        #endregion 建構子
+
+        #region 屬性
+
+        public double SettingMaxRisk { get; set; }
+
+        public double SettingRuin { get; set; }
+
+        public double SettingRetirement { get; set; }
+
+        public int SettingInitEquity { get; set; }
+
+        public double SettingIncrementSize { get; set; }
 
         public int AvgNumWeMeetConsecutiveLosses
         {
@@ -128,6 +142,8 @@ namespace KnowUrSystem
         }
 
         public int TradesPerYearly { get; set; }
+ 
+        #endregion 屬性
 
         /// <summary>
         /// 計算連續虧損次數陣列
@@ -294,11 +310,11 @@ namespace KnowUrSystem
         public double GetAvgExpectancy()
         {
             if (_avgExpectancy == 0)
-	        {
-                 var expectancys = CalculateExpectancy();
-                 this._avgExpectancy = Math.Round(expectancys.Average(m => m), 2);
-	        }
-            
+            {
+                var expectancys = CalculateExpectancy();
+                this._avgExpectancy = Math.Round(expectancys.Average(m => m), 2);
+            }
+
             return this._avgExpectancy;
         }
 
@@ -353,7 +369,6 @@ namespace KnowUrSystem
             return expectancys;
         }
 
-
         public int GetNumberOfTradesForConfidence(double prob)
         {
             var distributions = _distributionCalulator.CalculateLossDistributionProbability(Runs);
@@ -374,27 +389,6 @@ namespace KnowUrSystem
             return N + 1;
         }
 
-        public Summary GetSimulateResult(int confidence = 95)
-        {
-            var result = new Summary();
-            result.Trades = this.TradesPerYearly;
-            result.WinLossRatio = _financeCalculator.GetWinLossRatio();
-            result.Expectancy = this.GetAvgExpectancy();
-            //result.WinRatio = GetSystemWinRatio();    //不清楚邏輯 有可能是達成目標的機率
-
-            //TODO
-            result.LossingStreaks = this.AvgNumWeMeetConsecutiveLosses;
-            result.AvgDrawdown = this.GetAvgDD();
-            result.PeakGain = 0.0;
-            result.EndingGain = this.GetAvgEndGain();
-
-            //TODO
-            result.BreakEvenTrades = GetNumberOfTradesForConfidence(confidence);
-            result.GainDrawdownRatio = Math.Abs(result.EndingGain / result.AvgDrawdown);
-            result.YearlyGain = this.TradesPerYearly * _financeCalculator.GetExpectancy();
-
-            return result;
-        }
 
         public double GetAvgEndGain()
         {
@@ -426,6 +420,34 @@ namespace KnowUrSystem
             }
 
             return _maxEndGain;
+        }
+        public Summary GetSimulateResult(int confidence = 95)
+        {
+            var result = new Summary();
+            result.Trades = this.TradesPerYearly;
+            result.WinLossRatio = _financeCalculator.GetWinLossRatio();
+            result.Expectancy = this.GetAvgExpectancy();
+            //TODO
+            //result.WinRatio = GetSystemWinRatio();    //可能是達成目標的機率
+
+            result.LossingStreaks = this.AvgNumWeMeetConsecutiveLosses;
+            result.AvgDrawdown = this.GetAvgDD();
+            //TODO
+            result.PeakGain = 0.0;
+            result.EndingGain = this.GetAvgEndGain();
+            result.BreakEvenTrades = GetNumberOfTradesForConfidence(confidence);
+            result.GainDrawdownRatio = Math.Abs(result.EndingGain / result.AvgDrawdown);
+            result.YearlyGain = this.TradesPerYearly * _financeCalculator.GetExpectancy();
+
+            return result;
+        }
+
+
+
+
+        public OptReport SimulateOpt()
+        {
+            throw new NotImplementedException();
         }
     }
 }
