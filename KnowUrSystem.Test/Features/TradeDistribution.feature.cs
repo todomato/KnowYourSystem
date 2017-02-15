@@ -115,8 +115,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("Expectancy is 0.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
  testRunner.Then("Standard Deviation is 4.75", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 23
- testRunner.Then("SQN is 4.75", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

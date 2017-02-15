@@ -20,7 +20,7 @@ Scenario: Set Distribution And Calculate Result
 	Then Avg Win/Loss Ratio is 6.67
 	Then Expectancy is 0.8
 	Then Standard Deviation is 4.75
-	Then SQN is 4.75
+
 
 
 Scenario: Calculate #Trades
