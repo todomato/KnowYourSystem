@@ -8,24 +8,24 @@ namespace KnowUrSystem.Model
     public class Summary
     {
         public int Trades { get; set; }
-        public double WinRatio { get; set; }
+        public decimal WinRatio { get; set; }
 
-        public double WinLossRatio { get; set; }
+        public decimal WinLossRatio { get; set; }
 
-        public double Expectancy { get; set; }
+        public decimal Expectancy { get; set; }
 
         public int LossingStreaks { get; set; }
 
-        public double AvgDrawdown { get; set; }
+        public decimal AvgDrawdown { get; set; }
 
         public int BreakEvenTrades { get; set; }
 
-        public double EndingGain { get; set; }
+        public decimal EndingGain { get; set; }
 
-        public double YearlyGain { get; set; }
+        public decimal YearlyGain { get; set; }
 
-        public double GainDrawdownRatio { get; set; }
+        public decimal GainDrawdownRatio { get; set; }
 
-        public double PeakGain { get; set; }
+        public decimal PeakGain { get; set; }
     }
 }

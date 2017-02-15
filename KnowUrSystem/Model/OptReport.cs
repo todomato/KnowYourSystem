@@ -20,11 +20,12 @@ namespace KnowUrSystem.Model
 
     public class OptResult
     {
-        public double RetireProbability { get; set; }
-        public double RuinProbability { get; set; }
-        public double AvgGain { get; set; }
-        public double MedGain { get; set; }
-        public double BetSize { get; set; }
+        public decimal RetireProbability { get; set; }
+        public decimal RuinProbability { get; set; }
+        public decimal AvgGain { get; set; }
+        public decimal MaxGain { get; set; }
+        public decimal MedGain { get; set; }
+        public decimal BetSize { get; set; }
 
     }
 }

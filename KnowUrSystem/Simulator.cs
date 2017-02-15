@@ -10,13 +10,13 @@ namespace KnowUrSystem
         private List<Record> _records;
         private List<List<Record>> _runs;
         private int _timesOfSimulation;
-        private double _avgDD;
+        private decimal _avgDD;
         private IDrawdownCalculator _drawdownCalculator;
         private IFinanceCalulator _financeCalculator;
         private IDistributionCalulator _distributionCalulator;
-        private double _avgExpectancy;
-        private double _avgEndGain;
-        private double _maxEndGain;
+        private decimal _avgExpectancy;
+        private decimal _avgEndGain;
+        private decimal _maxEndGain;
 
         #region 建構子
 
@@ -46,16 +46,6 @@ namespace KnowUrSystem
 
         #region 屬性
 
-        public double SettingMaxRisk { get; set; }
-
-        public double SettingRuin { get; set; }
-
-        public double SettingRetirement { get; set; }
-
-        public int SettingInitEquity { get; set; }
-
-        public double SettingIncrementSize { get; set; }
-
         public int AvgNumWeMeetConsecutiveLosses
         {
             get
@@ -64,7 +54,7 @@ namespace KnowUrSystem
 
                 //取得接近50%的筆數
                 var N = 0;
-                var diffProbility = 50.0;
+                var diffProbility = 50.0m;
                 for (int i = 0; i <= 99; i++)
                 {
                     var temp = probability[i] - 50;
@@ -142,7 +132,7 @@ namespace KnowUrSystem
         }
 
         public int TradesPerYearly { get; set; }
- 
+
         #endregion 屬性
 
         /// <summary>
@@ -218,17 +208,17 @@ namespace KnowUrSystem
             }
         }
 
-        public List<double> CumulativeProbabilityConsecutiveLossesList
+        public List<decimal> CumulativeProbabilityConsecutiveLossesList
         {
             get
             {
                 var ClsByRun = GetMaxConsecutiveLossesList();
 
-                var result = new List<double>();
+                var result = new List<decimal>();
                 for (int i = 1; i <= 100; i++)
                 {
                     var sum = ClsByRun.Where(x => x >= i).Sum(c => 1);
-                    var porbility = sum * 100.0 / ClsByRun.Count;
+                    var porbility = sum * 100.0m / ClsByRun.Count;
                     result.Add(porbility);
                 }
 
@@ -236,17 +226,17 @@ namespace KnowUrSystem
             }
         }
 
-        public List<double> ProbabilityConsecutiveLossesList
+        public List<decimal> ProbabilityConsecutiveLossesList
         {
             get
             {
                 var ClsByRun = GetAllConsecutiveLossesList();
 
-                var result = new List<double>();
+                var result = new List<decimal>();
                 for (int i = 1; i <= 100; i++)
                 {
                     var count = ClsByRun.Where(x => x >= i).Sum(c => 1);
-                    var porbility = count * 1.0 / ClsByRun.Count;
+                    var porbility = (decimal)( count / ClsByRun.Count);
                     result.Add(porbility);
                 }
 
@@ -286,12 +276,12 @@ namespace KnowUrSystem
             return ClsByRun;
         }
 
-        public double GetMaxDD()
+        public decimal GetMaxDD()
         {
             return _drawdownCalculator.GetMaxDD(Runs);
         }
 
-        public double GetAvgDD()
+        public decimal GetAvgDD()
         {
             if (_avgDD == 0)
             {
@@ -301,13 +291,13 @@ namespace KnowUrSystem
             return _avgDD;
         }
 
-        public double GetMaxExpectancy()
+        public decimal GetMaxExpectancy()
         {
             var expectancys = CalculateExpectancy();
             return Math.Round(expectancys.Max(m => m), 2);
         }
 
-        public double GetAvgExpectancy()
+        public decimal GetAvgExpectancy()
         {
             if (_avgExpectancy == 0)
             {
@@ -318,7 +308,7 @@ namespace KnowUrSystem
             return this._avgExpectancy;
         }
 
-        public double GetExpectancy(double probability)
+        public decimal GetExpectancy(decimal probability)
         {
             var expectancys = CalculateExpectancy();
             var grouped = expectancys.GroupBy(x => x, (x, g) =>
@@ -332,7 +322,7 @@ namespace KnowUrSystem
             {
                 var count = grouped.Where(x => x.Expectancy >= item.Expectancy)
                     .Sum(c => c.Count);
-                var porb = count * 1.0 / expectancys.Count;
+                var porb = count * 1.0m / expectancys.Count;
                 var expectModel = new ExpectModel()
                 {
                     CumulativeProbability = porb,
@@ -343,7 +333,7 @@ namespace KnowUrSystem
 
             //取得接近50%的筆數
             var X = 0;
-            var percentage = probability / 100.0;
+            var percentage = probability / 100.0m;
             var diffProbility = percentage;
             for (int i = 0; i < probabilitys.Count; i++)
             {
@@ -358,9 +348,9 @@ namespace KnowUrSystem
             return probabilitys[X].Expectancy;
         }
 
-        private List<double> CalculateExpectancy()
+        private List<decimal> CalculateExpectancy()
         {
-            var expectancys = new List<double>();
+            var expectancys = new List<decimal>();
             foreach (var records in Runs)
             {
                 var expect = records.Sum(x => x.RMultiple) / records.Count;
@@ -369,13 +359,13 @@ namespace KnowUrSystem
             return expectancys;
         }
 
-        public int GetNumberOfTradesForConfidence(double prob)
+        public int GetNumberOfTradesForConfidence(decimal prob)
         {
             var distributions = _distributionCalulator.CalculateLossDistributionProbability(Runs);
 
             //取得接近信心X%的筆數
             var N = 0;
-            var probability = 1 - prob / 100.0; //轉成失敗率
+            var probability = 1 - prob / 100.0m; //轉成失敗率
             var diffProbility = probability;
             for (int i = 0; i < distributions.Count; i++)
             {
@@ -389,12 +379,11 @@ namespace KnowUrSystem
             return N + 1;
         }
 
-
-        public double GetAvgEndGain()
+        public decimal GetAvgEndGain()
         {
             if (_avgEndGain == 0)
             {
-                var endGains = new List<double>();
+                var endGains = new List<decimal>();
                 foreach (var records in Runs)
                 {
                     endGains.Add(records.Last().CumulativeRMutiple);
@@ -406,11 +395,11 @@ namespace KnowUrSystem
             return _avgEndGain;
         }
 
-        public double GetMaxEndGain()
+        public decimal GetMaxEndGain()
         {
             if (_maxEndGain == 0)
             {
-                var endGains = new List<double>();
+                var endGains = new List<decimal>();
                 foreach (var records in Runs)
                 {
                     endGains.Add(records.Last().CumulativeRMutiple);
@@ -421,6 +410,7 @@ namespace KnowUrSystem
 
             return _maxEndGain;
         }
+
         public Summary GetSimulateResult(int confidence = 95)
         {
             var result = new Summary();
@@ -433,7 +423,7 @@ namespace KnowUrSystem
             result.LossingStreaks = this.AvgNumWeMeetConsecutiveLosses;
             result.AvgDrawdown = this.GetAvgDD();
             //TODO
-            result.PeakGain = 0.0;
+            result.PeakGain = 0.0m;
             result.EndingGain = this.GetAvgEndGain();
             result.BreakEvenTrades = GetNumberOfTradesForConfidence(confidence);
             result.GainDrawdownRatio = Math.Abs(result.EndingGain / result.AvgDrawdown);
@@ -442,12 +432,79 @@ namespace KnowUrSystem
             return result;
         }
 
-
-
-
-        public OptReport SimulateOpt()
+        public OptReport SimulateOpt(OptParams param)
         {
-            throw new NotImplementedException();
+            //模擬系統參數
+            this.Simulate();
+
+            //模擬增幅部位
+            var reports = new List<OptResult>();
+            for (decimal position = param.IncrementSize; position <= param.MaxRisk; position += param.IncrementSize)
+            {
+                OptResult allprob = GetAllProbability(this.Runs, param, position);
+                reports.Add(allprob);
+            }
+
+            //計算Opt結果
+            var optReport = new OptReport();
+            optReport.MaxReturn = reports.Where(c => c.MaxGain == reports.Max(x => x.MaxGain)).SingleOrDefault();
+
+            optReport.MedReturn = reports.OrderBy(c => c.AvgGain).ToList()[reports.Count /2 - 1];
+
+            optReport.OptReturn = reports.Where(c => c.RetireProbability == reports.Max(x => x.RetireProbability)).SingleOrDefault();
+
+            optReport.LessOneRuin = reports.Where(c => c.RuinProbability <= 0.01m).OrderByDescending(c => c.RuinProbability).FirstOrDefault();
+
+            optReport.BestRetireRuinRatio = reports
+                .Where(c => c.RetireProbability / c.RuinProbability
+                    == reports.Max(x => x.RetireProbability / x.RuinProbability))
+                .SingleOrDefault();
+
+            return optReport;
+        }
+
+        private OptResult GetAllProbability(List<List<Record>> runs, OptParams param, decimal position)
+        {
+            var result = new OptResult();
+            result.BetSize = position;
+            var ruinCount = 0;
+            var arriveCount = 0;
+            var maxRRuin = param.Ruin / position;
+            var endGains = new List<decimal>();
+            var maxGain = 0.0m;
+            foreach (var records in runs)
+            {
+                var endGain = records.Last().CumulativeRMutiple * position;
+                endGains.Add(endGain);
+                
+                //有達到retire目標 & 剔除ruin
+                if (endGain >= param.Retirement && !records.Any(c => c.CumulativeRMutiple <= maxRRuin))
+                {
+                    arriveCount++;
+                }
+
+                //有達到ruin
+                if (records.Any(c => c.CumulativeRMutiple <= maxRRuin))
+                {
+                    ruinCount++;
+                }
+
+                //判斷最大值
+                if (maxGain < endGain)
+                {
+                    maxGain = endGain;
+                }
+
+            }
+
+            //機率
+            result.RetireProbability = (decimal)arriveCount / runs.Count;
+            result.RuinProbability = (decimal)ruinCount / runs.Count;
+            result.AvgGain = endGains.Average();
+            result.MaxGain = maxGain;
+            result.MedGain = endGains.OrderBy(c => c).ToList()[runs.Count / 2 - 1];
+
+            return result;
         }
     }
 }

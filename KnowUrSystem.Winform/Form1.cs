@@ -68,9 +68,9 @@ namespace KnowUrSystem.Winform
                 TextBox txtBox = this.tab_distribution.Controls["txt_c" + i.ToString()] as TextBox;
                 TextBox txtBox2 = this.tab_distribution.Controls["txt_r" + i.ToString()] as TextBox;
                 int num1 = 0;
-                double num2 = 0.0;
+                decimal num2 = 0.0m;
 
-                if (int.TryParse(txtBox.Text, out num1) && double.TryParse(txtBox2.Text, out num2))
+                if (int.TryParse(txtBox.Text, out num1) && decimal.TryParse(txtBox2.Text, out num2))
                 {
                     distributions.Add(new DistributionRawData() { Count = num1, RMultiple = num2 });
                 }
@@ -101,7 +101,7 @@ namespace KnowUrSystem.Winform
             int[] yValues = distributions.Select(x => x.Count).ToArray();
 
             //Data 對應X座標
-            List<double> xValue = distributions.Select(x => x.RMultiple).ToList();
+            List<double> xValue = distributions.Select(x => (double)x.RMultiple).ToList();
 
 
             //設定 ChartArea----------------------------------------------------------------------

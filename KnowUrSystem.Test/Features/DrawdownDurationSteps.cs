@@ -61,7 +61,7 @@ namespace KnowUrSystem.Test.Features
 
 
         [Then(@"the (.*)% >= Equity Peak's result should be (.*) about \+- (.*)")]
-        public void ThenTheEquityPeakSResultShouldBe(double prob, int trades, int about)
+        public void ThenTheEquityPeakSResultShouldBe(decimal prob, int trades, int about)
         {
             var actual = _target.GetNumberOfTradesForConfidence(prob);
             if (Math.Abs(trades - actual) <= about)

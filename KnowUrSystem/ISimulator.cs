@@ -15,32 +15,21 @@ namespace KnowUrSystem
 
         int MaxNumOfConsecutiveLosses { get; }
         int AvgNumWeMeetConsecutiveLosses { get;  }
-        List<double> CumulativeProbabilityConsecutiveLossesList { get; }
+        List<decimal> CumulativeProbabilityConsecutiveLossesList { get; }
 
-        List<double> ProbabilityConsecutiveLossesList { get; }
+        List<decimal> ProbabilityConsecutiveLossesList { get; }
 
         void Simulate();
 
         List<int> CalculateConsecutiveLosses(List<Record> Records);
 
-        double GetMaxExpectancy();
+        decimal GetMaxExpectancy();
 
-        double GetAvgExpectancy();
+        decimal GetAvgExpectancy();
 
         Summary GetSimulateResult(int confidence);
 
 
-        double SettingMaxRisk { get; set; }
-
-        double SettingRuin { get; set; }
-
-        double SettingRetirement { get; set; }
-
-        int SettingInitEquity { get; set; }
-
-        double SettingIncrementSize { get; set; }
-
-
-        OptReport SimulateOpt();
+        OptReport SimulateOpt(OptParams _param);
     }
 }

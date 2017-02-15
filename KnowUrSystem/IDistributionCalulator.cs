@@ -9,7 +9,7 @@ namespace KnowUrSystem
     public interface IDistributionCalulator
     {
 
-        List<double> CalculateLossDistributionProbability(List<List<Record>> Runs);
+        List<decimal> CalculateLossDistributionProbability(List<List<Record>> Runs);
 
     }
 }

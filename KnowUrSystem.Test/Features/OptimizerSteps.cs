@@ -1,123 +1,142 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using TechTalk.SpecFlow;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using KnowUrSystem.Model;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
+using ExpectedObjects;
 
 namespace KnowUrSystem.Test.Features
 {
     [Binding]
     public class OptimizerSteps
     {
-        private ISimulator target;
+        private ISimulator _target;
+        private IFinanceCalulator _financeCalulator;
+        private OptParams _param;
 
         [BeforeScenario]
         public void BeforeScenario()
         {
-            this.target = new Simulator();
+            this._target = new Simulator();
+            this._param = new OptParams();
+
+        }
+
+        [Given(@"我輸入Count vs R mutiple table :")]
+        public void Given我輸入CountVsRMutipleTable(Table table)
+        {
+            var distributions = table.CreateSet<DistributionRawData>();
+            this._financeCalulator = new FinanceCalulator(distributions);
+            _target = new Simulator(_financeCalulator);
         }
 
         [Given(@"我設定每年交易 (.*) 次")]
         public void When我設定每年交易(int trades)
         {
-            this.target.TradesPerYearly = trades;
+            this._target.TradesPerYearly = trades;
         }
 
         [Given(@"我設定模擬 (.*) 次")]
         public void When我設定模擬次(int times)
         {
-            this.target.TimesOfSimulation = times;
+            this._target.TimesOfSimulation = times;
         }
 
         [Then(@"模擬器顯示每年交易 (.*) 次")]
         public void Then模擬器顯示每年交易次(int trades)
         {
-            var actual = this.target.TradesPerYearly;
+            var actual = this._target.TradesPerYearly;
             Assert.AreEqual(trades, actual);
         }
 
         [Then(@"模擬器顯示模擬 (.*) 次")]
         public void Then模擬器顯示模擬次(int times)
         {
-            var actual = this.target.TimesOfSimulation;
+            var actual = this._target.TimesOfSimulation;
             Assert.AreEqual(times, actual);
         }
 
         [Given(@"我設定模擬最大Risk (.*) %")]
-        public void Given我設定模擬最大Risk(double risk)
+        public void Given我設定模擬最大Risk(decimal risk)
         {
-            this.target.SettingMaxRisk = risk;
+
+            this._param.MaxRisk = risk;
         }
 
         [Given(@"我設定虧損總資產 (.*) % 作為破產")]
-        public void Given我設定虧損總資產作為破產(double ruin)
+        public void Given我設定虧損總資產作為破產(decimal ruin)
         {
-            this.target.SettingRuin = ruin;
+            this._param.Ruin = ruin;
         }
 
         [Given(@"我設定獲利總資產 (.*) % 作為退休")]
-        public void Given我設定獲利總資產作為退休(double retirement)
+        public void Given我設定獲利總資產作為退休(decimal retirement)
         {
-            this.target.SettingRetirement = retirement;
+            this._param.Retirement = retirement;
 
         }
 
         [Given(@"我設定起始總資產為 (.*)")]
         public void Given我設定起始總資產為(int init)
         {
-            this.target.SettingInitEquity = init;
+            this._param.InitEquity = init;
 
         }
 
         [Given(@"我設定Risk增幅 (.*) %")]
-        public void Given我設定Risk增幅(double size)
+        public void Given我設定Risk增幅(decimal size)
         {
-            this.target.SettingIncrementSize = size;
-        }
-
-        [Then(@"模擬器顯示模擬最大Risk (.*) %")]
-        public void Then模擬器顯示模擬最大Risk(double risk)
-        {
-            var actual = this.target.SettingMaxRisk;
-            Assert.AreEqual(risk, actual);
-        }
-
-        [Then(@"模擬器顯示虧損總資產 (.*) % 作為破產")]
-        public void Then模擬器顯示虧損總資產作為破產(double ruin)
-        {
-            var actual = this.target.SettingRuin;
-            Assert.AreEqual(ruin, actual);
-        }
-
-        [Then(@"模擬器顯示獲利總資產 (.*) % 作為退休")]
-        public void Then模擬器顯示獲利總資產作為退休(double retirement)
-        {
-            var actual = this.target.SettingRetirement;
-            Assert.AreEqual(retirement, actual);
-        }
-
-        [Then(@"模擬器顯示起始總資產為 (.*)")]
-        public void Then模擬器顯示起始總資產為(int init)
-        {
-            var actual = this.target.SettingInitEquity;
-            Assert.AreEqual(init, actual);
-        }
-
-        [Then(@"模擬器顯示Risk增幅 (.*) %")]
-        public void Then模擬器顯示Risk增幅(double size)
-        {
-            var actual = this.target.SettingIncrementSize;
-            Assert.AreEqual(size, actual);
+            this._param.IncrementSize = size;
         }
 
         [When(@"我執行模擬最佳化")]
         public void When我執行模擬最佳化()
         {
-            OptReport report = this.target.SimulateOpt();
+            OptReport report = this._target.SimulateOpt(_param);
             ScenarioContext.Current.Set<OptReport>(report);
         }
 
+        [Then(@"模擬器參數顯示模擬最大Risk (.*) %")]
+        public void Then模擬器顯示模擬最大Risk(decimal risk)
+        {
+            var actual =  this._param.MaxRisk;
+            Assert.AreEqual(risk, actual);
+        }
+
+        [Then(@"模擬器參數顯示虧損總資產 (.*) % 作為破產")]
+        public void Then模擬器顯示虧損總資產作為破產(decimal ruin)
+        {
+            var actual = this._param.Ruin;
+            Assert.AreEqual(ruin, actual);
+        }
+
+        [Then(@"模擬器參數顯示獲利總資產 (.*) % 作為退休")]
+        public void Then模擬器顯示獲利總資產作為退休(decimal retirement)
+        {
+            var actual = this._param.Retirement;
+            Assert.AreEqual(retirement, actual);
+        }
+
+        [Then(@"模擬器參數顯示起始總資產為 (.*)")]
+        public void Then模擬器顯示起始總資產為(int init)
+        {
+            var actual = this._param.InitEquity;
+            Assert.AreEqual(init, actual);
+        }
+
+        [Then(@"模擬器參數顯示Risk增幅 (.*) %")]
+        public void Then模擬器顯示Risk增幅(decimal size)
+        {
+            var actual = this._param.IncrementSize;
+            Assert.AreEqual(size, actual);
+        }
+
         [Then(@"Max Return Bet Size : (.*)%")]
-        public void ThenMaxReturnBetSize(double bet)
+        public void ThenMaxReturnBetSize(decimal bet)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.MaxReturn.BetSize;
@@ -125,7 +144,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"Med Return Bet Size : (.*)%")]
-        public void ThenMedReturnBetSize(double bet)
+        public void ThenMedReturnBetSize(decimal bet)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.MedReturn.BetSize;
@@ -133,7 +152,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"Opt\.Return Bet Size : (.*)%")]
-        public void ThenOpt_ReturnBetSize(double bet)
+        public void ThenOpt_ReturnBetSize(decimal bet)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.OptReturn.BetSize;
@@ -141,7 +160,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"<1% Ruin Bet Size : (.*)%")]
-        public void ThenRuinBetSize(double bet)
+        public void ThenRuinBetSize(decimal bet)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.LessOneRuin.BetSize;
@@ -149,7 +168,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"Retire-Ruin Ruin Bet Size : (.*)%")]
-        public void ThenRetire_RuinRuinBetSize(double bet)
+        public void ThenRetire_RuinRuinBetSize(decimal bet)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.BestRetireRuinRatio.BetSize;

@@ -9,16 +9,16 @@ namespace KnowUrSystem
     public class DrawdownCalculator : IDrawdownCalculator
     {
 
-        public double GetMaxDD(IEnumerable<Record> records)
+        public decimal GetMaxDD(IEnumerable<Record> records)
         {
             var drawdowns = CalculateDrawdown(records);
             var result = drawdowns.Max(c => c);
             return result * -1;
         }
 
-        public double GetMaxDD(IEnumerable<IEnumerable<Record>> runs)
+        public decimal GetMaxDD(IEnumerable<IEnumerable<Record>> runs)
         {
-            var maxDDByRun = new List<double>();
+            var maxDDByRun = new List<decimal>();
             foreach (var record in runs)
             {
                 maxDDByRun.Add(GetMaxDD(record));
@@ -26,9 +26,9 @@ namespace KnowUrSystem
             return maxDDByRun.Min(c => c);
         }
 
-        public double GetAvgDD(List<List<Record>> runs)
+        public decimal GetAvgDD(List<List<Record>> runs)
         {
-            var DDByRun = new List<double>();
+            var DDByRun = new List<decimal>();
             foreach (var record in runs)
             {
                 //TODO check 平均下跌 是否是用最大下跌的平均
@@ -67,13 +67,13 @@ namespace KnowUrSystem
         /// </summary>
         /// <param name="DDByRun"></param>
         /// <returns></returns>
-        private static List<double> CalculateCumulativeProbabilityOfDD(List<double> DDByRun)
+        private static List<decimal> CalculateCumulativeProbabilityOfDD(List<decimal> DDByRun)
         {
-            var result = new List<double>();
+            var result = new List<decimal>();
             for (int i = 0; i >= -120; i--)
             {
                 var sum = DDByRun.Where(x => x <= i).Sum(c => 1);
-                var porbility = sum * 100.0 / DDByRun.Count;
+                var porbility = sum * 100.0m / DDByRun.Count;
                 result.Add(porbility);
             }
             return result;
@@ -84,13 +84,13 @@ namespace KnowUrSystem
         /// </summary>
         /// <param name="DDByRun"></param>
         /// <returns></returns>
-        private static List<double> CalculateProbabilityOfDD(List<double> DDByRun)
+        private static List<decimal> CalculateProbabilityOfDD(List<decimal> DDByRun)
         {
-            var result = new List<double>();
+            var result = new List<decimal>();
             for (int i = 0; i >= -120; i--)
             {
                 var sum = DDByRun.Where(x => x == i).Sum(c => 1);
-                var porbility = sum * 100.0 / DDByRun.Count;
+                var porbility = sum * 100.0m / DDByRun.Count;
                 result.Add(porbility);
             }
             return result;
@@ -101,12 +101,12 @@ namespace KnowUrSystem
         /// </summary>
         /// <param name="Records"></param>
         /// <returns></returns>
-        private List<double> CalculateDrawdown(IEnumerable<Record> records)
+        private List<decimal> CalculateDrawdown(IEnumerable<Record> records)
         {
-            var result = new List<double>();
-            var currentR = 0.0;
-            var high = 0.0;
-            var drawdown = 0.0;
+            var result = new List<decimal>();
+            var currentR = 0.0m;
+            var high = 0.0m;
+            var drawdown = 0.0m;
 
             foreach (var item in records)
             {
@@ -118,10 +118,10 @@ namespace KnowUrSystem
                 {
                     //過前高
                     high = currentR;
-                    if (drawdown != 0.0)
+                    if (drawdown != 0.0m)
                     {
                         result.Add(drawdown);
-                        drawdown = 0.0;
+                        drawdown = 0.0m;
                     }
                 }
 
@@ -134,7 +134,7 @@ namespace KnowUrSystem
                
             }
 
-            if (drawdown != 0.0)
+            if (drawdown != 0.0m)
             {
                 result.Add(drawdown);
             }
@@ -142,7 +142,7 @@ namespace KnowUrSystem
             //防呆
             if (result.Count == 0)
             {
-                result.Add(0.0);
+                result.Add(0.0m);
             }
 
             return result;

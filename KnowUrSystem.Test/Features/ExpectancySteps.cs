@@ -64,7 +64,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"the Max Expectancy result should be (.*) about \+- (.*)")]
-        public void ThenTheMaxExpectancyResultShouldBeAbout_(double num, double about)
+        public void ThenTheMaxExpectancyResultShouldBeAbout_(decimal num, decimal about)
         {
             var actual = _target.GetMaxExpectancy();
             if (actual - num <= about)
@@ -76,7 +76,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"the Avg Expectancy result should be (.*) about \+- (.*)")]
-        public void ThenTheAvgExpectancyResultShouldBeAbout_(double num, double about)
+        public void ThenTheAvgExpectancyResultShouldBeAbout_(decimal num, decimal about)
         {
             var actual = _target.GetAvgExpectancy();
             if (actual - num <= about)
@@ -88,7 +88,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"the (.*)% can get Expectancy result should be (.*) about \+- (.*)")]
-        public void ThenTheCanGetExpectancyResultShouldBeAbout_(double probability, double num, double about)
+        public void ThenTheCanGetExpectancyResultShouldBeAbout_(decimal probability, decimal num, decimal about)
         {
             var actual = _target.GetExpectancy(probability);
             if (actual - num < about)
@@ -100,7 +100,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"the Avg EndGain should be (.*) about \+- (.*)")]
-        public void ThenTheAvgEndGainShouldBeAbout_(double gain, double about)
+        public void ThenTheAvgEndGainShouldBeAbout_(decimal gain, decimal about)
         {
             var actual = _target.GetAvgEndGain();
             if (actual - gain < about)
@@ -112,7 +112,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"the Max EndGain should be (.*) about \+- (.*)")]
-        public void ThenTheMaxEndGainShouldBeAbout_(double gain, double about)
+        public void ThenTheMaxEndGainShouldBeAbout_(decimal gain, decimal about)
         {
             var actual = _target.GetMaxEndGain();
             if (actual - gain < about)

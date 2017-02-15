@@ -8,10 +8,10 @@ namespace KnowUrSystem
 {
     public interface IDrawdownCalculator
     {
-        double GetMaxDD(IEnumerable<Record> records);
-        double GetMaxDD(IEnumerable<IEnumerable<Record>> runs);
+        decimal GetMaxDD(IEnumerable<Record> records);
+        decimal GetMaxDD(IEnumerable<IEnumerable<Record>> runs);
 
-        double GetAvgDD(List<List<Record>> Runs);
+        decimal GetAvgDD(List<List<Record>> Runs);
 
 
     }

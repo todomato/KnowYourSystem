@@ -53,7 +53,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Given(@"DrawdownCalculator's MaxDD return (.*)")]
-        public void GivenDrawdownCalculatorSMaxDDReturn(double maxDD)
+        public void GivenDrawdownCalculatorSMaxDDReturn(decimal maxDD)
         {
             var stub = ScenarioContext.Current.Get<IDrawdownCalculator>();
             stub.GetMaxDD(new List<List<Record>>()).ReturnsForAnyArgs(maxDD);
@@ -88,7 +88,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"the MaxDD result should be (.*) about \+- (.*)")]
-        public void ThenTheMaxDDresultShouldBe(double maxDD, double about)
+        public void ThenTheMaxDDresultShouldBe(decimal maxDD, decimal about)
         {
             var actual = this._target.GetMaxDD();
             if (Math.Abs(maxDD - actual) <= about)
@@ -101,7 +101,7 @@ namespace KnowUrSystem.Test.Features
 
 
         [Then(@"the AvgDD result should be (.*) about \+- (.*)")]
-        public void ThenTheAvgDDResultShouldBeAbout_(double avgDD, double about)
+        public void ThenTheAvgDDResultShouldBeAbout_(decimal avgDD, decimal about)
         {
             var actual = this._target.GetAvgDD();
             if (Math.Abs(avgDD - actual) <= about)
@@ -131,25 +131,25 @@ namespace KnowUrSystem.Test.Features
         {
             var records = ScenarioContext.Current.Get<IEnumerable<Record>>();
             var result = this._drawdownCalculator.GetMaxDD(records);
-            ScenarioContext.Current.Set<double>(result, "MaxDD");
+            ScenarioContext.Current.Set<decimal>(result, "MaxDD");
         }
 
         [Then(@"the DrawdownCalculator's MaxDD should be (.*)")]
-        public void ThenTheDrawdownCalculatorSMaxDDShouldBe(double maxDD)
+        public void ThenTheDrawdownCalculatorSMaxDDShouldBe(decimal maxDD)
         {
-            var actual = ScenarioContext.Current.Get<double>("MaxDD");
+            var actual = ScenarioContext.Current.Get<decimal>("MaxDD");
             Assert.AreEqual(maxDD, actual);
         }
 
         [Then(@"the random R mutiple should less than (.*)")]
-        public void ThenTheRandomRMutipleShouldLessThan(double num)
+        public void ThenTheRandomRMutipleShouldLessThan(decimal num)
         {
             var actual = _target.Runs[0][0].RMultiple < num;
             Assert.AreEqual(true, actual);
         }
 
         [Then(@"the random R mutiple should greather than (.*)")]
-        public void ThenTheRandomRMutipleShouldGreatherThan(double num)
+        public void ThenTheRandomRMutipleShouldGreatherThan(decimal num)
         {
             var actual = _target.Runs[0][0].RMultiple > num;
             Assert.AreEqual(true, actual);

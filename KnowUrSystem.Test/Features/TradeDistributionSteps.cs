@@ -24,7 +24,7 @@ namespace KnowUrSystem.Test.Features
         public void When我計算Expectancy()
         {
             var expectancy = this.target.GetExpectancy();
-            ScenarioContext.Current.Set<double>(expectancy, "expectancy");
+            ScenarioContext.Current.Set<decimal>(expectancy, "expectancy");
 
         }
 
@@ -32,7 +32,7 @@ namespace KnowUrSystem.Test.Features
         public void When我計算StandardDeviation()
         {
             var std = this.target.GetStandardDeviation();
-            ScenarioContext.Current.Set<double>(std, "std");
+            ScenarioContext.Current.Set<decimal>(std, "std");
 
         }
 
@@ -40,14 +40,14 @@ namespace KnowUrSystem.Test.Features
         public void When我計算WinRate()
         {
             var winRate = this.target.GetWinRate();
-            ScenarioContext.Current.Set<double>(winRate, "winRate");
+            ScenarioContext.Current.Set<decimal>(winRate, "winRate");
         }
 
         [When(@"我計算 Avg Win/Loss Ratio")]
         public void When我計算WinLossRatio()
         {
             var winLossRatio = this.target.GetWinLossRatio();
-            ScenarioContext.Current.Set<double>(winLossRatio, "winLossRatio");
+            ScenarioContext.Current.Set<decimal>(winLossRatio, "winLossRatio");
         }
 
         [When(@"我計算 \#Trades")]
@@ -58,30 +58,30 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"Expectancy is (.*)")]
-        public void ThenExpectancyIs(double expectancy)
+        public void ThenExpectancyIs(decimal expectancy)
         {
-            var actual = ScenarioContext.Current.Get<double>("expectancy");
+            var actual = ScenarioContext.Current.Get<decimal>("expectancy");
             Assert.AreEqual(expectancy, actual);
         }
 
         [Then(@"Standard Deviation is (.*)")]
-        public void ThenStandardDeviationIs(double std)
+        public void ThenStandardDeviationIs(decimal std)
         {
-            var actual = ScenarioContext.Current.Get<double>("std");
+            var actual = ScenarioContext.Current.Get<decimal>("std");
             Assert.AreEqual(std, actual);
         }
 
         [Then(@"Win% is (.*)")]
-        public void ThenWinIs(double winRate)
+        public void ThenWinIs(decimal winRate)
         {
-            var actual = ScenarioContext.Current.Get<double>("winRate");
+            var actual = ScenarioContext.Current.Get<decimal>("winRate");
             Assert.AreEqual(winRate, actual);
         }
 
         [Then(@"Avg Win/Loss Ratio is (.*)")]
-        public void ThenWinLossRatioIs(double winlossRatio)
+        public void ThenWinLossRatioIs(decimal winlossRatio)
         {
-            var actual = ScenarioContext.Current.Get<double>("winLossRatio");
+            var actual = ScenarioContext.Current.Get<decimal>("winLossRatio");
             Assert.AreEqual(winlossRatio, actual);
         }
 
@@ -93,9 +93,9 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"SQN is (.*)")]
-        public void ThenSQNIs(double sqn)
+        public void ThenSQNIs(decimal sqn)
         {
-            var actual = ScenarioContext.Current.Get<double>("sqn");
+            var actual = ScenarioContext.Current.Get<decimal>("sqn");
             actual = Math.Round(actual, 2);
             Assert.AreEqual(sqn, actual);
         }
@@ -104,7 +104,7 @@ namespace KnowUrSystem.Test.Features
         public void When我計算SQN()
         {
             var trades = this.target.GetSQN();
-            ScenarioContext.Current.Set<double>(trades, "sqn");
+            ScenarioContext.Current.Set<decimal>(trades, "sqn");
         }
 
 

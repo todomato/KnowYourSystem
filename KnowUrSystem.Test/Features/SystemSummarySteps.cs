@@ -55,7 +55,7 @@ namespace KnowUrSystem.Test.Features
 
 
         [Then(@"win% should be (.*) \+- (.*) and STD should be (.*)")]
-        public void ThenWinShouldBe_(double win, double about, double std)
+        public void ThenWinShouldBe_(decimal win, decimal about, decimal std)
         {
             var summary =_target.GetSimulateResult();
             if (Math.Abs(summary.WinRatio - win) <= about)
@@ -67,7 +67,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"win/loss ratio should be (.*)")]
-        public void ThenWinLossRatioShouldBe(double ratio)
+        public void ThenWinLossRatioShouldBe(decimal ratio)
         {
             var summary = _target.GetSimulateResult();
          
@@ -76,7 +76,7 @@ namespace KnowUrSystem.Test.Features
 
 
         [Then(@"expectancy should be (.*) \+- (.*) and STD should be (.*)")]
-        public void ThenExpectancyShouldBe_(double expectancy, double about, double std)
+        public void ThenExpectancyShouldBe_(decimal expectancy, decimal about, decimal std)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.Expectancy - expectancy) <= about)
@@ -96,7 +96,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"drawdown R should be (.*) \+- (.*) and STD should be (.*)")]
-        public void ThenDrawdownRShouldBe_(double dd, int about, double std)
+        public void ThenDrawdownRShouldBe_(decimal dd, int about, decimal std)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.AvgDrawdown - dd) <= about)
@@ -108,7 +108,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"ending gain R should be (.*) \+- (.*) and STD should be (.*)")]
-        public void ThenEndingGainRShouldBe_(double endingGain, int about, double std)
+        public void ThenEndingGainRShouldBe_(decimal endingGain, int about, decimal std)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.EndingGain - endingGain) <= about)
@@ -132,10 +132,10 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"(.*)% drawdown duraiton Months should be (.*) \+- (.*)")]
-        public void ThenDrawdownDuraitonMonthsShouldBe(int ddM, double expect, double about)
+        public void ThenDrawdownDuraitonMonthsShouldBe(int ddM, decimal expect, decimal about)
         {
             var summary = _target.GetSimulateResult(ddM);
-            var ddmonth = summary.BreakEvenTrades / (_target.TradesPerYearly / 12.0);
+            var ddmonth = summary.BreakEvenTrades / (_target.TradesPerYearly / 12.0m);
             if (Math.Abs(ddmonth - expect) <= about)
             {
                 ddmonth = expect;
@@ -145,7 +145,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"yearly gain R should be (.*)")]
-        public void ThenYearlyGainRShouldBe(double yearlyGain)
+        public void ThenYearlyGainRShouldBe(decimal yearlyGain)
         {
             var summary = _target.GetSimulateResult();
 
@@ -153,7 +153,7 @@ namespace KnowUrSystem.Test.Features
         }
 
         [Then(@"Avg yearly gain / avg drawdown should be (.*) \+- (.*)")]
-        public void ThenAvgYearlyGainAvgDrawdownShouldBe_(double ratio, double about)
+        public void ThenAvgYearlyGainAvgDrawdownShouldBe_(decimal ratio, decimal about)
         {
             var summary = _target.GetSimulateResult();
             if (Math.Abs(summary.GainDrawdownRatio - ratio) <= about)

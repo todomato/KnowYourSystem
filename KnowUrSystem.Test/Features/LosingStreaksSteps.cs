@@ -124,7 +124,7 @@ namespace KnowUrSystem.Test.Features
         [Then(@"the Probability\(%\) Consecutive Losses List")]
         public void ThenTheProbabilityConsecutiveLossesList()
         {
-            var expect = 100.0;
+            var expect = 100.0m;
             var actual = _target.CumulativeProbabilityConsecutiveLossesList;
             Assert.AreEqual(expect, actual[0]);
         }

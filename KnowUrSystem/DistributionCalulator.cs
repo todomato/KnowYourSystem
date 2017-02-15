@@ -20,10 +20,10 @@ namespace KnowUrSystem
             this._trades = trades;
         }
 
-        public List<double> CalculateLossDistributionProbability(List<List<Record>> runs)
+        public List<decimal> CalculateLossDistributionProbability(List<List<Record>> runs)
         {
             //計算N筆交易累積R倍數賠的佔模擬次數的比例
-            var probabilitys = new List<double>();
+            var probabilitys = new List<decimal>();
             var trades = runs.Select(x => x.Count).First();
             int simulateCount = runs.Count;
 
@@ -40,7 +40,7 @@ namespace KnowUrSystem
                     }
                 }
 
-                var lossProb = (double)lossbox / simulateCount;
+                var lossProb = (decimal)lossbox / simulateCount;
                 probabilitys.Add(lossProb);
             }
 

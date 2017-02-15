@@ -10,11 +10,11 @@ namespace KnowUrSystem.Model
         public int Run { get; set; }
         public int Number { get; set; }
 
-        public double CumulativeRMutiple { get; set; }
+        public decimal CumulativeRMutiple { get; set; }
 
         public bool IsWinMoney { get; set; }
 
-        public double RMultiple { get; set; }
+        public decimal RMultiple { get; set; }
 
     }
 }

@@ -70,15 +70,15 @@ namespace KnowUrSystem.Test.Features
         {
             simulator.Simulate();
             var result = _target.CalculateLossDistributionProbability(simulator.Runs);
-            ScenarioContext.Current.Set<List<double>>(result, "result");
+            ScenarioContext.Current.Set<List<decimal>>(result, "result");
 
         }
 
 
         [Then(@"the lose equity result should be (.*)% about \+- (.*)")]
-        public void ThenTheLoseEquityResultShouldBeAbout_(double expect, double about)
+        public void ThenTheLoseEquityResultShouldBeAbout_(decimal expect, decimal about)
         {
-            var data = ScenarioContext.Current.Get<List<double>>("result");
+            var data = ScenarioContext.Current.Get<List<decimal>>("result");
             var playtime = ScenarioContext.Current.Get<int>("playtimes");
             var actual = data[playtime - 1];
             if (Math.Abs(actual - expect / 100) <= about)
@@ -101,7 +101,7 @@ namespace KnowUrSystem.Test.Features
         {
             var records = ScenarioContext.Current.Get<List<List<Record>>>();
             var result = _target.CalculateLossDistributionProbability(records);
-            ScenarioContext.Current.Set<List<double>>(result, "result");
+            ScenarioContext.Current.Set<List<decimal>>(result, "result");
         }
 
         [Given(@"我輸入fake records table")]
