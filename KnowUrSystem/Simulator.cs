@@ -439,7 +439,7 @@ namespace KnowUrSystem
 
             //模擬增幅部位
             var reports = new List<OptResult>();
-            for (decimal position = param.IncrementSize; position <= param.MaxRisk; position += param.IncrementSize)
+            for (decimal position = param.MaxRisk; position > 0; position -= param.IncrementSize)
             {
                 OptResult allprob = GetAllProbability(this.Runs, param, position);
                 reports.Add(allprob);
@@ -447,34 +447,40 @@ namespace KnowUrSystem
 
             //計算Opt結果
             var optReport = new OptReport();
-            optReport.MaxReturn = reports.Where(c => c.MaxGain == reports.Max(x => x.MaxGain)).SingleOrDefault();
+            optReport.MaxReturn = reports.Where(c => c.MaxGain == reports.Max(x => x.MaxGain)).FirstOrDefault();
 
-            optReport.MedReturn = reports.OrderBy(c => c.AvgGain).ToList()[reports.Count /2 - 1];
+            optReport.MedReturn = reports.OrderBy(c => c.MedGain).ToList()[reports.Count /2 - 1];
 
-            optReport.OptReturn = reports.Where(c => c.RetireProbability == reports.Max(x => x.RetireProbability)).SingleOrDefault();
+            optReport.OptReturn = reports.Where(c => c.RetireProbability == reports.Max(x => x.RetireProbability)).FirstOrDefault();
 
-            optReport.LessOneRuin = reports.Where(c => c.RuinProbability <= 0.01m).OrderByDescending(c => c.RuinProbability).FirstOrDefault();
+            optReport.LessOneRuin = reports.Where(c => c.RuinProbability <= 0.01).OrderByDescending(c => c.RuinProbability).FirstOrDefault();
 
             optReport.BestRetireRuinRatio = reports
-                .Where(c => c.RetireProbability / c.RuinProbability
-                    == reports.Max(x => x.RetireProbability / x.RuinProbability))
-                .SingleOrDefault();
+                .Where(c => (double)c.RetireProbability / c.RuinProbability
+                    == reports.Max(x => (double)x.RetireProbability / x.RuinProbability))
+                .FirstOrDefault();
 
             return optReport;
         }
 
         private OptResult GetAllProbability(List<List<Record>> runs, OptParams param, decimal position)
         {
+            //過濾Data ruin後的資料不算
+            var maxRRuin = param.Ruin / position;
+            var maxRRetire = param.Retirement / position;
+
+            var newRuns = FilterRuin(runs, maxRRuin, maxRRetire);
+
+            //運算
             var result = new OptResult();
             result.BetSize = position;
             var ruinCount = 0;
             var arriveCount = 0;
-            var maxRRuin = param.Ruin / position;
             var endGains = new List<decimal>();
             var maxGain = 0.0m;
-            foreach (var records in runs)
+            foreach (var records in newRuns)
             {
-                var endGain = records.Last().CumulativeRMutiple * position;
+                var endGain = records.Where(c => c.Number == records.Max(j => j.Number)).Single().CumulativeRMutiple * position;
                 endGains.Add(endGain);
                 
                 //有達到retire目標 & 剔除ruin
@@ -498,12 +504,44 @@ namespace KnowUrSystem
             }
 
             //機率
-            result.RetireProbability = (decimal)arriveCount / runs.Count;
-            result.RuinProbability = (decimal)ruinCount / runs.Count;
+            result.RetireProbability = (decimal)arriveCount / newRuns.Count;
+            result.RuinProbability = (double)ruinCount / newRuns.Count;
             result.AvgGain = endGains.Average();
             result.MaxGain = maxGain;
-            result.MedGain = endGains.OrderBy(c => c).ToList()[runs.Count / 2 - 1];
+            result.MedGain = endGains.OrderBy(c => c).ToList()[newRuns.Count / 2 - 1];
 
+            return result;
+        }
+
+        private List<List<Record>> FilterRuin(List<List<Record>> runs, decimal maxRRuin, decimal maxRRetire)
+        {
+            //過濾ruin資料
+            //過濾達到目標
+
+            var result = new List<List<Record>>();
+
+            foreach (var records in runs)
+            {
+                var containers = new List<Record>();
+                foreach (var record in records)
+                {
+                    //ruin
+                    if (record.CumulativeRMutiple <= maxRRuin)
+                    {
+                        containers.Add(record);
+                        break;
+                    }
+                    ////retire
+                    //if (record.CumulativeRMutiple >= maxRRetire)
+                    //{
+                    //    containers.Add(record);
+                    //    break;
+                    //}
+
+                    containers.Add(record);
+                }
+                result.Add(containers);
+            }
             return result;
         }
     }

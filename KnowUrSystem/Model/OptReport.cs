@@ -21,7 +21,7 @@ namespace KnowUrSystem.Model
     public class OptResult
     {
         public decimal RetireProbability { get; set; }
-        public decimal RuinProbability { get; set; }
+        public double RuinProbability { get; set; }
         public decimal AvgGain { get; set; }
         public decimal MaxGain { get; set; }
         public decimal MedGain { get; set; }
