@@ -16,5 +16,7 @@ namespace KnowUrSystem.Model
 
         public decimal RMultiple { get; set; }
 
+        public decimal CurrentEquity { get; set; }
+
     }
 }

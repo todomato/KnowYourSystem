@@ -23,6 +23,21 @@ Scenario: 取得系統模擬結果
 	Then Avg yearly gain / avg drawdown should be 3.3 +- 0.1
 
 @整合
+Scenario: 驗證模擬資料
+	Given 我輸入Count vs R mutiple table :
+	| Count   | RMultiple |
+	| 2 | 10       |
+	| 1 | -5       |
+	| 7 | -1       |
+	And set simulator
+	And set simulation times are 10000
+	And set trades are 120
+	When I simulate result
+	Then 10 RMutiple's probability should be 20% +- 1
+	Then -5 RMutiple's probability should be 10% +- 1
+	Then -1 RMutiple's probability should be 70% +- 1
+
+@整合
 Scenario: 取得系統模擬結果 : 期望值、系統勝率?
 	Given 我輸入Count vs R mutiple table :
 	| Count   | RMultiple |

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using System.Linq;
 
 namespace KnowUrSystem.Test.Features
 {
@@ -163,5 +164,31 @@ namespace KnowUrSystem.Test.Features
 
             Assert.AreEqual(ratio, summary.GainDrawdownRatio);
         }
+
+        [Then(@"(.*) RMutiple's probability should be (.*)% \+- (.*)")]
+        public void ThenRMutipleSProbabilityShouldBe_(decimal r, decimal probability, decimal about)
+        {
+            //取得所有模擬次數
+            var runs = _target.Runs;
+            var container = new List<Record>();
+            foreach (var records in runs)
+            {
+                foreach (var record in records)
+                {
+                    container.Add(record);
+                }
+            }
+
+            var data = container.Where(c => c.RMultiple == r).Count();
+            var actual = (decimal)data / container.Count * 100;
+
+            if (Math.Abs(probability - actual) <= about)
+            {
+                actual = probability;
+            }
+
+            Assert.AreEqual(probability, actual);
+        }
+
     }
 }

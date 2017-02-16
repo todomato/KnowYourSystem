@@ -19,10 +19,11 @@ Scenario: Set Optimizer Control
 	Then 模擬器參數顯示Risk增幅 0.2 %
 	Then 模擬器顯示模擬 10000 次
 
+
 @需求
 Scenario: Calculate Optimization
 	Given 我輸入Count vs R mutiple table :
-	| Count   | RMultiple |
+	| Count | RMultiple |
 	| 2 | 10       |
 	| 1 | -5       |
 	| 7 | -1       |
@@ -34,9 +35,9 @@ Scenario: Calculate Optimization
 	Given 我設定Risk增幅 0.2 %
 	Given 我設定模擬 10000 次
 	When 我執行模擬最佳化
-	Then Max Return Bet Size : 19.8%
-	Then Med Return Bet Size : 1.8%
-	Then Opt.Return Bet Size : 2.6%
-	Then <1% Ruin Bet Size : 0.6%
+	Then Max Return Bet Size : 19.8% +- 2
+	Then Med Return Bet Size : 1.8% +- 0.2
+	Then Opt.Return Bet Size : 2.6% 
+	Then <1% Ruin Bet Size : 0.4% +- 0.2
 	Then Retire-Ruin Ruin Bet Size : 1.2%
 

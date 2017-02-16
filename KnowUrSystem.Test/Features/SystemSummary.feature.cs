@@ -124,12 +124,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果 : 期望值、系統勝率?")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("驗證模擬資料")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SystemSummary")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
-        public virtual void 取得系統模擬結果期望值系統勝率()
+        public virtual void 驗證模擬資料()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果 : 期望值、系統勝率?", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("驗證模擬資料", new string[] {
                         "整合"});
 #line 26
 this.ScenarioSetup(scenarioInfo);
@@ -157,22 +157,24 @@ this.ScenarioSetup(scenarioInfo);
 #line 35
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
- testRunner.Then("win/loss ratio should be 6.67", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("10 RMutiple\'s probability should be 20% +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 37
- testRunner.Then("expectancy should be 0.8 +- 0.1 and STD should be 0.43", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("-5 RMutiple\'s probability should be 10% +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 38
+ testRunner.Then("-1 RMutiple\'s probability should be 70% +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果：Drawdown")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果 : 期望值、系統勝率?")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SystemSummary")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
-        public virtual void 取得系統模擬結果Drawdown()
+        public virtual void 取得系統模擬結果期望值系統勝率()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果：Drawdown", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果 : 期望值、系統勝率?", new string[] {
                         "整合"});
-#line 43
+#line 41
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -187,35 +189,33 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "7",
                         "-1"});
-#line 44
+#line 42
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table3, "Given ");
-#line 49
+#line 47
  testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 50
+#line 48
  testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
+#line 49
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
+#line 50
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
- testRunner.Then("lossing streaks should be 16", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 54
- testRunner.Then("drawdown R should be -29.3 +- 1  and STD should be 11.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 55
- testRunner.Then("ending gain R should be 95.6 +- 1 and STD should be 51.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 51
+ testRunner.Then("win/loss ratio should be 6.67", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 52
+ testRunner.Then("expectancy should be 0.8 +- 0.1 and STD should be 0.43", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果 : 95%信心區間")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果：Drawdown")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SystemSummary")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
-        public virtual void 取得系統模擬結果95信心區間()
+        public virtual void 取得系統模擬結果Drawdown()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果 : 95%信心區間", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果：Drawdown", new string[] {
                         "整合"});
-#line 59
+#line 58
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -230,33 +230,35 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "7",
                         "-1"});
-#line 60
+#line 59
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table4, "Given ");
-#line 65
+#line 64
  testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 66
+#line 65
  testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 66
  testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
+#line 67
  testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 68
+ testRunner.Then("lossing streaks should be 16", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 69
- testRunner.Then("#Trades for break even (95%) should be 88 +- 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("drawdown R should be -29.3 +- 1  and STD should be 11.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 70
- testRunner.Then("95% drawdown duraiton Months should be 8.8 +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("ending gain R should be 95.6 +- 1 and STD should be 51.8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果 : 平均End Gain / 平均DD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果 : 95%信心區間")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SystemSummary")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
-        public virtual void 取得系統模擬結果平均EndGain平均DD()
+        public virtual void 取得系統模擬結果95信心區間()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果 : 平均End Gain / 平均DD", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果 : 95%信心區間", new string[] {
                         "整合"});
-#line 73
+#line 74
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -271,19 +273,60 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "7",
                         "-1"});
-#line 74
+#line 75
  testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table5, "Given ");
-#line 79
- testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 80
- testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 81
- testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 82
- testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 83
- testRunner.Then("yearly gain R should be 96", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 84
+ testRunner.Then("#Trades for break even (95%) should be 88 +- 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 85
+ testRunner.Then("95% drawdown duraiton Months should be 8.8 +- 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得系統模擬結果 : 平均End Gain / 平均DD")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "SystemSummary")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("整合")]
+        public virtual void 取得系統模擬結果平均EndGain平均DD()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得系統模擬結果 : 平均End Gain / 平均DD", new string[] {
+                        "整合"});
+#line 88
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table6.AddRow(new string[] {
+                        "2",
+                        "10"});
+            table6.AddRow(new string[] {
+                        "1",
+                        "-5"});
+            table6.AddRow(new string[] {
+                        "7",
+                        "-1"});
+#line 89
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table6, "Given ");
+#line 94
+ testRunner.And("set simulator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.And("set simulation times are 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
+ testRunner.And("set trades are 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 97
+ testRunner.When("I simulate result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 98
+ testRunner.Then("yearly gain R should be 96", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 99
  testRunner.Then("Avg yearly gain / avg drawdown should be 3.3 +- 0.1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

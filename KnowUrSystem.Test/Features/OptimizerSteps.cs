@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using KnowUrSystem.Model;
+﻿using KnowUrSystem.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
+using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using ExpectedObjects;
 
 namespace KnowUrSystem.Test.Features
 {
@@ -23,7 +18,6 @@ namespace KnowUrSystem.Test.Features
         {
             this._target = new Simulator();
             this._param = new OptParams();
-
         }
 
         [Given(@"我輸入Count vs R mutiple table :")]
@@ -63,7 +57,6 @@ namespace KnowUrSystem.Test.Features
         [Given(@"我設定模擬最大Risk (.*) %")]
         public void Given我設定模擬最大Risk(decimal risk)
         {
-
             this._param.MaxRisk = risk;
         }
 
@@ -77,14 +70,12 @@ namespace KnowUrSystem.Test.Features
         public void Given我設定獲利總資產作為退休(decimal retirement)
         {
             this._param.Retirement = retirement;
-
         }
 
         [Given(@"我設定起始總資產為 (.*)")]
         public void Given我設定起始總資產為(int init)
         {
             this._param.InitEquity = init;
-
         }
 
         [Given(@"我設定Risk增幅 (.*) %")]
@@ -103,7 +94,7 @@ namespace KnowUrSystem.Test.Features
         [Then(@"模擬器參數顯示模擬最大Risk (.*) %")]
         public void Then模擬器顯示模擬最大Risk(decimal risk)
         {
-            var actual =  this._param.MaxRisk;
+            var actual = this._param.MaxRisk;
             Assert.AreEqual(risk, actual);
         }
 
@@ -135,19 +126,30 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(size, actual);
         }
 
-        [Then(@"Max Return Bet Size : (.*)%")]
-        public void ThenMaxReturnBetSize(decimal bet)
+        [Then(@"Max Return Bet Size : (.*)% \+- (.*)")]
+        public void ThenMaxReturnBetSize(decimal bet, decimal about)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.MaxReturn.BetSize;
+
+            if (Math.Abs(actual - bet) <= about)
+            {
+                actual = bet;
+            }
+
             Assert.AreEqual(bet, actual);
         }
 
-        [Then(@"Med Return Bet Size : (.*)%")]
-        public void ThenMedReturnBetSize(decimal bet)
+        [Then(@"Med Return Bet Size : (.*)% \+- (.*)")]
+        public void ThenMedReturnBetSize(decimal bet, decimal about)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.MedReturn.BetSize;
+
+            if (Math.Abs(actual - bet) <= about)
+            {
+                actual = bet;
+            }
             Assert.AreEqual(bet, actual);
         }
 
@@ -159,11 +161,16 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(bet, actual);
         }
 
-        [Then(@"<1% Ruin Bet Size : (.*)%")]
-        public void ThenRuinBetSize(decimal bet)
+        [Then(@"<1% Ruin Bet Size : (.*)% \+- (.*)")]
+        public void ThenRuinBetSize(decimal bet, decimal about)
         {
             var report = ScenarioContext.Current.Get<OptReport>();
             var actual = report.LessOneRuin.BetSize;
+
+            if (Math.Abs(actual - bet) <= about)
+            {
+                actual = bet;
+            }
             Assert.AreEqual(bet, actual);
         }
 
@@ -175,5 +182,6 @@ namespace KnowUrSystem.Test.Features
             Assert.AreEqual(bet, actual);
         }
 
+     
     }
 }

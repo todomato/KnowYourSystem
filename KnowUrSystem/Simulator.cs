@@ -201,7 +201,7 @@ namespace KnowUrSystem
                 record.RMultiple = _financeCalculator.GetRandomRMultiple(rnd);
                 record.IsWinMoney = (record.RMultiple >= 0) ? true : false;
                 record.Number = i + 1;
-                // 計算累計R
+                // 計算算術平均數累計R
                 record.CumulativeRMutiple = i == 0 ? record.RMultiple : record.RMultiple + Records[i - 1].CumulativeRMutiple;
 
                 Records.Add(record);
@@ -439,7 +439,7 @@ namespace KnowUrSystem
 
             //模擬增幅部位
             var reports = new List<OptResult>();
-            for (decimal position = param.MaxRisk; position > 0; position -= param.IncrementSize)
+            for (decimal position = param.IncrementSize; position < param.MaxRisk; position += param.IncrementSize)
             {
                 OptResult allprob = GetAllProbability(this.Runs, param, position);
                 reports.Add(allprob);
@@ -449,15 +449,15 @@ namespace KnowUrSystem
             var optReport = new OptReport();
             optReport.MaxReturn = reports.Where(c => c.MaxGain == reports.Max(x => x.MaxGain)).FirstOrDefault();
 
-            optReport.MedReturn = reports.OrderBy(c => c.MedGain).ToList()[reports.Count /2 - 1];
+            optReport.MedReturn = reports.Where(c => c.MedGain == reports.Max(x => x.MedGain)).FirstOrDefault();
 
             optReport.OptReturn = reports.Where(c => c.RetireProbability == reports.Max(x => x.RetireProbability)).FirstOrDefault();
 
             optReport.LessOneRuin = reports.Where(c => c.RuinProbability <= 0.01).OrderByDescending(c => c.RuinProbability).FirstOrDefault();
 
             optReport.BestRetireRuinRatio = reports
-                .Where(c => (double)c.RetireProbability / c.RuinProbability
-                    == reports.Max(x => (double)x.RetireProbability / x.RuinProbability))
+                .Where(c => (double)c.RetireProbability - c.RuinProbability
+                    == reports.Max(x => (double)x.RetireProbability - x.RuinProbability))
                 .FirstOrDefault();
 
             return optReport;
@@ -466,10 +466,8 @@ namespace KnowUrSystem
         private OptResult GetAllProbability(List<List<Record>> runs, OptParams param, decimal position)
         {
             //過濾Data ruin後的資料不算
-            var maxRRuin = param.Ruin / position;
-            var maxRRetire = param.Retirement / position;
-
-            var newRuns = FilterRuin(runs, maxRRuin, maxRRetire);
+            var newRuns = FilterRuin(runs, param, position/100);
+            //var newRuns = runs; //不停損
 
             //運算
             var result = new OptResult();
@@ -478,21 +476,24 @@ namespace KnowUrSystem
             var arriveCount = 0;
             var endGains = new List<decimal>();
             var maxGain = 0.0m;
+            var retirementGoal = param.InitEquity * (1 + param.Retirement / 100);
+            var ruinGoal = param.InitEquity * (1 + param.Ruin / 100);
             foreach (var records in newRuns)
             {
-                var endGain = records.Where(c => c.Number == records.Max(j => j.Number)).Single().CumulativeRMutiple * position;
+                var endGain = records.Where(c => c.Number == records.Max(j => j.Number)).Single().CurrentEquity;
                 endGains.Add(endGain);
                 
                 //有達到retire目標 & 剔除ruin
-                if (endGain >= param.Retirement && !records.Any(c => c.CumulativeRMutiple <= maxRRuin))
+                if (endGain >= retirementGoal)
                 {
                     arriveCount++;
                 }
 
                 //有達到ruin
-                if (records.Any(c => c.CumulativeRMutiple <= maxRRuin))
+                if (endGain <= ruinGoal)
                 {
                     ruinCount++;
+                    continue;
                 }
 
                 //判斷最大值
@@ -506,39 +507,46 @@ namespace KnowUrSystem
             //機率
             result.RetireProbability = (decimal)arriveCount / newRuns.Count;
             result.RuinProbability = (double)ruinCount / newRuns.Count;
-            result.AvgGain = endGains.Average();
-            result.MaxGain = maxGain;
-            result.MedGain = endGains.OrderBy(c => c).ToList()[newRuns.Count / 2 - 1];
+            result.AvgGain = (endGains.Average() - param.InitEquity)  / param.InitEquity;
+            result.MaxGain = (maxGain- param.InitEquity) / param.InitEquity;
+            endGains.Sort();
+            result.MedGain = (endGains[newRuns.Count / 2 - 1] - param.InitEquity) / param.InitEquity;
 
             return result;
         }
 
-        private List<List<Record>> FilterRuin(List<List<Record>> runs, decimal maxRRuin, decimal maxRRetire)
+        private List<List<Record>> FilterRuin(List<List<Record>> runs, OptParams param, decimal position)
         {
-            //過濾ruin資料
-            //過濾達到目標
-
+            var ruinGoal = param.InitEquity *(1 + param.Ruin/100);
             var result = new List<List<Record>>();
 
+            //過濾ruin資料
+            //計算淨值
             foreach (var records in runs)
             {
                 var containers = new List<Record>();
+                int i = 0;
                 foreach (var record in records)
                 {
+                    if (i == 0)
+                    {
+                        record.CurrentEquity = param.InitEquity * (1 + position * record.RMultiple);
+                    }
+                    else
+                    {
+                        record.CurrentEquity = 
+                            records[i - 1].CurrentEquity * (1 + position * record.RMultiple);
+                    }
+
+
                     //ruin
-                    if (record.CumulativeRMutiple <= maxRRuin)
+                    if (record.CurrentEquity <= ruinGoal)
                     {
                         containers.Add(record);
                         break;
                     }
-                    ////retire
-                    //if (record.CumulativeRMutiple >= maxRRetire)
-                    //{
-                    //    containers.Add(record);
-                    //    break;
-                    //}
-
                     containers.Add(record);
+                    i++;
                 }
                 result.Add(containers);
             }
