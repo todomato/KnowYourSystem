@@ -41,3 +41,23 @@ Scenario: Calculate Optimization
 	Then <1% Ruin Bet Size : 0.4% +- 0.2
 	Then Retire-Ruin Ruin Bet Size : 1.2%
 
+@需求
+Scenario: Calculate Optimization2
+	Given 我輸入Count vs R mutiple table :
+	| Count | RMultiple |
+	| 55 | -1      |
+	| 35 | 2.5     |
+	| 10 | 0    |
+	Given 我設定每年交易 60 次
+	Given 我設定模擬最大Risk 20.00 %
+	Given 我設定虧損總資產 -10.00 % 作為破產
+	Given 我設定獲利總資產 20.00 % 作為退休
+	Given 我設定起始總資產為 2000000
+	Given 我設定Risk增幅 0.2 %
+	Given 我設定模擬 10000 次
+	When 我執行模擬最佳化
+	Then Max Return Bet Size : 19.8% +- 2
+	Then Med Return Bet Size : 1.8% +- 0.2
+	Then Opt.Return Bet Size : 2.6% 
+	Then <1% Ruin Bet Size : 0.4% +- 0.2
+	Then Retire-Ruin Ruin Bet Size : 1.2%

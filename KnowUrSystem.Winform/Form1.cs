@@ -12,34 +12,22 @@ namespace KnowUrSystem.Winform
     public partial class Form1 : Form
     {
         private IFinanceCalulator _financeCalulator;
+        private ISimulator _simulator;
+
         public Form1()
         {
             InitializeComponent();
 
-            //設定 Chart
-            Chart1.BackColor = System.Drawing.Color.Gray;  
+          
 
-            Title title = new Title();
-            title.Text = "Trade Distributin";
-            title.Alignment = ContentAlignment.MiddleCenter;
-            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
-            Chart1.Titles.Add(title);
 
-            Chart1.Legends.Add("Legends1"); //圖例集合
-            //設定 Legends------------------------------------------------------------------------               
-            Chart1.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
-            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
-            Chart1.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
-            //斜線背景
-            Chart1.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
-            Chart1.Legends["Legends1"].BorderWidth = 1;
-            Chart1.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
         }
 
        
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -81,17 +69,138 @@ namespace KnowUrSystem.Winform
             // 取得計算機
             this._financeCalulator = Factory.GetDistributionInstance(distributions);
 
-            // 試算結果
+            // 試算Trade Distribution結果
             lbl_expectancy.Text = _financeCalulator.GetExpectancy().ToString();
             lbl_std.Text = _financeCalulator.GetStandardDeviation().ToString();
             lbl_win.Text = _financeCalulator.GetWinRate().ToString();
             lbl_winlossRatio.Text = _financeCalulator.GetWinLossRatio().ToString();
             lbl_trades.Text = _financeCalulator.GetTrades().ToString();
             lbl_sqn.Text = Math.Round(_financeCalulator.GetSQN(), 2).ToString();
+
+            // 建立模擬器  TODO 放到模擬頁面,參數也需要更換
+            this._simulator = Factory.GetSimulator(this._financeCalulator);
+            _simulator.TimesOfSimulation = 10000;
+            _simulator.TradesPerYearly = 120;
+            this._simulator.Simulate();
+
+
+            this.lbl_avgconsecutivelosses.Text = this._simulator.AvgNumWeMeetConsecutiveLosses.ToString();
+            this.lbl_maxconsecutivelosses.Text = this._simulator.MaxNumOfConsecutiveLosses.ToString();
+            var probabilityConsecutiveLossesList = this._simulator.CumulativeProbabilityConsecutiveLossesList;
+
+            SetCLChart(probabilityConsecutiveLossesList);
+
+            //listView1.DataBindings
+            //http://csharp.net-informations.com/gui/cs-listview.htm
+
+            for (int i = 1; i <= 60; i++)
+			{
+                ListViewItem lvi = new ListViewItem(i.ToString());
+                lvi.SubItems.Add(probabilityConsecutiveLossesList[i].ToString());
+                listView1.Items.Add(lvi);
+			}
+        }
+
+        private void SetCLChart(List<decimal> consecutiveLossesList)
+        {
+            //設定 Chart
+            chart_CL.BackColor = System.Drawing.Color.Gray;
+
+            Title title = new Title();
+            title.Text = "Trade Distributin";
+            title.Alignment = ContentAlignment.MiddleCenter;
+            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
+            chart_CL.Titles.Add(title);
+
+            chart_CL.Legends.Add("Legends1"); //圖例集合
+            //設定 Legends------------------------------------------------------------------------               
+            chart_CL.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
+            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
+            chart_CL.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            //斜線背景
+            chart_CL.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
+            chart_CL.Legends["Legends1"].BorderWidth = 1;
+            chart_CL.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
+
+            chart_CL.Series[0].Points.Clear();
+
+
+            string[] titleArr = { "R 分佈" };
+            //Data Y
+
+            decimal[] yValues = consecutiveLossesList.Take(60).ToArray();
+
+            //Data 對應X座標
+            var list = new List<decimal>();
+            for (int i = 0; i < 60; i++)
+            {
+                list.Add(i);
+            }
+            List<decimal> xValue = list;
+
+
+            //設定 ChartArea----------------------------------------------------------------------
+
+
+            //-----------------------------設定3D------------------------------//
+
+            chart_CL.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            chart_CL.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+            chart_CL.ChartAreas["ChartArea1"].AxisX2.Enabled = AxisEnabled.False; //隱藏 X2 標示
+            chart_CL.ChartAreas["ChartArea1"].AxisY2.Enabled = AxisEnabled.False; //隱藏 Y2 標示
+            chart_CL.ChartAreas["ChartArea1"].AxisY2.MajorGrid.Enabled = false;   //隱藏 Y2 軸線
+            chart_CL.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
+            chart_CL.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
+
+
+            chart_CL.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
+
+            //設定 Series-----------------------------------------------------------------------
+            chart_CL.Series["Series1"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            //chart_CL.Series["Series2"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            //chart_CL.Series["Series1"].ChartType = SeriesChartType.Bar; //橫條圖
+
+            chart_CL.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
+            chart_CL.Series["Series1"]["PixelPointWidth"] = "5";
+            chart_CL.Series["Series1"].Legend = "Legends1";
+            chart_CL.Series["Series1"].LegendText = titleArr[0];
+            chart_CL.Series["Series1"].LabelFormat = "#.##"; //小數點
+            chart_CL.Series["Series1"].MarkerSize = 15; //Label 範圍大小
+            chart_CL.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
+            //字體設定
+            chart_CL.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
+            //Label 背景色
+            chart_CL.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
+            chart_CL.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
+            chart_CL.Series["Series1"].IsValueShownAsLabel = false; // Show data points labels
+
+
+            chart_CL.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
+            chart_CL.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
+            chart_CL.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
         }
 
         private void SetChart(List<DistributionRawData> distributions)
         {
+            //設定 Chart
+            Chart1.BackColor = System.Drawing.Color.Gray;
+
+            Title title = new Title();
+            title.Text = "Trade Distributin";
+            title.Alignment = ContentAlignment.MiddleCenter;
+            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
+            Chart1.Titles.Add(title);
+
+            Chart1.Legends.Add("Legends1"); //圖例集合
+            //設定 Legends------------------------------------------------------------------------               
+            Chart1.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
+            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
+            Chart1.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            //斜線背景
+            Chart1.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
+            Chart1.Legends["Legends1"].BorderWidth = 1;
+            Chart1.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
+
             Chart1.Series[0].Points.Clear();
 
             distributions = distributions.OrderBy( c => c.RMultiple).ToList();

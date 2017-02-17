@@ -164,6 +164,61 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculate Optimization2")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Optimizer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("需求")]
+        public virtual void CalculateOptimization2()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculate Optimization2", new string[] {
+                        "需求"});
+#line 45
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Count",
+                        "RMultiple"});
+            table2.AddRow(new string[] {
+                        "55",
+                        "-1"});
+            table2.AddRow(new string[] {
+                        "35",
+                        "2.5"});
+            table2.AddRow(new string[] {
+                        "10",
+                        "0"});
+#line 46
+ testRunner.Given("我輸入Count vs R mutiple table :", ((string)(null)), table2, "Given ");
+#line 51
+ testRunner.Given("我設定每年交易 60 次", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 52
+ testRunner.Given("我設定模擬最大Risk 20.00 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 53
+ testRunner.Given("我設定虧損總資產 -10.00 % 作為破產", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 54
+ testRunner.Given("我設定獲利總資產 20.00 % 作為退休", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 55
+ testRunner.Given("我設定起始總資產為 2000000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 56
+ testRunner.Given("我設定Risk增幅 0.2 %", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 57
+ testRunner.Given("我設定模擬 10000 次", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 58
+ testRunner.When("我執行模擬最佳化", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 59
+ testRunner.Then("Max Return Bet Size : 19.8% +- 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 60
+ testRunner.Then("Med Return Bet Size : 1.8% +- 0.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 61
+ testRunner.Then("Opt.Return Bet Size : 2.6%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 62
+ testRunner.Then("<1% Ruin Bet Size : 0.4% +- 0.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 63
+ testRunner.Then("Retire-Ruin Ruin Bet Size : 1.2%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -31,9 +31,16 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tab_distribution = new System.Windows.Forms.TabPage();
+            this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lbl_sqn = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lbl_winlossRatio = new System.Windows.Forms.Label();
@@ -72,14 +79,25 @@
             this.txt_r1 = new System.Windows.Forms.TextBox();
             this.txt_c1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart_CL = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lbl_maxconsecutivelosses = new System.Windows.Forms.Label();
+            this.lbl_avgconsecutivelosses = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tab_drawdown = new System.Windows.Forms.TabPage();
             this.tab_duration = new System.Windows.Forms.TabPage();
             this.tab_expectancy = new System.Windows.Forms.TabPage();
             this.tab_summary = new System.Windows.Forms.TabPage();
-            this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.N = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabcontrol.SuspendLayout();
             this.tab_distribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_CL)).BeginInit();
             this.SuspendLayout();
             // 
             // tabcontrol
@@ -143,6 +161,22 @@
             this.tab_distribution.Size = new System.Drawing.Size(807, 579);
             this.tab_distribution.TabIndex = 0;
             this.tab_distribution.Text = "Trade Distribution";
+            // 
+            // Chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.Chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Chart1.Legends.Add(legend1);
+            this.Chart1.Location = new System.Drawing.Point(267, 238);
+            this.Chart1.Name = "Chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.Chart1.Series.Add(series1);
+            this.Chart1.Size = new System.Drawing.Size(498, 300);
+            this.Chart1.TabIndex = 41;
+            this.Chart1.Text = "chart1";
             // 
             // lbl_sqn
             // 
@@ -480,12 +514,106 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.DimGray;
+            this.tabPage2.Controls.Add(this.listView1);
+            this.tabPage2.Controls.Add(this.chart3);
+            this.tabPage2.Controls.Add(this.chart_CL);
+            this.tabPage2.Controls.Add(this.lbl_maxconsecutivelosses);
+            this.tabPage2.Controls.Add(this.lbl_avgconsecutivelosses);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(807, 579);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lossing Streaks";
+            // 
+            // listView1
+            // 
+            this.listView1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.N,
+            this.columnHeader2});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(428, 161);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(138, 373);
+            this.listView1.TabIndex = 45;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // chart3
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart3.Legends.Add(legend2);
+            this.chart3.Location = new System.Drawing.Point(41, 19);
+            this.chart3.Name = "chart3";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart3.Series.Add(series2);
+            this.chart3.Size = new System.Drawing.Size(322, 256);
+            this.chart3.TabIndex = 44;
+            this.chart3.Text = "chart3";
+            // 
+            // chart_CL
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chart_CL.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart_CL.Legends.Add(legend3);
+            this.chart_CL.Location = new System.Drawing.Point(41, 293);
+            this.chart_CL.Name = "chart_CL";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart_CL.Series.Add(series3);
+            this.chart_CL.Size = new System.Drawing.Size(322, 241);
+            this.chart_CL.TabIndex = 43;
+            this.chart_CL.Text = "chart2";
+            // 
+            // lbl_maxconsecutivelosses
+            // 
+            this.lbl_maxconsecutivelosses.AutoSize = true;
+            this.lbl_maxconsecutivelosses.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_maxconsecutivelosses.Location = new System.Drawing.Point(643, 110);
+            this.lbl_maxconsecutivelosses.Name = "lbl_maxconsecutivelosses";
+            this.lbl_maxconsecutivelosses.Size = new System.Drawing.Size(18, 20);
+            this.lbl_maxconsecutivelosses.TabIndex = 42;
+            this.lbl_maxconsecutivelosses.Text = "0";
+            // 
+            // lbl_avgconsecutivelosses
+            // 
+            this.lbl_avgconsecutivelosses.AutoSize = true;
+            this.lbl_avgconsecutivelosses.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_avgconsecutivelosses.Location = new System.Drawing.Point(643, 73);
+            this.lbl_avgconsecutivelosses.Name = "lbl_avgconsecutivelosses";
+            this.lbl_avgconsecutivelosses.Size = new System.Drawing.Size(18, 20);
+            this.lbl_avgconsecutivelosses.TabIndex = 40;
+            this.lbl_avgconsecutivelosses.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(424, 110);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(216, 20);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "Max # consecutive losses ：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label10.Location = new System.Drawing.Point(424, 73);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(213, 20);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Avg # consecutive losses ：";
             // 
             // tab_drawdown
             // 
@@ -527,21 +655,14 @@
             this.tab_summary.TabIndex = 5;
             this.tab_summary.Text = "Summary";
             // 
-            // Chart1
+            // N
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.Chart1.Legends.Add(legend1);
-            this.Chart1.Location = new System.Drawing.Point(267, 238);
-            this.Chart1.Name = "Chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.Chart1.Series.Add(series1);
-            this.Chart1.Size = new System.Drawing.Size(498, 300);
-            this.Chart1.TabIndex = 41;
-            this.Chart1.Text = "chart1";
+            this.N.Text = "N";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "%";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -556,6 +677,10 @@
             this.tab_distribution.ResumeLayout(false);
             this.tab_distribution.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_CL)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -607,6 +732,15 @@
         private System.Windows.Forms.Label lbl_sqn;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataVisualization.Charting.Chart Chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_CL;
+        private System.Windows.Forms.Label lbl_maxconsecutivelosses;
+        private System.Windows.Forms.Label lbl_avgconsecutivelosses;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader N;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
 

@@ -213,7 +213,7 @@ namespace KnowUrSystem
             get
             {
                 var ClsByRun = GetMaxConsecutiveLossesList();
-
+                ClsByRun.Sort();
                 var result = new List<decimal>();
                 for (int i = 1; i <= 100; i++)
                 {
@@ -236,7 +236,7 @@ namespace KnowUrSystem
                 for (int i = 1; i <= 100; i++)
                 {
                     var count = ClsByRun.Where(x => x >= i).Sum(c => 1);
-                    var porbility = (decimal)( count / ClsByRun.Count);
+                    var porbility = (decimal)( count * 1.0 / ClsByRun.Count);
                     result.Add(porbility);
                 }
 
