@@ -13,7 +13,6 @@ namespace KnowUrSystem.Winform
     {
         private IFinanceCalulator _financeCalulator;
         private ISimulator _simulator;
-        private IDrawdownCalculator _drawdownCalculator;
 
         public Form1()
         {
@@ -65,19 +64,15 @@ namespace KnowUrSystem.Winform
             SetLSListview(probabilityConsecutiveLossesList);
 
             // Drawdown Depth
-            this.lbl_avgDrawdown.Text = this._simulator.GetAvgDD().ToString();
-            this.lbl_MaxDrawdown.Text = this._simulator.GetMaxDD().ToString();
+            this.lbl_avgDrawdown.Text = Math.Round(this._simulator.GetAvgDD(), 2).ToString();
+            this.lbl_MaxDrawdown.Text = Math.Round(this._simulator.GetMaxDD(), 0).ToString();
             // 更新 Drawdown Depth
             var ddList = this._simulator.GetDrawdownProbabilityList();
-            // TODO 處理x座標 -> -100
             SetDDChart(ddList);
             SetDDListview(ddList);
 
         }
 
-     
-
-     
 
         #region Trade Distribution
         private void btn_clear_Click(object sender, EventArgs e)
@@ -107,17 +102,11 @@ namespace KnowUrSystem.Winform
             title.Text = "Trade Distributin";
             title.Alignment = ContentAlignment.MiddleCenter;
             title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
-            Chart1.Titles.Add(title);
+            if (Chart1.Titles.Count == 0)
+            {
+                Chart1.Titles.Add(title);
+            }
 
-            Chart1.Legends.Add("Legends1"); //圖例集合
-            //設定 Legends------------------------------------------------------------------------               
-            Chart1.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
-            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
-            Chart1.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
-            //斜線背景
-            Chart1.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
-            Chart1.Legends["Legends1"].BorderWidth = 1;
-            Chart1.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
 
             Chart1.Series[0].Points.Clear();
 
@@ -161,19 +150,10 @@ namespace KnowUrSystem.Winform
 
             Chart1.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
             Chart1.Series["Series1"]["PixelPointWidth"] = "5";
-            Chart1.Series["Series1"].Legend = "Legends1";
-            Chart1.Series["Series1"].LegendText = titleArr[0];
-            Chart1.Series["Series1"].LabelFormat = "#.##"; //小數點
-            Chart1.Series["Series1"].MarkerSize = 15; //Label 範圍大小
-            Chart1.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
-            //字體設定
-            Chart1.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
-            //Label 背景色
-            Chart1.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
-            Chart1.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
-            Chart1.Series["Series1"].IsValueShownAsLabel = true; // Show data points labels
 
 
+            //remove legend labels
+            Chart1.Series[0].IsVisibleInLegend = false;
             Chart1.ChartAreas[0].AxisX.Interval = 2;   //設置X軸坐標的間隔為1
             Chart1.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
             Chart1.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
@@ -187,29 +167,17 @@ namespace KnowUrSystem.Winform
             chart_LS_CL.BackColor = System.Drawing.Color.Gray;
 
             Title title = new Title();
-            title.Text = "Trade Distributin";
+            title.Text = "Loosing Streaks";
             title.Alignment = ContentAlignment.MiddleCenter;
             title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
-            chart_LS_CL.Titles.Add(title);
-
-            chart_LS_CL.Legends.Add("Legends1"); //圖例集合
-            //設定 Legends------------------------------------------------------------------------               
-            chart_LS_CL.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
-            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
-            chart_LS_CL.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
-            //斜線背景
-            chart_LS_CL.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
-            chart_LS_CL.Legends["Legends1"].BorderWidth = 1;
-            chart_LS_CL.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
+            if (chart_LS_CL.Titles.Count == 0)
+            {
+                chart_LS_CL.Titles.Add(title);
+            }
 
             chart_LS_CL.Series[0].Points.Clear();
-
-
-            string[] titleArr = { "R 分佈" };
             //Data Y
-
             decimal[] yValues = consecutiveLossesList.Take(60).ToArray();
-
             //Data 對應X座標
             var list = new List<decimal>();
             for (int i = 0; i < 60; i++)
@@ -231,6 +199,7 @@ namespace KnowUrSystem.Winform
             chart_LS_CL.ChartAreas["ChartArea1"].AxisY2.MajorGrid.Enabled = false;   //隱藏 Y2 軸線
             chart_LS_CL.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
             chart_LS_CL.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisY.Maximum = 100;
 
 
             chart_LS_CL.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
@@ -242,19 +211,9 @@ namespace KnowUrSystem.Winform
 
             chart_LS_CL.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
             chart_LS_CL.Series["Series1"]["PixelPointWidth"] = "5";
-            chart_LS_CL.Series["Series1"].Legend = "Legends1";
-            chart_LS_CL.Series["Series1"].LegendText = titleArr[0];
-            chart_LS_CL.Series["Series1"].LabelFormat = "#.##"; //小數點
-            chart_LS_CL.Series["Series1"].MarkerSize = 15; //Label 範圍大小
-            chart_LS_CL.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
-            //字體設定
-            chart_LS_CL.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
-            //Label 背景色
-            chart_LS_CL.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
-            chart_LS_CL.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
-            chart_LS_CL.Series["Series1"].IsValueShownAsLabel = false; // Show data points labels
 
-
+            //remove legend labels
+            chart_LS_CL.Series[0].IsVisibleInLegend = false;
             chart_LS_CL.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
             chart_LS_CL.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
             chart_LS_CL.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
@@ -282,32 +241,21 @@ namespace KnowUrSystem.Winform
             chart_DD_CD.BackColor = System.Drawing.Color.Gray;
 
             Title title = new Title();
-            title.Text = "Trade Distributin";
+            title.Text = "Drawdown Depth";
             title.Alignment = ContentAlignment.MiddleCenter;
             title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
-            chart_DD_CD.Titles.Add(title);
-
-            chart_DD_CD.Legends.Add("Legends1"); //圖例集合
-            //設定 Legends------------------------------------------------------------------------               
-            chart_DD_CD.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
-            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
-            chart_DD_CD.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
-            //斜線背景
-            chart_DD_CD.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
-            chart_DD_CD.Legends["Legends1"].BorderWidth = 1;
-            chart_DD_CD.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
-
+            if (chart_DD_CD.Titles.Count == 0)
+            {
+                chart_DD_CD.Titles.Add(title);
+            }
             chart_DD_CD.Series[0].Points.Clear();
 
-
-            string[] titleArr = { "R 分佈" };
             //Data Y
-
-            decimal[] yValues = drawdownList.Take(60).ToArray();
-
+            decimal[] yValues = drawdownList.ToArray();
             //Data 對應X座標
             var list = new List<decimal>();
-            for (int i = 0; i < 60; i++)
+            var count = drawdownList.Count * -1;
+            for (int i = -1; i >= count; i--)
             {
                 list.Add(i);
             }
@@ -315,43 +263,22 @@ namespace KnowUrSystem.Winform
 
 
             //設定 ChartArea----------------------------------------------------------------------
-
-
-            //-----------------------------設定3D------------------------------//
-
             chart_DD_CD.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
             chart_DD_CD.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
-            chart_DD_CD.ChartAreas["ChartArea1"].AxisX2.Enabled = AxisEnabled.False; //隱藏 X2 標示
-            chart_DD_CD.ChartAreas["ChartArea1"].AxisY2.Enabled = AxisEnabled.False; //隱藏 Y2 標示
-            chart_DD_CD.ChartAreas["ChartArea1"].AxisY2.MajorGrid.Enabled = false;   //隱藏 Y2 軸線
             chart_DD_CD.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
             chart_DD_CD.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
-
-
             chart_DD_CD.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisY.Maximum = 100;
 
             //設定 Series-----------------------------------------------------------------------
             chart_DD_CD.Series["Series1"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
-            //chart_CL.Series["Series2"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
-            //chart_CL.Series["Series1"].ChartType = SeriesChartType.Bar; //橫條圖
-
             chart_DD_CD.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
             chart_DD_CD.Series["Series1"]["PixelPointWidth"] = "5";
-            chart_DD_CD.Series["Series1"].Legend = "Legends1";
-            chart_DD_CD.Series["Series1"].LegendText = titleArr[0];
-            chart_DD_CD.Series["Series1"].LabelFormat = "#.##"; //小數點
-            chart_DD_CD.Series["Series1"].MarkerSize = 15; //Label 範圍大小
-            chart_DD_CD.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
-            //字體設定
-            chart_DD_CD.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
-            //Label 背景色
-            chart_DD_CD.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
-            chart_DD_CD.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
-            chart_DD_CD.Series["Series1"].IsValueShownAsLabel = false; // Show data points labels
 
-
+            //remove legend labels
+            chart_DD_CD.Series[0].IsVisibleInLegend = false;
             chart_DD_CD.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
-            chart_DD_CD.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
+            chart_DD_CD.ChartAreas[0].AxisX.IntervalOffset = 3;  //設置X軸坐標偏移為1
             chart_DD_CD.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
         }
 
@@ -359,7 +286,7 @@ namespace KnowUrSystem.Winform
         {
             for (int i = 1; i <= 60; i++)
             {
-                ListViewItem lvi = new ListViewItem(i.ToString());
+                ListViewItem lvi = new ListViewItem((i*-1).ToString());
                 lvi.SubItems.Add(ddList[i].ToString());
                 list_drawdown.Items.Add(lvi);
             }
