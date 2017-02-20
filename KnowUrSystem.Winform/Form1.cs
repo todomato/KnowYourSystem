@@ -13,37 +13,11 @@ namespace KnowUrSystem.Winform
     {
         private IFinanceCalulator _financeCalulator;
         private ISimulator _simulator;
+        private IDrawdownCalculator _drawdownCalculator;
 
         public Form1()
         {
             InitializeComponent();
-
-          
-
-
-        }
-
-       
-
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_clear_Click(object sender, EventArgs e)
-        {
-            Utilities.ResetAllControls(this);
-        }
-
-        private void btn_example_Click(object sender, EventArgs e)
-        {
-            txt_c1.Text = "2";
-            txt_c2.Text = "1";
-            txt_c3.Text = "7";
-
-            txt_r1.Text = "10.00";
-            txt_r2.Text = "-5.00";
-            txt_r3.Text = "-1.00";
         }
 
         private void btn_calculate_Click(object sender, EventArgs e)
@@ -83,102 +57,46 @@ namespace KnowUrSystem.Winform
             _simulator.TradesPerYearly = 120;
             this._simulator.Simulate();
 
-
+            // 更新Loosing Streaks 
             this.lbl_avgconsecutivelosses.Text = this._simulator.AvgNumWeMeetConsecutiveLosses.ToString();
             this.lbl_maxconsecutivelosses.Text = this._simulator.MaxNumOfConsecutiveLosses.ToString();
             var probabilityConsecutiveLossesList = this._simulator.CumulativeProbabilityConsecutiveLossesList;
-
             SetCLChart(probabilityConsecutiveLossesList);
+            SetLSListview(probabilityConsecutiveLossesList);
 
-            //listView1.DataBindings
-            //http://csharp.net-informations.com/gui/cs-listview.htm
+            // Drawdown Depth
+            this.lbl_avgDrawdown.Text = this._simulator.GetAvgDD().ToString();
+            this.lbl_MaxDrawdown.Text = this._simulator.GetMaxDD().ToString();
+            // 更新 Drawdown Depth
+            var ddList = this._simulator.GetDrawdownProbabilityList();
+            // TODO 處理x座標 -> -100
+            SetDDChart(ddList);
+            SetDDListview(ddList);
 
-            for (int i = 1; i <= 60; i++)
-			{
-                ListViewItem lvi = new ListViewItem(i.ToString());
-                lvi.SubItems.Add(probabilityConsecutiveLossesList[i].ToString());
-                listView1.Items.Add(lvi);
-			}
         }
 
-        private void SetCLChart(List<decimal> consecutiveLossesList)
+     
+
+     
+
+        #region Trade Distribution
+        private void btn_clear_Click(object sender, EventArgs e)
         {
-            //設定 Chart
-            chart_CL.BackColor = System.Drawing.Color.Gray;
-
-            Title title = new Title();
-            title.Text = "Trade Distributin";
-            title.Alignment = ContentAlignment.MiddleCenter;
-            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
-            chart_CL.Titles.Add(title);
-
-            chart_CL.Legends.Add("Legends1"); //圖例集合
-            //設定 Legends------------------------------------------------------------------------               
-            chart_CL.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
-            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
-            chart_CL.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
-            //斜線背景
-            chart_CL.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
-            chart_CL.Legends["Legends1"].BorderWidth = 1;
-            chart_CL.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
-
-            chart_CL.Series[0].Points.Clear();
-
-
-            string[] titleArr = { "R 分佈" };
-            //Data Y
-
-            decimal[] yValues = consecutiveLossesList.Take(60).ToArray();
-
-            //Data 對應X座標
-            var list = new List<decimal>();
-            for (int i = 0; i < 60; i++)
-            {
-                list.Add(i);
-            }
-            List<decimal> xValue = list;
-
-
-            //設定 ChartArea----------------------------------------------------------------------
-
-
-            //-----------------------------設定3D------------------------------//
-
-            chart_CL.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
-            chart_CL.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
-            chart_CL.ChartAreas["ChartArea1"].AxisX2.Enabled = AxisEnabled.False; //隱藏 X2 標示
-            chart_CL.ChartAreas["ChartArea1"].AxisY2.Enabled = AxisEnabled.False; //隱藏 Y2 標示
-            chart_CL.ChartAreas["ChartArea1"].AxisY2.MajorGrid.Enabled = false;   //隱藏 Y2 軸線
-            chart_CL.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
-            chart_CL.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
-
-
-            chart_CL.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
-
-            //設定 Series-----------------------------------------------------------------------
-            chart_CL.Series["Series1"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
-            //chart_CL.Series["Series2"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
-            //chart_CL.Series["Series1"].ChartType = SeriesChartType.Bar; //橫條圖
-
-            chart_CL.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
-            chart_CL.Series["Series1"]["PixelPointWidth"] = "5";
-            chart_CL.Series["Series1"].Legend = "Legends1";
-            chart_CL.Series["Series1"].LegendText = titleArr[0];
-            chart_CL.Series["Series1"].LabelFormat = "#.##"; //小數點
-            chart_CL.Series["Series1"].MarkerSize = 15; //Label 範圍大小
-            chart_CL.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
-            //字體設定
-            chart_CL.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
-            //Label 背景色
-            chart_CL.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
-            chart_CL.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
-            chart_CL.Series["Series1"].IsValueShownAsLabel = false; // Show data points labels
-
-
-            chart_CL.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
-            chart_CL.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
-            chart_CL.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
+            Utilities.ResetAllControls(this);
         }
+
+        private void btn_example_Click(object sender, EventArgs e)
+        {
+            txt_c1.Text = "2";
+            txt_c2.Text = "1";
+            txt_c3.Text = "7";
+
+            txt_r1.Text = "10.00";
+            txt_r2.Text = "-5.00";
+            txt_r3.Text = "-1.00";
+        }
+
+
 
         private void SetChart(List<DistributionRawData> distributions)
         {
@@ -203,7 +121,7 @@ namespace KnowUrSystem.Winform
 
             Chart1.Series[0].Points.Clear();
 
-            distributions = distributions.OrderBy( c => c.RMultiple).ToList();
+            distributions = distributions.OrderBy(c => c.RMultiple).ToList();
 
             string[] titleArr = { "R 分佈" };
             //Data Y
@@ -260,5 +178,194 @@ namespace KnowUrSystem.Winform
             Chart1.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
             Chart1.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
         }
+        #endregion
+
+        #region Loosing Streaks
+        private void SetCLChart(List<decimal> consecutiveLossesList)
+        {
+            //設定 Chart
+            chart_LS_CL.BackColor = System.Drawing.Color.Gray;
+
+            Title title = new Title();
+            title.Text = "Trade Distributin";
+            title.Alignment = ContentAlignment.MiddleCenter;
+            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
+            chart_LS_CL.Titles.Add(title);
+
+            chart_LS_CL.Legends.Add("Legends1"); //圖例集合
+            //設定 Legends------------------------------------------------------------------------               
+            chart_LS_CL.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
+            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
+            chart_LS_CL.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            //斜線背景
+            chart_LS_CL.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
+            chart_LS_CL.Legends["Legends1"].BorderWidth = 1;
+            chart_LS_CL.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
+
+            chart_LS_CL.Series[0].Points.Clear();
+
+
+            string[] titleArr = { "R 分佈" };
+            //Data Y
+
+            decimal[] yValues = consecutiveLossesList.Take(60).ToArray();
+
+            //Data 對應X座標
+            var list = new List<decimal>();
+            for (int i = 0; i < 60; i++)
+            {
+                list.Add(i);
+            }
+            List<decimal> xValue = list;
+
+
+            //設定 ChartArea----------------------------------------------------------------------
+
+
+            //-----------------------------設定3D------------------------------//
+
+            chart_LS_CL.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisX2.Enabled = AxisEnabled.False; //隱藏 X2 標示
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisY2.Enabled = AxisEnabled.False; //隱藏 Y2 標示
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisY2.MajorGrid.Enabled = false;   //隱藏 Y2 軸線
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
+
+
+            chart_LS_CL.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
+
+            //設定 Series-----------------------------------------------------------------------
+            chart_LS_CL.Series["Series1"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            //chart_CL.Series["Series2"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            //chart_CL.Series["Series1"].ChartType = SeriesChartType.Bar; //橫條圖
+
+            chart_LS_CL.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
+            chart_LS_CL.Series["Series1"]["PixelPointWidth"] = "5";
+            chart_LS_CL.Series["Series1"].Legend = "Legends1";
+            chart_LS_CL.Series["Series1"].LegendText = titleArr[0];
+            chart_LS_CL.Series["Series1"].LabelFormat = "#.##"; //小數點
+            chart_LS_CL.Series["Series1"].MarkerSize = 15; //Label 範圍大小
+            chart_LS_CL.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
+            //字體設定
+            chart_LS_CL.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
+            //Label 背景色
+            chart_LS_CL.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
+            chart_LS_CL.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
+            chart_LS_CL.Series["Series1"].IsValueShownAsLabel = false; // Show data points labels
+
+
+            chart_LS_CL.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
+            chart_LS_CL.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
+            chart_LS_CL.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
+        }
+
+        private void SetLSListview(List<decimal> probabilityConsecutiveLossesList)
+        {
+
+            // Loosing Streaks ListView 更新資料
+            //http://csharp.net-informations.com/gui/cs-listview.htm
+            for (int i = 1; i <= 60; i++)
+            {
+                ListViewItem lvi = new ListViewItem(i.ToString());
+                lvi.SubItems.Add(probabilityConsecutiveLossesList[i].ToString());
+                list_loosing.Items.Add(lvi);
+            }
+        }
+
+        #endregion
+
+        #region Drawdown Depth
+        private void SetDDChart(List<decimal> drawdownList)
+        {
+            //設定 Chart
+            chart_DD_CD.BackColor = System.Drawing.Color.Gray;
+
+            Title title = new Title();
+            title.Text = "Trade Distributin";
+            title.Alignment = ContentAlignment.MiddleCenter;
+            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
+            chart_DD_CD.Titles.Add(title);
+
+            chart_DD_CD.Legends.Add("Legends1"); //圖例集合
+            //設定 Legends------------------------------------------------------------------------               
+            chart_DD_CD.Legends["Legends1"].DockedToChartArea = "ChartArea1"; //顯示在圖表內
+            //Chart1.Legends["Legends1"].Docking = Docking.Bottom; //自訂顯示位置
+            chart_DD_CD.Legends["Legends1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            //斜線背景
+            chart_DD_CD.Legends["Legends1"].BackHatchStyle = ChartHatchStyle.DarkDownwardDiagonal;
+            chart_DD_CD.Legends["Legends1"].BorderWidth = 1;
+            chart_DD_CD.Legends["Legends1"].BorderColor = Color.FromArgb(200, 200, 200);
+
+            chart_DD_CD.Series[0].Points.Clear();
+
+
+            string[] titleArr = { "R 分佈" };
+            //Data Y
+
+            decimal[] yValues = drawdownList.Take(60).ToArray();
+
+            //Data 對應X座標
+            var list = new List<decimal>();
+            for (int i = 0; i < 60; i++)
+            {
+                list.Add(i);
+            }
+            List<decimal> xValue = list;
+
+
+            //設定 ChartArea----------------------------------------------------------------------
+
+
+            //-----------------------------設定3D------------------------------//
+
+            chart_DD_CD.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisX2.Enabled = AxisEnabled.False; //隱藏 X2 標示
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisY2.Enabled = AxisEnabled.False; //隱藏 Y2 標示
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisY2.MajorGrid.Enabled = false;   //隱藏 Y2 軸線
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
+
+
+            chart_DD_CD.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
+
+            //設定 Series-----------------------------------------------------------------------
+            chart_DD_CD.Series["Series1"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            //chart_CL.Series["Series2"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            //chart_CL.Series["Series1"].ChartType = SeriesChartType.Bar; //橫條圖
+
+            chart_DD_CD.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
+            chart_DD_CD.Series["Series1"]["PixelPointWidth"] = "5";
+            chart_DD_CD.Series["Series1"].Legend = "Legends1";
+            chart_DD_CD.Series["Series1"].LegendText = titleArr[0];
+            chart_DD_CD.Series["Series1"].LabelFormat = "#.##"; //小數點
+            chart_DD_CD.Series["Series1"].MarkerSize = 15; //Label 範圍大小
+            chart_DD_CD.Series["Series1"].LabelForeColor = Color.FromArgb(255, 255, 255); //字體顏色
+            //字體設定
+            chart_DD_CD.Series["Series1"].Font = new System.Drawing.Font("Trebuchet MS", 10, System.Drawing.FontStyle.Bold);
+            //Label 背景色
+            chart_DD_CD.Series["Series1"].LabelBackColor = Color.FromArgb(64, 64, 64);
+            chart_DD_CD.Series["Series1"].Color = Color.FromArgb(240, 65, 140, 240); //背景色
+            chart_DD_CD.Series["Series1"].IsValueShownAsLabel = false; // Show data points labels
+
+
+            chart_DD_CD.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
+            chart_DD_CD.ChartAreas[0].AxisX.IntervalOffset = 1;  //設置X軸坐標偏移為1
+            chart_DD_CD.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
+        }
+
+        private void SetDDListview(List<decimal> ddList)
+        {
+            for (int i = 1; i <= 60; i++)
+            {
+                ListViewItem lvi = new ListViewItem(i.ToString());
+                lvi.SubItems.Add(ddList[i].ToString());
+                list_drawdown.Items.Add(lvi);
+            }
+        }
+        #endregion
+
+
     }
 }

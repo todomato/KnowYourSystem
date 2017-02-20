@@ -18,23 +18,14 @@ namespace KnowUrSystem
 
         public decimal GetMaxDD(IEnumerable<IEnumerable<Record>> runs)
         {
-            var maxDDByRun = new List<decimal>();
-            foreach (var record in runs)
-            {
-                maxDDByRun.Add(GetMaxDD(record));
-            }
-            return maxDDByRun.Min(c => c);
+
+            var DDByRun = GetDrawdownList(runs);
+            return DDByRun.Min(c => c);
         }
 
         public decimal GetAvgDD(List<List<Record>> runs)
         {
-            var DDByRun = new List<decimal>();
-            foreach (var record in runs)
-            {
-                //TODO check 平均下跌 是否是用最大下跌的平均
-                var result = GetMaxDD(record);
-                DDByRun.Add(result);
-            }
+            var DDByRun = GetDrawdownList(runs);
 
             var avg = DDByRun.Average(x => x);
             return avg;
@@ -59,7 +50,32 @@ namespace KnowUrSystem
             //return R * -1;
         }
 
+        public List<decimal> GetDrawdownList(IEnumerable<IEnumerable<Record>> runs)
+        {
+            var DDByRun = new List<decimal>();
+            foreach (var record in runs)
+            {
+                var result = GetMaxDD(record);
+                DDByRun.Add(result);
+            }
+            return DDByRun;
+        }
 
+        public List<decimal> GetDrawdownProbabilityList(IEnumerable<IEnumerable<Record>> runs)
+        {
+            var DDByRun = GetDrawdownList(runs);
+
+            DDByRun.Sort();
+
+            var xrList = new List<decimal>();
+            for (int i = -1; i >= -102; i-=1)
+            {
+                var temp = DDByRun.Where(x => x <= i).Count() * 100.0m / DDByRun.Count;
+                xrList.Add(temp);
+            }
+
+            return xrList;
+        }
       
 
         /// <summary>
@@ -148,20 +164,6 @@ namespace KnowUrSystem
             return result;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+     
     }
 }

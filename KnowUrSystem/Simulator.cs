@@ -552,5 +552,11 @@ namespace KnowUrSystem
             }
             return result;
         }
+
+
+        public List<decimal> GetDrawdownProbabilityList()
+        {
+            return _drawdownCalculator.GetDrawdownProbabilityList(Runs);
+        }
     }
 }

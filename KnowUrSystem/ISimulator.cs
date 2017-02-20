@@ -31,5 +31,11 @@ namespace KnowUrSystem
 
 
         OptReport SimulateOpt(OptParams _param);
+
+        decimal GetAvgDD();
+
+        decimal GetMaxDD();
+
+        List<decimal> GetDrawdownProbabilityList();
     }
 }

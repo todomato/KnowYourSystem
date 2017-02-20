@@ -11,8 +11,9 @@ namespace KnowUrSystem
         decimal GetMaxDD(IEnumerable<Record> records);
         decimal GetMaxDD(IEnumerable<IEnumerable<Record>> runs);
 
-        decimal GetAvgDD(List<List<Record>> Runs);
+        decimal GetAvgDD(List<List<Record>> runs);
 
+        List<decimal> GetDrawdownProbabilityList(IEnumerable<IEnumerable<Record>> runs);
 
     }
 }

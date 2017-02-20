@@ -27,6 +27,19 @@ Scenario: Simulate Then Get AvgDD
 	When I simulate result
 	Then the AvgDD result should be -29.3 about +- 0.5
 
+@需求
+Scenario: Simulate Then show probability that DD >= XR
+	Given 我輸入Count vs R mutiple table :
+	| Count   | RMultiple |
+	| 2 | 10       |
+	| 1 | -5       |
+	| 7 | -1       |
+	And set simulator
+	And set simulation times are 10000
+	And set trades are 120
+	When I simulate result
+	Then the show probability that DD >= XR
+
 @Stub
 Scenario: Stub Simulate Then Get MaxDD
 		Given 我輸入Count vs R mutiple table :

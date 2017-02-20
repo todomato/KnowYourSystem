@@ -87,6 +87,18 @@ namespace KnowUrSystem.Test.Features
             _target.Simulate();
         }
 
+        [Then(@"the show probability that DD >= XR")]
+        public void ThenTheShowProbabilityThatDDXR()
+        {
+            var result = _target.GetDrawdownProbabilityList();
+            //連跌九筆機率依舊100%
+            var actual = result[8] == 100.0m;
+            var expect = true;
+            Assert.AreEqual(expect, actual);
+
+        }
+
+
         [Then(@"the MaxDD result should be (.*) about \+- (.*)")]
         public void ThenTheMaxDDresultShouldBe(decimal maxDD, decimal about)
         {
