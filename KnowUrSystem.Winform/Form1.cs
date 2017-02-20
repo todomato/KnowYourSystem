@@ -71,6 +71,15 @@ namespace KnowUrSystem.Winform
             SetDDChart(ddList);
             SetDDListview(ddList);
 
+
+            // 95%信心程度 創equity新高的交易次數
+            this.lbl_99confidence.Text = this._simulator.GetNumberOfTradesForConfidence(99).ToString();
+            this.lbl_95confidence.Text = this._simulator.GetNumberOfTradesForConfidence(95).ToString();
+            var ddurationList = this._simulator.GetTradesOfLossDistributionProbabilityList();
+
+            SetDurationChart(ddurationList);
+            SetDDurationListview(ddurationList);
+
         }
 
 
@@ -293,6 +302,65 @@ namespace KnowUrSystem.Winform
         }
         #endregion
 
+        #region Drawdown Duration
+        private void SetDurationChart(List<decimal> ddurationList)
+        {
+            //設定 Chart
+            chart_confidence.BackColor = System.Drawing.Color.Gray;
 
+            Title title = new Title();
+            title.Text = "Drawdown Duration";
+            title.Alignment = ContentAlignment.MiddleCenter;
+            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
+            if (chart_confidence.Titles.Count == 0)
+            {
+                chart_confidence.Titles.Add(title);
+            }
+            chart_confidence.Series[0].Points.Clear();
+
+            //Data Y
+            decimal[] yValues = ddurationList.ToArray();
+            //Data 對應X座標
+            var list = new List<decimal>();
+            for (int i = 1; i <= ddurationList.Count; i++)
+            {
+                list.Add(i);
+            }
+            List<decimal> xValue = list;
+
+
+            //設定 ChartArea----------------------------------------------------------------------
+            chart_confidence.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            chart_confidence.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+            chart_confidence.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
+            chart_confidence.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
+            chart_confidence.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
+            chart_confidence.ChartAreas["ChartArea1"].AxisY.Maximum = 100;
+
+            //設定 Series-----------------------------------------------------------------------
+            chart_confidence.Series["Series1"].ChartType = SeriesChartType.Point; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            chart_confidence.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
+            chart_confidence.Series["Series1"]["PixelPointWidth"] = "5";
+
+            //remove legend labels
+            chart_confidence.Series[0].IsVisibleInLegend = false;
+            chart_confidence.ChartAreas[0].AxisX.Interval = 10;   //設置X軸坐標的間隔為1
+            chart_confidence.ChartAreas[0].AxisX.IntervalOffset = 3;  //設置X軸坐標偏移為1
+            chart_confidence.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
+        }
+
+        private void SetDDurationListview(List<decimal> ddurationList)
+        {
+            var count = ddurationList.Count;
+            for (int i = 0; i <= count; i+= 7)
+            {
+                ListViewItem lvi = new ListViewItem((i+1).ToString());
+                lvi.SubItems.Add((ddurationList[i]).ToString());
+                List_confidence.Items.Add(lvi);
+            }
+        }
+
+
+        #endregion
     }
 }

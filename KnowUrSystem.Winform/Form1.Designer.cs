@@ -109,17 +109,17 @@
             this.chart_DD_CD = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_DD_PD = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_duration = new System.Windows.Forms.TabPage();
-            this.tab_expectancy = new System.Windows.Forms.TabPage();
-            this.tab_summary = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.List_confidence = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lbl_95confidence = new System.Windows.Forms.Label();
+            this.lbl_99confidence = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.chart_confidence = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tab_expectancy = new System.Windows.Forms.TabPage();
+            this.tab_summary = new System.Windows.Forms.TabPage();
             this.tabcontrol.SuspendLayout();
             this.tab_distribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
@@ -130,7 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_DD_CD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_DD_PD)).BeginInit();
             this.tab_duration.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_confidence)).BeginInit();
             this.SuspendLayout();
             // 
             // tabcontrol
@@ -806,18 +806,113 @@
             // 
             this.tab_duration.BackColor = System.Drawing.Color.DimGray;
             this.tab_duration.Controls.Add(this.label9);
-            this.tab_duration.Controls.Add(this.listView1);
-            this.tab_duration.Controls.Add(this.label14);
-            this.tab_duration.Controls.Add(this.label15);
+            this.tab_duration.Controls.Add(this.List_confidence);
+            this.tab_duration.Controls.Add(this.lbl_95confidence);
+            this.tab_duration.Controls.Add(this.lbl_99confidence);
             this.tab_duration.Controls.Add(this.label16);
             this.tab_duration.Controls.Add(this.label17);
-            this.tab_duration.Controls.Add(this.chart2);
+            this.tab_duration.Controls.Add(this.chart_confidence);
             this.tab_duration.Location = new System.Drawing.Point(4, 22);
             this.tab_duration.Name = "tab_duration";
             this.tab_duration.Padding = new System.Windows.Forms.Padding(3);
             this.tab_duration.Size = new System.Drawing.Size(807, 579);
             this.tab_duration.TabIndex = 3;
             this.tab_duration.Text = "Drawdown Duration";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Location = new System.Drawing.Point(492, 138);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(252, 20);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Probability(%) That # new equity";
+            // 
+            // List_confidence
+            // 
+            this.List_confidence.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.List_confidence.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5});
+            this.List_confidence.FullRowSelect = true;
+            this.List_confidence.GridLines = true;
+            this.List_confidence.Location = new System.Drawing.Point(542, 173);
+            this.List_confidence.Name = "List_confidence";
+            this.List_confidence.Size = new System.Drawing.Size(138, 373);
+            this.List_confidence.TabIndex = 55;
+            this.List_confidence.UseCompatibleStateImageBehavior = false;
+            this.List_confidence.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "N";
+            this.columnHeader4.Width = 64;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "%";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbl_95confidence
+            // 
+            this.lbl_95confidence.AutoSize = true;
+            this.lbl_95confidence.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_95confidence.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_95confidence.Location = new System.Drawing.Point(627, 85);
+            this.lbl_95confidence.Name = "lbl_95confidence";
+            this.lbl_95confidence.Size = new System.Drawing.Size(18, 20);
+            this.lbl_95confidence.TabIndex = 54;
+            this.lbl_95confidence.Text = "0";
+            // 
+            // lbl_99confidence
+            // 
+            this.lbl_99confidence.AutoSize = true;
+            this.lbl_99confidence.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_99confidence.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_99confidence.Location = new System.Drawing.Point(627, 48);
+            this.lbl_99confidence.Name = "lbl_99confidence";
+            this.lbl_99confidence.Size = new System.Drawing.Size(18, 20);
+            this.lbl_99confidence.TabIndex = 53;
+            this.lbl_99confidence.Text = "0";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label16.Location = new System.Drawing.Point(492, 85);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(117, 20);
+            this.label16.TabIndex = 52;
+            this.label16.Text = "95% 信心程度 :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label17.Location = new System.Drawing.Point(492, 48);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(117, 20);
+            this.label17.TabIndex = 51;
+            this.label17.Text = "99% 信心程度 :";
+            // 
+            // chart_confidence
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.chart_confidence.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart_confidence.Legends.Add(legend6);
+            this.chart_confidence.Location = new System.Drawing.Point(87, 48);
+            this.chart_confidence.Name = "chart_confidence";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart_confidence.Series.Add(series6);
+            this.chart_confidence.Size = new System.Drawing.Size(341, 433);
+            this.chart_confidence.TabIndex = 50;
+            this.chart_confidence.Text = "chart4";
             // 
             // tab_expectancy
             // 
@@ -838,101 +933,6 @@
             this.tab_summary.Size = new System.Drawing.Size(807, 579);
             this.tab_summary.TabIndex = 5;
             this.tab_summary.Text = "Summary";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(492, 138);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(232, 20);
-            this.label9.TabIndex = 56;
-            this.label9.Text = "Probability(%) That DD >= XR";
-            // 
-            // chart2
-            // 
-            chartArea6.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart2.Legends.Add(legend6);
-            this.chart2.Location = new System.Drawing.Point(87, 48);
-            this.chart2.Name = "chart2";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart2.Series.Add(series6);
-            this.chart2.Size = new System.Drawing.Size(341, 433);
-            this.chart2.TabIndex = 50;
-            this.chart2.Text = "chart4";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label17.Location = new System.Drawing.Point(492, 48);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(117, 20);
-            this.label17.TabIndex = 51;
-            this.label17.Text = "99% 信心程度 :";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label16.Location = new System.Drawing.Point(492, 85);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(117, 20);
-            this.label16.TabIndex = 52;
-            this.label16.Text = "95% 信心程度 :";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label15.Location = new System.Drawing.Point(627, 48);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(18, 20);
-            this.label15.TabIndex = 53;
-            this.label15.Text = "0";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label14.Location = new System.Drawing.Point(627, 85);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(18, 20);
-            this.label14.TabIndex = 54;
-            this.label14.Text = "0";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "XR";
-            this.columnHeader4.Width = 64;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "%";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // listView1
-            // 
-            this.listView1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(542, 173);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(138, 373);
-            this.listView1.TabIndex = 55;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 
@@ -957,7 +957,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_DD_PD)).EndInit();
             this.tab_duration.ResumeLayout(false);
             this.tab_duration.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_confidence)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1029,14 +1029,14 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView List_confidence;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lbl_95confidence;
+        private System.Windows.Forms.Label lbl_99confidence;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_confidence;
     }
 }
 

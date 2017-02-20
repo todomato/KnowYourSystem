@@ -558,5 +558,16 @@ namespace KnowUrSystem
         {
             return _drawdownCalculator.GetDrawdownProbabilityList(Runs);
         }
+
+
+        public List<decimal> GetTradesOfLossDistributionProbabilityList()
+        {
+            var result = _distributionCalulator.CalculateLossDistributionProbability(Runs);
+            for (int i = 0; i < result.Count; i++)
+            {
+                result[i] = Math.Round(result[i] * 100, 1);
+            }
+            return result;
+        }
     }
 }

@@ -37,5 +37,8 @@ namespace KnowUrSystem
         decimal GetMaxDD();
 
         List<decimal> GetDrawdownProbabilityList();
+        int GetNumberOfTradesForConfidence(decimal prob);
+
+        List<decimal> GetTradesOfLossDistributionProbabilityList();
     }
 }
