@@ -76,9 +76,15 @@ namespace KnowUrSystem.Winform
             this.lbl_99confidence.Text = this._simulator.GetNumberOfTradesForConfidence(99).ToString();
             this.lbl_95confidence.Text = this._simulator.GetNumberOfTradesForConfidence(95).ToString();
             var ddurationList = this._simulator.GetTradesOfLossDistributionProbabilityList();
-
             SetDurationChart(ddurationList);
             SetDDurationListview(ddurationList);
+
+            // expectancy 
+            this.lbl_avgExpectancy.Text = this._simulator.GetAvgExpectancy().ToString();
+            this.lbl_maxExpectancy.Text = this._simulator.GetMaxExpectancy().ToString();
+            var expectancytList = this._simulator.GetExpectancyList();
+            SetExpChart(expectancytList);
+            SetExpListview(expectancytList);
 
         }
 
@@ -356,11 +362,66 @@ namespace KnowUrSystem.Winform
             {
                 ListViewItem lvi = new ListViewItem((i+1).ToString());
                 lvi.SubItems.Add((ddurationList[i]).ToString());
-                List_confidence.Items.Add(lvi);
+                list_confidence.Items.Add(lvi);
             }
         }
 
 
+        #endregion
+
+        #region Expectancy
+        private void SetExpChart(Dictionary<decimal, decimal> expectancyDic)
+        {
+            //設定 Chart
+            chart_E_CE.BackColor = System.Drawing.Color.Gray;
+
+            Title title = new Title();
+            title.Text = "Expectancy";
+            title.Alignment = ContentAlignment.MiddleCenter;
+            title.Font = new System.Drawing.Font("Trebuchet MS", 11F, FontStyle.Bold);
+            if (chart_E_CE.Titles.Count == 0)
+            {
+                chart_E_CE.Titles.Add(title);
+            }
+            chart_E_CE.Series[0].Points.Clear();
+
+            //Data Y
+            decimal[] yValues = expectancyDic.Values.ToArray();
+            //Data 對應X座標
+            List<decimal> xValue = expectancyDic.Keys.ToList();
+
+
+            //設定 ChartArea----------------------------------------------------------------------
+            chart_E_CE.ChartAreas["ChartArea1"].BackColor = Color.FromArgb(64, 64, 64); //背景色
+            chart_E_CE.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+            chart_E_CE.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//X 軸線顏色
+            chart_E_CE.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.FromArgb(150, 150, 150);//Y 軸線顏色
+            chart_E_CE.ChartAreas["ChartArea1"].AxisY.LabelStyle.Format = "#.##";//設定小數點
+            chart_E_CE.ChartAreas["ChartArea1"].AxisY.Maximum = 100;
+
+            //設定 Series-----------------------------------------------------------------------
+            chart_E_CE.Series["Series1"].ChartType = SeriesChartType.Line; //直條圖(Column),折線圖(Line),橫條圖(Bar)
+            chart_E_CE.Series["Series1"].Points.DataBindXY(xValue, yValues);//Series1的XY數值放入圖中
+            chart_E_CE.Series["Series1"]["PixelPointWidth"] = "5";
+
+            //remove legend labels
+            chart_E_CE.Series[0].IsVisibleInLegend = false;
+            chart_E_CE.ChartAreas[0].AxisX.Interval = 0.5;   //設置X軸坐標的間隔為1
+            chart_E_CE.ChartAreas[0].AxisX.IntervalOffset = 0;  //設置X軸坐標偏移為1
+            chart_E_CE.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false;   //設置是否交錯顯示,比如數據多的時間分成兩行來顯示
+        }
+
+        private void SetExpListview(Dictionary<decimal, decimal> expectancyDic)
+        {
+            var count = expectancyDic.Count;
+
+            foreach (KeyValuePair<decimal, decimal> item in expectancyDic)
+            {
+                ListViewItem lvi = new ListViewItem(item.Key.ToString());
+                lvi.SubItems.Add((item.Value).ToString());
+                list_expectancy.Items.Add(lvi);
+            }
+        }
         #endregion
     }
 }

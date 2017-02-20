@@ -569,5 +569,24 @@ namespace KnowUrSystem
             }
             return result;
         }
+
+        public Dictionary<decimal, decimal> GetExpectancyList() 
+        {
+            var exps = CalculateExpectancy();
+
+            var lowest = exps.Min() * 100;
+            var high = exps.Max() * 100;
+            var count = high - lowest;
+            var result = new Dictionary<decimal, decimal>();
+
+            for (int i = 0; i < count; i += 13)
+            {
+                var compare = (lowest + i) /100.0m;
+                var temp = exps.Where(x => x >= compare).Count() * 100.0m/ exps.Count;
+                result.Add(Math.Round(compare,2), temp);
+            }
+
+            return result;
+        }
     }
 }

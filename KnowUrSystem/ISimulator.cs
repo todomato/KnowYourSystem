@@ -40,5 +40,7 @@ namespace KnowUrSystem
         int GetNumberOfTradesForConfidence(decimal prob);
 
         List<decimal> GetTradesOfLossDistributionProbabilityList();
+
+        Dictionary<decimal, decimal> GetExpectancyList();
     }
 }

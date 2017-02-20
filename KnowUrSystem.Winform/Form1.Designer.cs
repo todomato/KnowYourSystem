@@ -46,6 +46,12 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tab_distribution = new System.Windows.Forms.TabPage();
@@ -110,7 +116,7 @@
             this.chart_DD_PD = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_duration = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
-            this.List_confidence = new System.Windows.Forms.ListView();
+            this.list_confidence = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbl_95confidence = new System.Windows.Forms.Label();
@@ -119,6 +125,16 @@
             this.label17 = new System.Windows.Forms.Label();
             this.chart_confidence = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_expectancy = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.list_expectancy = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lbl_maxExpectancy = new System.Windows.Forms.Label();
+            this.lbl_avgExpectancy = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.chart_E_CE = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart_E_PE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_summary = new System.Windows.Forms.TabPage();
             this.tabcontrol.SuspendLayout();
             this.tab_distribution.SuspendLayout();
@@ -131,6 +147,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_DD_PD)).BeginInit();
             this.tab_duration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_confidence)).BeginInit();
+            this.tab_expectancy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_E_CE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_E_PE)).BeginInit();
             this.SuspendLayout();
             // 
             // tabcontrol
@@ -599,6 +618,7 @@
             // 
             // chart_LS1
             // 
+            this.chart_LS1.BackColor = System.Drawing.Color.Gray;
             chartArea2.Name = "ChartArea1";
             this.chart_LS1.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
@@ -615,6 +635,7 @@
             // 
             // chart_LS_CL
             // 
+            this.chart_LS_CL.BackColor = System.Drawing.Color.Gray;
             chartArea3.Name = "ChartArea1";
             this.chart_LS_CL.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
@@ -772,6 +793,7 @@
             // 
             // chart_DD_CD
             // 
+            this.chart_DD_CD.BackColor = System.Drawing.Color.Gray;
             chartArea4.Name = "ChartArea1";
             this.chart_DD_CD.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
@@ -788,6 +810,7 @@
             // 
             // chart_DD_PD
             // 
+            this.chart_DD_PD.BackColor = System.Drawing.Color.Gray;
             chartArea5.Name = "ChartArea1";
             this.chart_DD_PD.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
@@ -806,7 +829,7 @@
             // 
             this.tab_duration.BackColor = System.Drawing.Color.DimGray;
             this.tab_duration.Controls.Add(this.label9);
-            this.tab_duration.Controls.Add(this.List_confidence);
+            this.tab_duration.Controls.Add(this.list_confidence);
             this.tab_duration.Controls.Add(this.lbl_95confidence);
             this.tab_duration.Controls.Add(this.lbl_99confidence);
             this.tab_duration.Controls.Add(this.label16);
@@ -829,20 +852,20 @@
             this.label9.TabIndex = 56;
             this.label9.Text = "Probability(%) That # new equity";
             // 
-            // List_confidence
+            // list_confidence
             // 
-            this.List_confidence.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.List_confidence.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.list_confidence.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.list_confidence.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5});
-            this.List_confidence.FullRowSelect = true;
-            this.List_confidence.GridLines = true;
-            this.List_confidence.Location = new System.Drawing.Point(542, 173);
-            this.List_confidence.Name = "List_confidence";
-            this.List_confidence.Size = new System.Drawing.Size(138, 373);
-            this.List_confidence.TabIndex = 55;
-            this.List_confidence.UseCompatibleStateImageBehavior = false;
-            this.List_confidence.View = System.Windows.Forms.View.Details;
+            this.list_confidence.FullRowSelect = true;
+            this.list_confidence.GridLines = true;
+            this.list_confidence.Location = new System.Drawing.Point(542, 173);
+            this.list_confidence.Name = "list_confidence";
+            this.list_confidence.Size = new System.Drawing.Size(138, 373);
+            this.list_confidence.TabIndex = 55;
+            this.list_confidence.UseCompatibleStateImageBehavior = false;
+            this.list_confidence.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader4
             // 
@@ -900,6 +923,7 @@
             // 
             // chart_confidence
             // 
+            this.chart_confidence.BackColor = System.Drawing.Color.Gray;
             chartArea6.Name = "ChartArea1";
             this.chart_confidence.ChartAreas.Add(chartArea6);
             legend6.Name = "Legend1";
@@ -917,12 +941,133 @@
             // tab_expectancy
             // 
             this.tab_expectancy.BackColor = System.Drawing.Color.DimGray;
+            this.tab_expectancy.Controls.Add(this.label14);
+            this.tab_expectancy.Controls.Add(this.list_expectancy);
+            this.tab_expectancy.Controls.Add(this.lbl_maxExpectancy);
+            this.tab_expectancy.Controls.Add(this.lbl_avgExpectancy);
+            this.tab_expectancy.Controls.Add(this.label19);
+            this.tab_expectancy.Controls.Add(this.label20);
+            this.tab_expectancy.Controls.Add(this.chart_E_CE);
+            this.tab_expectancy.Controls.Add(this.chart_E_PE);
             this.tab_expectancy.Location = new System.Drawing.Point(4, 22);
             this.tab_expectancy.Name = "tab_expectancy";
             this.tab_expectancy.Padding = new System.Windows.Forms.Padding(3);
             this.tab_expectancy.Size = new System.Drawing.Size(807, 579);
             this.tab_expectancy.TabIndex = 4;
             this.tab_expectancy.Text = "Expectancy";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label14.Location = new System.Drawing.Point(492, 138);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(225, 20);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Probability(%) That exp >= X";
+            // 
+            // list_expectancy
+            // 
+            this.list_expectancy.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.list_expectancy.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7});
+            this.list_expectancy.FullRowSelect = true;
+            this.list_expectancy.GridLines = true;
+            this.list_expectancy.Location = new System.Drawing.Point(542, 173);
+            this.list_expectancy.Name = "list_expectancy";
+            this.list_expectancy.Size = new System.Drawing.Size(138, 373);
+            this.list_expectancy.TabIndex = 55;
+            this.list_expectancy.UseCompatibleStateImageBehavior = false;
+            this.list_expectancy.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "X";
+            this.columnHeader6.Width = 64;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "%";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbl_maxExpectancy
+            // 
+            this.lbl_maxExpectancy.AutoSize = true;
+            this.lbl_maxExpectancy.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_maxExpectancy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_maxExpectancy.Location = new System.Drawing.Point(647, 85);
+            this.lbl_maxExpectancy.Name = "lbl_maxExpectancy";
+            this.lbl_maxExpectancy.Size = new System.Drawing.Size(18, 20);
+            this.lbl_maxExpectancy.TabIndex = 54;
+            this.lbl_maxExpectancy.Text = "0";
+            // 
+            // lbl_avgExpectancy
+            // 
+            this.lbl_avgExpectancy.AutoSize = true;
+            this.lbl_avgExpectancy.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_avgExpectancy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_avgExpectancy.Location = new System.Drawing.Point(647, 48);
+            this.lbl_avgExpectancy.Name = "lbl_avgExpectancy";
+            this.lbl_avgExpectancy.Size = new System.Drawing.Size(18, 20);
+            this.lbl_avgExpectancy.TabIndex = 53;
+            this.lbl_avgExpectancy.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label19.Location = new System.Drawing.Point(492, 85);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(138, 20);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Max Expectancy :";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label20.Location = new System.Drawing.Point(492, 48);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(135, 20);
+            this.label20.TabIndex = 51;
+            this.label20.Text = "Avg Expectancy :";
+            // 
+            // chart_E_CE
+            // 
+            this.chart_E_CE.BackColor = System.Drawing.Color.Gray;
+            chartArea7.Name = "ChartArea1";
+            this.chart_E_CE.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart_E_CE.Legends.Add(legend7);
+            this.chart_E_CE.Location = new System.Drawing.Point(83, 297);
+            this.chart_E_CE.Name = "chart_E_CE";
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chart_E_CE.Series.Add(series7);
+            this.chart_E_CE.Size = new System.Drawing.Size(327, 266);
+            this.chart_E_CE.TabIndex = 50;
+            this.chart_E_CE.Text = "chart4";
+            // 
+            // chart_E_PE
+            // 
+            this.chart_E_PE.BackColor = System.Drawing.Color.Gray;
+            chartArea8.Name = "ChartArea1";
+            this.chart_E_PE.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chart_E_PE.Legends.Add(legend8);
+            this.chart_E_PE.Location = new System.Drawing.Point(83, 16);
+            this.chart_E_PE.Name = "chart_E_PE";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chart_E_PE.Series.Add(series8);
+            this.chart_E_PE.Size = new System.Drawing.Size(327, 266);
+            this.chart_E_PE.TabIndex = 49;
+            this.chart_E_PE.Text = "chart2";
             // 
             // tab_summary
             // 
@@ -958,6 +1103,10 @@
             this.tab_duration.ResumeLayout(false);
             this.tab_duration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_confidence)).EndInit();
+            this.tab_expectancy.ResumeLayout(false);
+            this.tab_expectancy.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_E_CE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_E_PE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1029,7 +1178,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ListView List_confidence;
+        private System.Windows.Forms.ListView list_confidence;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Label lbl_95confidence;
@@ -1037,6 +1186,16 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_confidence;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ListView list_expectancy;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Label lbl_maxExpectancy;
+        private System.Windows.Forms.Label lbl_avgExpectancy;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_E_CE;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_E_PE;
     }
 }
 
