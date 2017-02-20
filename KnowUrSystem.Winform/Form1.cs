@@ -236,6 +236,7 @@ namespace KnowUrSystem.Winform
 
         private void SetLSListview(List<decimal> probabilityConsecutiveLossesList)
         {
+            list_loosing.Items.Clear();
 
             // Loosing Streaks ListView 更新資料
             //http://csharp.net-informations.com/gui/cs-listview.htm
@@ -299,6 +300,8 @@ namespace KnowUrSystem.Winform
 
         private void SetDDListview(List<decimal> ddList)
         {
+            list_drawdown.Items.Clear();
+
             for (int i = 1; i <= 60; i++)
             {
                 ListViewItem lvi = new ListViewItem((i*-1).ToString());
@@ -358,6 +361,7 @@ namespace KnowUrSystem.Winform
         private void SetDDurationListview(List<decimal> ddurationList)
         {
             var count = ddurationList.Count;
+            list_confidence.Items.Clear();
             for (int i = 0; i <= count; i+= 7)
             {
                 ListViewItem lvi = new ListViewItem((i+1).ToString());
@@ -414,7 +418,7 @@ namespace KnowUrSystem.Winform
         private void SetExpListview(Dictionary<decimal, decimal> expectancyDic)
         {
             var count = expectancyDic.Count;
-
+            list_expectancy.Items.Clear();
             foreach (KeyValuePair<decimal, decimal> item in expectancyDic)
             {
                 ListViewItem lvi = new ListViewItem(item.Key.ToString());
