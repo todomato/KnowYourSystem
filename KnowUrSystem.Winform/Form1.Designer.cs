@@ -136,6 +136,26 @@
             this.chart_E_CE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_E_PE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_summary = new System.Windows.Forms.TabPage();
+            this.lbl_summary_winlossratio = new System.Windows.Forms.Label();
+            this.lbl_summary_trades = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lbl_summary_win = new System.Windows.Forms.Label();
+            this.lbl_summary_expectancy = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lbl_summary_avgDrawdown = new System.Windows.Forms.Label();
+            this.lbl_summary_avgloosing = new System.Windows.Forms.Label();
+            this.lbl12 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.lbl_summary_breakeven95 = new System.Windows.Forms.Label();
+            this.lbl_summary_avgEndGain = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.lbl_summary_gaindrawdownRatio = new System.Windows.Forms.Label();
+            this.lbl_summaryl_yearlyGain = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.tabcontrol.SuspendLayout();
             this.tab_distribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
@@ -150,6 +170,7 @@
             this.tab_expectancy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_CE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_PE)).BeginInit();
+            this.tab_summary.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabcontrol
@@ -1072,12 +1093,252 @@
             // tab_summary
             // 
             this.tab_summary.BackColor = System.Drawing.Color.DimGray;
+            this.tab_summary.Controls.Add(this.lbl_summary_gaindrawdownRatio);
+            this.tab_summary.Controls.Add(this.lbl_summaryl_yearlyGain);
+            this.tab_summary.Controls.Add(this.label37);
+            this.tab_summary.Controls.Add(this.label38);
+            this.tab_summary.Controls.Add(this.lbl_summary_breakeven95);
+            this.tab_summary.Controls.Add(this.lbl_summary_avgEndGain);
+            this.tab_summary.Controls.Add(this.label33);
+            this.tab_summary.Controls.Add(this.label34);
+            this.tab_summary.Controls.Add(this.lbl_summary_avgDrawdown);
+            this.tab_summary.Controls.Add(this.lbl_summary_avgloosing);
+            this.tab_summary.Controls.Add(this.lbl12);
+            this.tab_summary.Controls.Add(this.label30);
+            this.tab_summary.Controls.Add(this.lbl_summary_win);
+            this.tab_summary.Controls.Add(this.lbl_summary_expectancy);
+            this.tab_summary.Controls.Add(this.label25);
+            this.tab_summary.Controls.Add(this.label26);
+            this.tab_summary.Controls.Add(this.lbl_summary_winlossratio);
+            this.tab_summary.Controls.Add(this.lbl_summary_trades);
+            this.tab_summary.Controls.Add(this.label21);
+            this.tab_summary.Controls.Add(this.label22);
             this.tab_summary.Location = new System.Drawing.Point(4, 22);
             this.tab_summary.Name = "tab_summary";
             this.tab_summary.Padding = new System.Windows.Forms.Padding(3);
             this.tab_summary.Size = new System.Drawing.Size(807, 579);
             this.tab_summary.TabIndex = 5;
             this.tab_summary.Text = "Summary";
+            // 
+            // lbl_summary_winlossratio
+            // 
+            this.lbl_summary_winlossratio.AutoSize = true;
+            this.lbl_summary_winlossratio.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_winlossratio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_winlossratio.Location = new System.Drawing.Point(233, 116);
+            this.lbl_summary_winlossratio.Name = "lbl_summary_winlossratio";
+            this.lbl_summary_winlossratio.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_winlossratio.TabIndex = 58;
+            this.lbl_summary_winlossratio.Text = "0";
+            // 
+            // lbl_summary_trades
+            // 
+            this.lbl_summary_trades.AutoSize = true;
+            this.lbl_summary_trades.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_trades.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_trades.Location = new System.Drawing.Point(233, 71);
+            this.lbl_summary_trades.Name = "lbl_summary_trades";
+            this.lbl_summary_trades.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_trades.TabIndex = 57;
+            this.lbl_summary_trades.Text = "0";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label21.Location = new System.Drawing.Point(54, 116);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(129, 20);
+            this.label21.TabIndex = 56;
+            this.label21.Text = "Win/Loss Ratio :";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label22.Location = new System.Drawing.Point(54, 71);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(81, 20);
+            this.label22.TabIndex = 55;
+            this.label22.Text = "# Trades :";
+            // 
+            // lbl_summary_win
+            // 
+            this.lbl_summary_win.AutoSize = true;
+            this.lbl_summary_win.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_win.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_win.Location = new System.Drawing.Point(233, 198);
+            this.lbl_summary_win.Name = "lbl_summary_win";
+            this.lbl_summary_win.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_win.TabIndex = 62;
+            this.lbl_summary_win.Text = "0";
+            // 
+            // lbl_summary_expectancy
+            // 
+            this.lbl_summary_expectancy.AutoSize = true;
+            this.lbl_summary_expectancy.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_expectancy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_expectancy.Location = new System.Drawing.Point(233, 161);
+            this.lbl_summary_expectancy.Name = "lbl_summary_expectancy";
+            this.lbl_summary_expectancy.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_expectancy.TabIndex = 61;
+            this.lbl_summary_expectancy.Text = "0";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label25.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label25.Location = new System.Drawing.Point(54, 198);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(61, 20);
+            this.label25.TabIndex = 60;
+            this.label25.Text = "Win% :";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label26.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label26.Location = new System.Drawing.Point(54, 161);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(102, 20);
+            this.label26.TabIndex = 59;
+            this.label26.Text = "Expectancy :";
+            // 
+            // lbl_summary_avgDrawdown
+            // 
+            this.lbl_summary_avgDrawdown.AutoSize = true;
+            this.lbl_summary_avgDrawdown.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_avgDrawdown.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_avgDrawdown.Location = new System.Drawing.Point(233, 283);
+            this.lbl_summary_avgDrawdown.Name = "lbl_summary_avgDrawdown";
+            this.lbl_summary_avgDrawdown.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_avgDrawdown.TabIndex = 66;
+            this.lbl_summary_avgDrawdown.Text = "0";
+            // 
+            // lbl_summary_avgloosing
+            // 
+            this.lbl_summary_avgloosing.AutoSize = true;
+            this.lbl_summary_avgloosing.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_avgloosing.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_avgloosing.Location = new System.Drawing.Point(233, 237);
+            this.lbl_summary_avgloosing.Name = "lbl_summary_avgloosing";
+            this.lbl_summary_avgloosing.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_avgloosing.TabIndex = 65;
+            this.lbl_summary_avgloosing.Text = "0";
+            // 
+            // lbl12
+            // 
+            this.lbl12.AutoSize = true;
+            this.lbl12.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl12.Location = new System.Drawing.Point(54, 283);
+            this.lbl12.Name = "lbl12";
+            this.lbl12.Size = new System.Drawing.Size(151, 20);
+            this.lbl12.TabIndex = 64;
+            this.lbl12.Text = "Avg Drawdown(R) :";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label30.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label30.Location = new System.Drawing.Point(54, 237);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(168, 20);
+            this.label30.TabIndex = 63;
+            this.label30.Text = "Avg Loosing Streaks :";
+            // 
+            // lbl_summary_breakeven95
+            // 
+            this.lbl_summary_breakeven95.AutoSize = true;
+            this.lbl_summary_breakeven95.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_breakeven95.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_breakeven95.Location = new System.Drawing.Point(323, 368);
+            this.lbl_summary_breakeven95.Name = "lbl_summary_breakeven95";
+            this.lbl_summary_breakeven95.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_breakeven95.TabIndex = 70;
+            this.lbl_summary_breakeven95.Text = "0";
+            // 
+            // lbl_summary_avgEndGain
+            // 
+            this.lbl_summary_avgEndGain.AutoSize = true;
+            this.lbl_summary_avgEndGain.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_avgEndGain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_avgEndGain.Location = new System.Drawing.Point(233, 322);
+            this.lbl_summary_avgEndGain.Name = "lbl_summary_avgEndGain";
+            this.lbl_summary_avgEndGain.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_avgEndGain.TabIndex = 69;
+            this.lbl_summary_avgEndGain.Text = "0";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label33.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label33.Location = new System.Drawing.Point(54, 368);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(242, 20);
+            this.label33.TabIndex = 68;
+            this.label33.Text = "# Trades For Break Even (95%) :";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label34.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label34.Location = new System.Drawing.Point(54, 322);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(142, 20);
+            this.label34.TabIndex = 67;
+            this.label34.Text = "Avg Ending Gain :";
+            // 
+            // lbl_summary_gaindrawdownRatio
+            // 
+            this.lbl_summary_gaindrawdownRatio.AutoSize = true;
+            this.lbl_summary_gaindrawdownRatio.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_gaindrawdownRatio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_gaindrawdownRatio.Location = new System.Drawing.Point(323, 444);
+            this.lbl_summary_gaindrawdownRatio.Name = "lbl_summary_gaindrawdownRatio";
+            this.lbl_summary_gaindrawdownRatio.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_gaindrawdownRatio.TabIndex = 74;
+            this.lbl_summary_gaindrawdownRatio.Text = "0";
+            // 
+            // lbl_summaryl_yearlyGain
+            // 
+            this.lbl_summaryl_yearlyGain.AutoSize = true;
+            this.lbl_summaryl_yearlyGain.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summaryl_yearlyGain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summaryl_yearlyGain.Location = new System.Drawing.Point(233, 407);
+            this.lbl_summaryl_yearlyGain.Name = "lbl_summaryl_yearlyGain";
+            this.lbl_summaryl_yearlyGain.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summaryl_yearlyGain.TabIndex = 73;
+            this.lbl_summaryl_yearlyGain.Text = "0";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label37.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label37.Location = new System.Drawing.Point(54, 444);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(263, 20);
+            this.label37.TabIndex = 72;
+            this.label37.Text = "Avg Yearly/ Gain/Avg Drawdown :";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label38.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label38.Location = new System.Drawing.Point(54, 407);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(102, 20);
+            this.label38.TabIndex = 71;
+            this.label38.Text = "Yearly Gain :";
             // 
             // Form1
             // 
@@ -1107,6 +1368,8 @@
             this.tab_expectancy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_CE)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_PE)).EndInit();
+            this.tab_summary.ResumeLayout(false);
+            this.tab_summary.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1196,6 +1459,26 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_E_CE;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_E_PE;
+        private System.Windows.Forms.Label lbl_summary_gaindrawdownRatio;
+        private System.Windows.Forms.Label lbl_summaryl_yearlyGain;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label lbl_summary_breakeven95;
+        private System.Windows.Forms.Label lbl_summary_avgEndGain;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label lbl_summary_avgDrawdown;
+        private System.Windows.Forms.Label lbl_summary_avgloosing;
+        private System.Windows.Forms.Label lbl12;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lbl_summary_win;
+        private System.Windows.Forms.Label lbl_summary_expectancy;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lbl_summary_winlossratio;
+        private System.Windows.Forms.Label lbl_summary_trades;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
     }
 }
 

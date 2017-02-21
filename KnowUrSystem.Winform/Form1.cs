@@ -86,6 +86,19 @@ namespace KnowUrSystem.Winform
             SetExpChart(expectancytList);
             SetExpListview(expectancytList);
 
+            // Summary
+            var summary = this._simulator.GetSimulateResult(95);
+            this.lbl_summary_trades.Text =  summary.Trades.ToString();
+            this.lbl_summary_winlossratio.Text = summary.WinLossRatio.ToString();
+            this.lbl_summary_expectancy.Text = summary.Expectancy.ToString();
+            this.lbl_summary_avgloosing.Text = summary.LossingStreaks.ToString();
+            this.lbl_summary_avgDrawdown.Text = summary.AvgDrawdown.ToString();
+            this.lbl_summary_avgEndGain.Text = summary.EndingGain.ToString();
+            this.lbl_summary_breakeven95.Text = summary.BreakEvenTrades.ToString();
+            this.lbl_summaryl_yearlyGain.Text = summary.YearlyGain.ToString();
+            this.lbl_summary_gaindrawdownRatio.Text = Math.Round(summary.GainDrawdownRatio, 1).ToString();
+
+
         }
 
 
