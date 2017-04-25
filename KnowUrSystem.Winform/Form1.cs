@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Linq;
+using System.ComponentModel;
 
 namespace KnowUrSystem.Winform
 {
@@ -440,5 +441,94 @@ namespace KnowUrSystem.Winform
             }
         }
         #endregion
+
+        private void btn_opt_Click(object sender, EventArgs e)
+        {
+            // 設定賺賠分佈
+            var distributions = SetOptDistributions();
+
+            // 取得計算機
+            this._financeCalulator = Factory.GetDistributionInstance(distributions);
+
+            // 取得模擬器
+            this._simulator = Factory.GetSimulator(this._financeCalulator);
+
+            // 設定初始值
+            this._simulator.TimesOfSimulation =  int.Parse(txt_simulateTimes.Text);
+            this._simulator.TradesPerYearly = int.Parse(txt_trades.Text);
+
+            OptParams _param = new OptParams()
+            {
+                InitEquity = int.Parse(txt_init.Text),
+                MaxRisk = decimal.Parse(txt_maxrisk.Text),
+                IncrementSize = decimal.Parse(txt_riskunit.Text),
+                Retirement = decimal.Parse(txt_retire.Text),
+                Ruin = decimal.Parse(txt_bankrupt.Text),
+            };
+            
+            // 執行模擬
+            OptReport report = this._simulator.SimulateOpt(_param);
+
+            // render result
+            var list = new List<OptResult>();
+            list.Add(report.MaxReturn);
+            list.Add(report.MedReturn);
+            list.Add(report.OptReturn);
+            list.Add(report.LessOneRuin);
+            list.Add(report.BestRetireRuinRatio);
+
+            foreach (var item in list)
+	        {
+                item.RetireProbability = Math.Round(item.RetireProbability * 100, 2);
+                item.RuinProbability = Math.Round(item.RuinProbability * 100, 2);
+                item.AvgGain = Math.Round(item.AvgGain, 2);
+                item.MaxGain = Math.Round(item.MaxGain, 2);
+                item.MedGain = Math.Round(item.MedGain, 2);
+	        }
+
+            var bindingList = new BindingList<OptResult>(list);
+            var source = new BindingSource(bindingList, null);
+            dataGridView1.DataSource = source;
+        }
+
+        private List<DistributionRawData> SetOptDistributions()
+        {
+            var distributions = new List<DistributionRawData>();
+
+            // 加入分佈
+            for (int i = 1; i <= 4; i++)
+            {
+                TextBox txtBox = this.tab_opt.Controls["txt_oc" + i.ToString()] as TextBox;
+                TextBox txtBox2 = this.tab_opt.Controls["txt_or" + i.ToString()] as TextBox;
+                int num1 = 0;
+                decimal num2 = 0.0m;
+
+                if (int.TryParse(txtBox.Text, out num1) && decimal.TryParse(txtBox2.Text, out num2))
+                {
+                    distributions.Add(new DistributionRawData() { Count = num1, RMultiple = num2 });
+                }
+            }
+
+            return distributions;
+        }
+
+        private void btn_optExample_Click(object sender, EventArgs e)
+        {
+            txt_oc1.Text = "2";
+            txt_oc2.Text = "1";
+            txt_oc3.Text = "7";
+
+            txt_or1.Text = "10.00";
+            txt_or2.Text = "-5.00";
+            txt_or3.Text = "-1.00";
+
+            txt_simulateTimes.Text = "10000";
+            txt_trades.Text = "30";
+            txt_init.Text = "100000";
+            txt_maxrisk.Text = "20.00";
+            txt_riskunit.Text = "0.2";
+            txt_retire.Text = "50";
+            txt_bankrupt.Text = "-20.00";
+        }
     }
 }

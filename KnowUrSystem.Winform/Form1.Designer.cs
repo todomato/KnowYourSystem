@@ -136,26 +136,60 @@
             this.chart_E_CE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_E_PE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_summary = new System.Windows.Forms.TabPage();
-            this.lbl_summary_winlossratio = new System.Windows.Forms.Label();
-            this.lbl_summary_trades = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lbl_summary_win = new System.Windows.Forms.Label();
-            this.lbl_summary_expectancy = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.lbl_summary_avgDrawdown = new System.Windows.Forms.Label();
-            this.lbl_summary_avgloosing = new System.Windows.Forms.Label();
-            this.lbl12 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.lbl_summary_breakeven95 = new System.Windows.Forms.Label();
-            this.lbl_summary_avgEndGain = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.lbl_summary_gaindrawdownRatio = new System.Windows.Forms.Label();
             this.lbl_summaryl_yearlyGain = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
+            this.lbl_summary_breakeven95 = new System.Windows.Forms.Label();
+            this.lbl_summary_avgEndGain = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.lbl_summary_avgDrawdown = new System.Windows.Forms.Label();
+            this.lbl_summary_avgloosing = new System.Windows.Forms.Label();
+            this.lbl12 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.lbl_summary_win = new System.Windows.Forms.Label();
+            this.lbl_summary_expectancy = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lbl_summary_winlossratio = new System.Windows.Forms.Label();
+            this.lbl_summary_trades = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tab_opt = new System.Windows.Forms.TabPage();
+            this.txt_trades = new System.Windows.Forms.TextBox();
+            this.txt_maxrisk = new System.Windows.Forms.TextBox();
+            this.txt_retire = new System.Windows.Forms.TextBox();
+            this.txt_bankrupt = new System.Windows.Forms.TextBox();
+            this.txt_simulateTimes = new System.Windows.Forms.TextBox();
+            this.txt_riskunit = new System.Windows.Forms.TextBox();
+            this.txt_init = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txt_or4 = new System.Windows.Forms.TextBox();
+            this.txt_oc4 = new System.Windows.Forms.TextBox();
+            this.txt_or3 = new System.Windows.Forms.TextBox();
+            this.txt_oc3 = new System.Windows.Forms.TextBox();
+            this.txt_or2 = new System.Windows.Forms.TextBox();
+            this.txt_oc2 = new System.Windows.Forms.TextBox();
+            this.txt_or1 = new System.Windows.Forms.TextBox();
+            this.txt_oc1 = new System.Windows.Forms.TextBox();
+            this.btn_opt = new System.Windows.Forms.Button();
+            this.btn_optExample = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
             this.tabcontrol.SuspendLayout();
             this.tab_distribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
@@ -171,6 +205,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_CE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_PE)).BeginInit();
             this.tab_summary.SuspendLayout();
+            this.tab_opt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabcontrol
@@ -181,6 +217,7 @@
             this.tabcontrol.Controls.Add(this.tab_duration);
             this.tabcontrol.Controls.Add(this.tab_expectancy);
             this.tabcontrol.Controls.Add(this.tab_summary);
+            this.tabcontrol.Controls.Add(this.tab_opt);
             this.tabcontrol.Location = new System.Drawing.Point(0, 0);
             this.tabcontrol.Name = "tabcontrol";
             this.tabcontrol.SelectedIndex = 0;
@@ -1120,137 +1157,49 @@
             this.tab_summary.TabIndex = 5;
             this.tab_summary.Text = "Summary";
             // 
-            // lbl_summary_winlossratio
+            // lbl_summary_gaindrawdownRatio
             // 
-            this.lbl_summary_winlossratio.AutoSize = true;
-            this.lbl_summary_winlossratio.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_winlossratio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_winlossratio.Location = new System.Drawing.Point(233, 116);
-            this.lbl_summary_winlossratio.Name = "lbl_summary_winlossratio";
-            this.lbl_summary_winlossratio.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_winlossratio.TabIndex = 58;
-            this.lbl_summary_winlossratio.Text = "0";
+            this.lbl_summary_gaindrawdownRatio.AutoSize = true;
+            this.lbl_summary_gaindrawdownRatio.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_gaindrawdownRatio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_gaindrawdownRatio.Location = new System.Drawing.Point(323, 444);
+            this.lbl_summary_gaindrawdownRatio.Name = "lbl_summary_gaindrawdownRatio";
+            this.lbl_summary_gaindrawdownRatio.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_gaindrawdownRatio.TabIndex = 74;
+            this.lbl_summary_gaindrawdownRatio.Text = "0";
             // 
-            // lbl_summary_trades
+            // lbl_summaryl_yearlyGain
             // 
-            this.lbl_summary_trades.AutoSize = true;
-            this.lbl_summary_trades.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_trades.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_trades.Location = new System.Drawing.Point(233, 71);
-            this.lbl_summary_trades.Name = "lbl_summary_trades";
-            this.lbl_summary_trades.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_trades.TabIndex = 57;
-            this.lbl_summary_trades.Text = "0";
+            this.lbl_summaryl_yearlyGain.AutoSize = true;
+            this.lbl_summaryl_yearlyGain.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summaryl_yearlyGain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summaryl_yearlyGain.Location = new System.Drawing.Point(233, 407);
+            this.lbl_summaryl_yearlyGain.Name = "lbl_summaryl_yearlyGain";
+            this.lbl_summaryl_yearlyGain.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summaryl_yearlyGain.TabIndex = 73;
+            this.lbl_summaryl_yearlyGain.Text = "0";
             // 
-            // label21
+            // label37
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label21.Location = new System.Drawing.Point(54, 116);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(129, 20);
-            this.label21.TabIndex = 56;
-            this.label21.Text = "Win/Loss Ratio :";
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label37.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label37.Location = new System.Drawing.Point(54, 444);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(263, 20);
+            this.label37.TabIndex = 72;
+            this.label37.Text = "Avg Yearly/ Gain/Avg Drawdown :";
             // 
-            // label22
+            // label38
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label22.Location = new System.Drawing.Point(54, 71);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(81, 20);
-            this.label22.TabIndex = 55;
-            this.label22.Text = "# Trades :";
-            // 
-            // lbl_summary_win
-            // 
-            this.lbl_summary_win.AutoSize = true;
-            this.lbl_summary_win.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_win.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_win.Location = new System.Drawing.Point(233, 198);
-            this.lbl_summary_win.Name = "lbl_summary_win";
-            this.lbl_summary_win.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_win.TabIndex = 62;
-            this.lbl_summary_win.Text = "0";
-            // 
-            // lbl_summary_expectancy
-            // 
-            this.lbl_summary_expectancy.AutoSize = true;
-            this.lbl_summary_expectancy.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_expectancy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_expectancy.Location = new System.Drawing.Point(233, 161);
-            this.lbl_summary_expectancy.Name = "lbl_summary_expectancy";
-            this.lbl_summary_expectancy.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_expectancy.TabIndex = 61;
-            this.lbl_summary_expectancy.Text = "0";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label25.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label25.Location = new System.Drawing.Point(54, 198);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(61, 20);
-            this.label25.TabIndex = 60;
-            this.label25.Text = "Win% :";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label26.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label26.Location = new System.Drawing.Point(54, 161);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(102, 20);
-            this.label26.TabIndex = 59;
-            this.label26.Text = "Expectancy :";
-            // 
-            // lbl_summary_avgDrawdown
-            // 
-            this.lbl_summary_avgDrawdown.AutoSize = true;
-            this.lbl_summary_avgDrawdown.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_avgDrawdown.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_avgDrawdown.Location = new System.Drawing.Point(233, 283);
-            this.lbl_summary_avgDrawdown.Name = "lbl_summary_avgDrawdown";
-            this.lbl_summary_avgDrawdown.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_avgDrawdown.TabIndex = 66;
-            this.lbl_summary_avgDrawdown.Text = "0";
-            // 
-            // lbl_summary_avgloosing
-            // 
-            this.lbl_summary_avgloosing.AutoSize = true;
-            this.lbl_summary_avgloosing.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_avgloosing.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_avgloosing.Location = new System.Drawing.Point(233, 237);
-            this.lbl_summary_avgloosing.Name = "lbl_summary_avgloosing";
-            this.lbl_summary_avgloosing.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_avgloosing.TabIndex = 65;
-            this.lbl_summary_avgloosing.Text = "0";
-            // 
-            // lbl12
-            // 
-            this.lbl12.AutoSize = true;
-            this.lbl12.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl12.Location = new System.Drawing.Point(54, 283);
-            this.lbl12.Name = "lbl12";
-            this.lbl12.Size = new System.Drawing.Size(151, 20);
-            this.lbl12.TabIndex = 64;
-            this.lbl12.Text = "Avg Drawdown(R) :";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label30.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label30.Location = new System.Drawing.Point(54, 237);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(168, 20);
-            this.label30.TabIndex = 63;
-            this.label30.Text = "Avg Loosing Streaks :";
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label38.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label38.Location = new System.Drawing.Point(54, 407);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(102, 20);
+            this.label38.TabIndex = 71;
+            this.label38.Text = "Yearly Gain :";
             // 
             // lbl_summary_breakeven95
             // 
@@ -1296,49 +1245,470 @@
             this.label34.TabIndex = 67;
             this.label34.Text = "Avg Ending Gain :";
             // 
-            // lbl_summary_gaindrawdownRatio
+            // lbl_summary_avgDrawdown
             // 
-            this.lbl_summary_gaindrawdownRatio.AutoSize = true;
-            this.lbl_summary_gaindrawdownRatio.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summary_gaindrawdownRatio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summary_gaindrawdownRatio.Location = new System.Drawing.Point(323, 444);
-            this.lbl_summary_gaindrawdownRatio.Name = "lbl_summary_gaindrawdownRatio";
-            this.lbl_summary_gaindrawdownRatio.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summary_gaindrawdownRatio.TabIndex = 74;
-            this.lbl_summary_gaindrawdownRatio.Text = "0";
+            this.lbl_summary_avgDrawdown.AutoSize = true;
+            this.lbl_summary_avgDrawdown.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_avgDrawdown.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_avgDrawdown.Location = new System.Drawing.Point(233, 283);
+            this.lbl_summary_avgDrawdown.Name = "lbl_summary_avgDrawdown";
+            this.lbl_summary_avgDrawdown.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_avgDrawdown.TabIndex = 66;
+            this.lbl_summary_avgDrawdown.Text = "0";
             // 
-            // lbl_summaryl_yearlyGain
+            // lbl_summary_avgloosing
             // 
-            this.lbl_summaryl_yearlyGain.AutoSize = true;
-            this.lbl_summaryl_yearlyGain.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_summaryl_yearlyGain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_summaryl_yearlyGain.Location = new System.Drawing.Point(233, 407);
-            this.lbl_summaryl_yearlyGain.Name = "lbl_summaryl_yearlyGain";
-            this.lbl_summaryl_yearlyGain.Size = new System.Drawing.Size(18, 20);
-            this.lbl_summaryl_yearlyGain.TabIndex = 73;
-            this.lbl_summaryl_yearlyGain.Text = "0";
+            this.lbl_summary_avgloosing.AutoSize = true;
+            this.lbl_summary_avgloosing.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_avgloosing.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_avgloosing.Location = new System.Drawing.Point(233, 237);
+            this.lbl_summary_avgloosing.Name = "lbl_summary_avgloosing";
+            this.lbl_summary_avgloosing.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_avgloosing.TabIndex = 65;
+            this.lbl_summary_avgloosing.Text = "0";
             // 
-            // label37
+            // lbl12
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label37.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label37.Location = new System.Drawing.Point(54, 444);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(263, 20);
-            this.label37.TabIndex = 72;
-            this.label37.Text = "Avg Yearly/ Gain/Avg Drawdown :";
+            this.lbl12.AutoSize = true;
+            this.lbl12.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl12.Location = new System.Drawing.Point(54, 283);
+            this.lbl12.Name = "lbl12";
+            this.lbl12.Size = new System.Drawing.Size(151, 20);
+            this.lbl12.TabIndex = 64;
+            this.lbl12.Text = "Avg Drawdown(R) :";
             // 
-            // label38
+            // label30
             // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label38.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label38.Location = new System.Drawing.Point(54, 407);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(102, 20);
-            this.label38.TabIndex = 71;
-            this.label38.Text = "Yearly Gain :";
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label30.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label30.Location = new System.Drawing.Point(54, 237);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(168, 20);
+            this.label30.TabIndex = 63;
+            this.label30.Text = "Avg Loosing Streaks :";
+            // 
+            // lbl_summary_win
+            // 
+            this.lbl_summary_win.AutoSize = true;
+            this.lbl_summary_win.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_win.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_win.Location = new System.Drawing.Point(233, 198);
+            this.lbl_summary_win.Name = "lbl_summary_win";
+            this.lbl_summary_win.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_win.TabIndex = 62;
+            this.lbl_summary_win.Text = "0";
+            // 
+            // lbl_summary_expectancy
+            // 
+            this.lbl_summary_expectancy.AutoSize = true;
+            this.lbl_summary_expectancy.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_expectancy.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_expectancy.Location = new System.Drawing.Point(233, 161);
+            this.lbl_summary_expectancy.Name = "lbl_summary_expectancy";
+            this.lbl_summary_expectancy.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_expectancy.TabIndex = 61;
+            this.lbl_summary_expectancy.Text = "0";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label25.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label25.Location = new System.Drawing.Point(54, 198);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(61, 20);
+            this.label25.TabIndex = 60;
+            this.label25.Text = "Win% :";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label26.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label26.Location = new System.Drawing.Point(54, 161);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(102, 20);
+            this.label26.TabIndex = 59;
+            this.label26.Text = "Expectancy :";
+            // 
+            // lbl_summary_winlossratio
+            // 
+            this.lbl_summary_winlossratio.AutoSize = true;
+            this.lbl_summary_winlossratio.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_winlossratio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_winlossratio.Location = new System.Drawing.Point(233, 116);
+            this.lbl_summary_winlossratio.Name = "lbl_summary_winlossratio";
+            this.lbl_summary_winlossratio.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_winlossratio.TabIndex = 58;
+            this.lbl_summary_winlossratio.Text = "0";
+            // 
+            // lbl_summary_trades
+            // 
+            this.lbl_summary_trades.AutoSize = true;
+            this.lbl_summary_trades.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_summary_trades.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_summary_trades.Location = new System.Drawing.Point(233, 71);
+            this.lbl_summary_trades.Name = "lbl_summary_trades";
+            this.lbl_summary_trades.Size = new System.Drawing.Size(18, 20);
+            this.lbl_summary_trades.TabIndex = 57;
+            this.lbl_summary_trades.Text = "0";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label21.Location = new System.Drawing.Point(54, 116);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(129, 20);
+            this.label21.TabIndex = 56;
+            this.label21.Text = "Win/Loss Ratio :";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label22.Location = new System.Drawing.Point(54, 71);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(81, 20);
+            this.label22.TabIndex = 55;
+            this.label22.Text = "# Trades :";
+            // 
+            // tab_opt
+            // 
+            this.tab_opt.BackColor = System.Drawing.Color.DimGray;
+            this.tab_opt.Controls.Add(this.label42);
+            this.tab_opt.Controls.Add(this.label35);
+            this.tab_opt.Controls.Add(this.label36);
+            this.tab_opt.Controls.Add(this.label39);
+            this.tab_opt.Controls.Add(this.label40);
+            this.tab_opt.Controls.Add(this.label41);
+            this.tab_opt.Controls.Add(this.dataGridView1);
+            this.tab_opt.Controls.Add(this.btn_optExample);
+            this.tab_opt.Controls.Add(this.btn_opt);
+            this.tab_opt.Controls.Add(this.label31);
+            this.tab_opt.Controls.Add(this.label32);
+            this.tab_opt.Controls.Add(this.txt_or4);
+            this.tab_opt.Controls.Add(this.txt_oc4);
+            this.tab_opt.Controls.Add(this.txt_or3);
+            this.tab_opt.Controls.Add(this.txt_oc3);
+            this.tab_opt.Controls.Add(this.txt_or2);
+            this.tab_opt.Controls.Add(this.txt_oc2);
+            this.tab_opt.Controls.Add(this.txt_or1);
+            this.tab_opt.Controls.Add(this.txt_oc1);
+            this.tab_opt.Controls.Add(this.label29);
+            this.tab_opt.Controls.Add(this.label24);
+            this.tab_opt.Controls.Add(this.label27);
+            this.tab_opt.Controls.Add(this.label28);
+            this.tab_opt.Controls.Add(this.label23);
+            this.tab_opt.Controls.Add(this.label18);
+            this.tab_opt.Controls.Add(this.label15);
+            this.tab_opt.Controls.Add(this.txt_simulateTimes);
+            this.tab_opt.Controls.Add(this.txt_riskunit);
+            this.tab_opt.Controls.Add(this.txt_init);
+            this.tab_opt.Controls.Add(this.txt_retire);
+            this.tab_opt.Controls.Add(this.txt_bankrupt);
+            this.tab_opt.Controls.Add(this.txt_maxrisk);
+            this.tab_opt.Controls.Add(this.txt_trades);
+            this.tab_opt.Location = new System.Drawing.Point(4, 22);
+            this.tab_opt.Name = "tab_opt";
+            this.tab_opt.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_opt.Size = new System.Drawing.Size(807, 579);
+            this.tab_opt.TabIndex = 6;
+            this.tab_opt.Text = "Opt";
+            // 
+            // txt_trades
+            // 
+            this.txt_trades.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_trades.Location = new System.Drawing.Point(381, 46);
+            this.txt_trades.Name = "txt_trades";
+            this.txt_trades.Size = new System.Drawing.Size(100, 22);
+            this.txt_trades.TabIndex = 0;
+            // 
+            // txt_maxrisk
+            // 
+            this.txt_maxrisk.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_maxrisk.Location = new System.Drawing.Point(593, 77);
+            this.txt_maxrisk.Name = "txt_maxrisk";
+            this.txt_maxrisk.Size = new System.Drawing.Size(100, 22);
+            this.txt_maxrisk.TabIndex = 1;
+            // 
+            // txt_retire
+            // 
+            this.txt_retire.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_retire.Location = new System.Drawing.Point(381, 130);
+            this.txt_retire.Name = "txt_retire";
+            this.txt_retire.Size = new System.Drawing.Size(100, 22);
+            this.txt_retire.TabIndex = 3;
+            // 
+            // txt_bankrupt
+            // 
+            this.txt_bankrupt.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_bankrupt.Location = new System.Drawing.Point(381, 102);
+            this.txt_bankrupt.Name = "txt_bankrupt";
+            this.txt_bankrupt.Size = new System.Drawing.Size(100, 22);
+            this.txt_bankrupt.TabIndex = 2;
+            // 
+            // txt_simulateTimes
+            // 
+            this.txt_simulateTimes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_simulateTimes.Location = new System.Drawing.Point(593, 45);
+            this.txt_simulateTimes.Name = "txt_simulateTimes";
+            this.txt_simulateTimes.Size = new System.Drawing.Size(100, 22);
+            this.txt_simulateTimes.TabIndex = 6;
+            // 
+            // txt_riskunit
+            // 
+            this.txt_riskunit.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_riskunit.Location = new System.Drawing.Point(593, 107);
+            this.txt_riskunit.Name = "txt_riskunit";
+            this.txt_riskunit.Size = new System.Drawing.Size(100, 22);
+            this.txt_riskunit.TabIndex = 5;
+            // 
+            // txt_init
+            // 
+            this.txt_init.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_init.Location = new System.Drawing.Point(381, 74);
+            this.txt_init.Name = "txt_init";
+            this.txt_init.Size = new System.Drawing.Size(100, 22);
+            this.txt_init.TabIndex = 4;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(298, 53);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(77, 12);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "一年交易次數";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(313, 107);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(62, 12);
+            this.label18.TabIndex = 8;
+            this.label18.Text = "破產設定%";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(503, 82);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(86, 12);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "最大風險計算%";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(318, 80);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(53, 12);
+            this.label24.TabIndex = 12;
+            this.label24.Text = "初始資金";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(528, 113);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(53, 12);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "風險增幅";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(289, 133);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(86, 12);
+            this.label28.TabIndex = 10;
+            this.label28.Text = "獲利目標設定%";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(531, 52);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(53, 12);
+            this.label29.TabIndex = 13;
+            this.label29.Text = "模擬次數";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label31.Location = new System.Drawing.Point(79, 23);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(41, 20);
+            this.label31.TabIndex = 30;
+            this.label31.Text = "機會";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label32.Location = new System.Drawing.Point(185, 26);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(41, 20);
+            this.label32.TabIndex = 29;
+            this.label32.Text = "倍率";
+            // 
+            // txt_or4
+            // 
+            this.txt_or4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_or4.Location = new System.Drawing.Point(157, 132);
+            this.txt_or4.Name = "txt_or4";
+            this.txt_or4.Size = new System.Drawing.Size(100, 22);
+            this.txt_or4.TabIndex = 28;
+            // 
+            // txt_oc4
+            // 
+            this.txt_oc4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_oc4.Location = new System.Drawing.Point(51, 132);
+            this.txt_oc4.Name = "txt_oc4";
+            this.txt_oc4.Size = new System.Drawing.Size(100, 22);
+            this.txt_oc4.TabIndex = 27;
+            // 
+            // txt_or3
+            // 
+            this.txt_or3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_or3.Location = new System.Drawing.Point(157, 104);
+            this.txt_or3.Name = "txt_or3";
+            this.txt_or3.Size = new System.Drawing.Size(100, 22);
+            this.txt_or3.TabIndex = 26;
+            // 
+            // txt_oc3
+            // 
+            this.txt_oc3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_oc3.Location = new System.Drawing.Point(51, 104);
+            this.txt_oc3.Name = "txt_oc3";
+            this.txt_oc3.Size = new System.Drawing.Size(100, 22);
+            this.txt_oc3.TabIndex = 25;
+            // 
+            // txt_or2
+            // 
+            this.txt_or2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_or2.Location = new System.Drawing.Point(157, 76);
+            this.txt_or2.Name = "txt_or2";
+            this.txt_or2.Size = new System.Drawing.Size(100, 22);
+            this.txt_or2.TabIndex = 24;
+            // 
+            // txt_oc2
+            // 
+            this.txt_oc2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_oc2.Location = new System.Drawing.Point(51, 76);
+            this.txt_oc2.Name = "txt_oc2";
+            this.txt_oc2.Size = new System.Drawing.Size(100, 22);
+            this.txt_oc2.TabIndex = 23;
+            // 
+            // txt_or1
+            // 
+            this.txt_or1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_or1.Location = new System.Drawing.Point(157, 48);
+            this.txt_or1.Name = "txt_or1";
+            this.txt_or1.Size = new System.Drawing.Size(100, 22);
+            this.txt_or1.TabIndex = 22;
+            // 
+            // txt_oc1
+            // 
+            this.txt_oc1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txt_oc1.Location = new System.Drawing.Point(51, 48);
+            this.txt_oc1.Name = "txt_oc1";
+            this.txt_oc1.Size = new System.Drawing.Size(100, 22);
+            this.txt_oc1.TabIndex = 21;
+            // 
+            // btn_opt
+            // 
+            this.btn_opt.Location = new System.Drawing.Point(189, 194);
+            this.btn_opt.Name = "btn_opt";
+            this.btn_opt.Size = new System.Drawing.Size(126, 35);
+            this.btn_opt.TabIndex = 31;
+            this.btn_opt.Text = "Simulate";
+            this.btn_opt.UseVisualStyleBackColor = true;
+            this.btn_opt.Click += new System.EventHandler(this.btn_opt_Click);
+            // 
+            // btn_optExample
+            // 
+            this.btn_optExample.Location = new System.Drawing.Point(57, 194);
+            this.btn_optExample.Name = "btn_optExample";
+            this.btn_optExample.Size = new System.Drawing.Size(126, 35);
+            this.btn_optExample.TabIndex = 32;
+            this.btn_optExample.Text = "example";
+            this.btn_optExample.UseVisualStyleBackColor = true;
+            this.btn_optExample.Click += new System.EventHandler(this.btn_optExample_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(77, 317);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(656, 163);
+            this.dataGridView1.TabIndex = 33;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(25, 438);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(47, 12);
+            this.label35.TabIndex = 38;
+            this.label35.Text = "best ratio";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(24, 415);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(53, 12);
+            this.label36.TabIndex = 37;
+            this.label36.Text = "Loss < 1%";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(45, 363);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(26, 12);
+            this.label39.TabIndex = 36;
+            this.label39.Text = "Med";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(45, 388);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(22, 12);
+            this.label40.TabIndex = 35;
+            this.label40.Text = "Opt";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(45, 337);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(26, 12);
+            this.label41.TabIndex = 34;
+            this.label41.Text = "Max";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label42.Location = new System.Drawing.Point(79, 279);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(81, 20);
+            this.label42.TabIndex = 39;
+            this.label42.Text = "模擬結果 :";
             // 
             // Form1
             // 
@@ -1370,6 +1740,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_E_PE)).EndInit();
             this.tab_summary.ResumeLayout(false);
             this.tab_summary.PerformLayout();
+            this.tab_opt.ResumeLayout(false);
+            this.tab_opt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1479,6 +1852,40 @@
         private System.Windows.Forms.Label lbl_summary_trades;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TabPage tab_opt;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txt_simulateTimes;
+        private System.Windows.Forms.TextBox txt_riskunit;
+        private System.Windows.Forms.TextBox txt_init;
+        private System.Windows.Forms.TextBox txt_retire;
+        private System.Windows.Forms.TextBox txt_bankrupt;
+        private System.Windows.Forms.TextBox txt_maxrisk;
+        private System.Windows.Forms.TextBox txt_trades;
+        private System.Windows.Forms.Button btn_opt;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox txt_or4;
+        private System.Windows.Forms.TextBox txt_oc4;
+        private System.Windows.Forms.TextBox txt_or3;
+        private System.Windows.Forms.TextBox txt_oc3;
+        private System.Windows.Forms.TextBox txt_or2;
+        private System.Windows.Forms.TextBox txt_oc2;
+        private System.Windows.Forms.TextBox txt_or1;
+        private System.Windows.Forms.TextBox txt_oc1;
+        private System.Windows.Forms.Button btn_optExample;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
     }
 }
 
